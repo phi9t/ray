@@ -1,0 +1,65 @@
+spack:
+  concretizer:
+    unify: true
+    reuse: dependencies
+
+  specs:
+    - bazel
+    - grpc
+    - py-click
+    - py-cython
+    - py-absl-py
+    - py-rich
+    - py-filelock
+    - py-frozenlist
+    - py-grpcio
+    - py-jsonschema
+    - py-msgpack
+    - py-numpy
+    - py-pip
+    - py-protobuf
+    - py-packaging
+    - py-pyarrow
+    - py-pyyaml
+    - py-aiosignal
+    - py-requests
+    - py-watchfiles
+    - py-setuptools
+    - py-wheel
+    - python
+    - python-venv
+
+  packages:
+    bazel:
+      require: |
+        @6.5.0
+    grpc:
+      require: |
+        -shared
+    py-absl-py:
+      require: |
+        @1.4.0
+    py-cython:
+      require: |
+        @0.29.73:
+    py-grpcio:
+      require: |
+        @1.60.0:
+    py-msgpack:
+      require: |
+        @1.0.0:2.0.0
+    py-numpy:
+      require: |
+        @1.24.4:
+    py-pyarrow:
+      require: |
+        @6.0.1:
+    py-torch:
+      require: |
+        +cuda cuda_arch=61
+        +distributed
+        -magma
+
+  repos:
+    - repo
+    - $spack/var/spack/repos/builtin
