@@ -1,0 +1,18 @@
+services:
+  ray-dev:
+    build: .
+    runtime: nvidia
+    shm_size: '16g'
+    volumes:
+      - /mnt/data_infra/workspace/ray:/workspace/ray
+      - /mnt/data_infra/shared/huggingface:/data/huggingface
+      - /mnt/data_infra/shared/outputs:/data/outputs
+    environment:
+      - HF_HOME=/data/huggingface
+      - NVIDIA_VISIBLE_DEVICES=all
+    ports:
+      - "8265:8265"
+      - "6379:6379"
+    working_dir: /workspace/ray
+    stdin_open: true
+    tty: true
