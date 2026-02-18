@@ -270,4 +270,49 @@ TEST(StatusOrTest, MoveAssignment) {
   }
 }
 
+TEST(StatusOrTest, CopyAssignmentTransition) {
+  {
+    StatusOr<int> lhs = 10;
+    StatusOr<int> rhs = 20;
+    lhs = rhs;
+    EXPECT_TRUE(lhs.ok());
+    EXPECT_EQ(lhs.value(), 20);
+  }
+
+  {
+    StatusOr<int> lhs = 10;
+    StatusOr<int> rhs = Status::InvalidArgument("error");
+    lhs = rhs;
+    EXPECT_FALSE(lhs.ok());
+    EXPECT_EQ(lhs.code(), StatusCode::InvalidArgument);
+  }
+}
+
+TEST(StatusOrTest, MoveAssignmentTransition) {
+  {
+    StatusOr<int> lhs = 10;
+    StatusOr<int> rhs = 30;
+    lhs = std::move(rhs);
+    EXPECT_TRUE(lhs.ok());
+    EXPECT_EQ(lhs.value(), 30);
+  }
+
+  {
+    StatusOr<int> lhs = 10;
+    StatusOr<int> rhs = Status::InvalidArgument("error");
+    lhs = std::move(rhs);
+    EXPECT_FALSE(lhs.ok());
+    EXPECT_EQ(lhs.code(), StatusCode::InvalidArgument);
+  }
+}
+
+TEST(StatusOrTest, StatusPredicates) {
+  EXPECT_TRUE(StatusOr<int>(Status::NotFound("missing")).IsNotFound());
+  EXPECT_TRUE(
+      StatusOr<int>(Status::InvalidArgument("bad_arg")).IsInvalidArgument());
+  EXPECT_TRUE(StatusOr<int>(Status::Invalid("invalid")).IsInvalid());
+  EXPECT_TRUE(
+      StatusOr<int>(Status::PermissionDenied("denied")).IsPermissionDenied());
+}
+
 }  // namespace ray

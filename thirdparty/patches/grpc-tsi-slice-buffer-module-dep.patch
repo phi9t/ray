@@ -1,0 +1,81 @@
+diff --git BUILD BUILD
+--- BUILD
++++ BUILD
+@@ -1831,6 +1831,7 @@ grpc_cc_library(
+     deps = [
+         "gpr",
+         "grpc_trace",
++        "grpc_public_hdrs",
+     ],
+ )
+@@ -2723,6 +2724,7 @@ grpc_cc_library(
+     external_deps = [
+         "absl/strings",
+         "absl/strings:str_format",
++        "absl/types:optional",
+     ],
+     tags = ["nofixdeps"],
+     visibility = ["@grpc:iomgr_buffer_list"],
+@@ -3628,6 +3629,7 @@ grpc_cc_library(
+         "protobuf_struct_upb",
+         "protobuf_timestamp_upb",
+         "ref_counted_ptr",
++        "server_address",
+         "uri_parser",
+         "work_serializer",
+         "//src/core:default_event_engine",
+@@ -2330,6 +2332,7 @@ grpc_cc_library(
+     external_deps = [
+         "absl/base",
+         "absl/base:core_headers",
++        "absl/base:endian",
+         "absl/meta:type_traits",
+         "absl/status",
+         "absl/status:statusor",
+@@ -1095,6 +1098,7 @@ grpc_cc_library(
+         "//src/core:channel_args",
+         "//src/core:channel_args_preconditioning",
+         "//src/core:channel_stack_type",
++        "//src/core:notification",
+         "//src/core:default_event_engine",
+         "//src/core:iomgr_fwd",
+         "//src/core:iomgr_port",
+@@ -2101,6 +2105,7 @@ grpc_cc_library(
+         "grpc++",
+         "grpc++_config_proto",
+         "//src/proto/grpc/reflection/v1alpha:reflection_proto",
++        "//src/proto/grpc/reflection/v1alpha:_reflection_proto_cc_proto",
+     ],
+     alwayslink = 1,
+ )
+@@ -2218,6 +2223,7 @@ grpc_cc_library(
+         "grpc",
+         "grpc++_base",
+         "//src/proto/grpc/testing/xds/v3:csds_proto",
++        "//src/proto/grpc/testing/xds/v3:_csds_proto_cc_proto",
+     ],
+     alwayslink = 1,
+ )
+@@ -2197,6 +2203,7 @@ grpc_cc_library(
+         "grpc",
+         "grpc++",
+         "grpc++_config_proto",
+         "//src/proto/grpc/channelz:channelz_proto",
++        "//src/proto/grpc/channelz:_channelz_proto_cc_proto",
+     ],
+     alwayslink = 1,
+ )
+diff --git src/core/lib/promise/detail/basic_seq.h src/core/lib/promise/detail/basic_seq.h
+--- src/core/lib/promise/detail/basic_seq.h
++++ src/core/lib/promise/detail/basic_seq.h
+@@ -471,8 +471,8 @@ class BasicSeqIter {
+           }
+           cur_ = next;
+           state_.~State();
+-          Construct(&state_,
+-                    Traits::template CallSeqFactory(f_, *cur_, std::move(arg)));
++          Construct(&state_,
++                    Traits::CallSeqFactory(f_, *cur_, std::move(arg)));
+           return PollNonEmpty();
+         });
+   }

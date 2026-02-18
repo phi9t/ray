@@ -10,7 +10,13 @@ configure_make(
     name = "libjemalloc",
     lib_source = ":all",
     linkopts = ["-ldl"],
-    copts = ["-fPIC"],
+    # Clang 20 + this glibc stack can mis-detect strerror_r return type
+    # in jemalloc's configure probe. Force the GNU-char* path to avoid
+    # build breakage in malloc_io.c.
+    copts = [
+        "-fPIC",
+        "-DJEMALLOC_STRERROR_R_RETURNS_CHAR_WITH_GNU_SOURCE",
+    ],
     args = ["-j"],
     out_shared_libs = ["libjemalloc.so"],
     # See https://salsa.debian.org/debian/jemalloc/-/blob/c0a88c37a551be7d12e4863435365c9a6a51525f/debian/rules#L8-23

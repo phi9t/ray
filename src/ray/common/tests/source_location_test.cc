@@ -17,6 +17,7 @@
 #include <gtest/gtest.h>
 
 #include <sstream>
+#include <string>
 
 namespace ray {
 
@@ -32,11 +33,25 @@ TEST(SourceLocationTest, StringifyTest) {
 
   // Initialized source location.
   {
+    const int expected_line = __LINE__ + 1;
     auto loc = RAY_LOC();
     std::stringstream ss{};
     ss << loc;
-    EXPECT_EQ(ss.str(), "src/ray/common/tests/source_location_test.cc:35");
+    EXPECT_EQ(ss.str(),
+              "src/ray/common/tests/source_location_test.cc:" + std::to_string(expected_line));
   }
+}
+
+TEST(SourceLocationTest, ValidityTest) {
+  EXPECT_FALSE(IsValidSourceLoc(SourceLocation{}));
+  EXPECT_TRUE(IsValidSourceLoc(SourceLocation{"foo.cc", 0}));
+}
+
+TEST(SourceLocationTest, InvalidLocationDoesNotPrintLine) {
+  SourceLocation invalid_loc{"", 123};
+  std::stringstream ss{};
+  ss << invalid_loc;
+  EXPECT_TRUE(ss.str().empty());
 }
 
 }  // namespace
