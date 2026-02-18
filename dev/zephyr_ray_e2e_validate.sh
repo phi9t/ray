@@ -5,8 +5,10 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 IMAGE="${ZEPHYR_IMAGE:-ghcr.io/phi9t/sygaldry/zephyr:sglang-miles-dev}"
 BAZEL_CACHE_HOST="${BAZEL_CACHE_HOST:-/mnt/data_infra/zephyr_container_infra/shared/bazel_cache}"
 UV_CACHE_HOST="${UV_CACHE_HOST:-/mnt/data_infra/zephyr_container_infra/shared/uv_cache}"
+BAZELISK_CACHE_HOST="${BAZELISK_CACHE_HOST:-/mnt/data_infra/zephyr_container_infra/shared/bazelisk_cache}"
 BAZEL_OUTPUT_ROOT="${BAZEL_OUTPUT_ROOT:-/mnt/shared/bazel_cache/ray-sglang-codex-build}"
 UV_CACHE_INNER="${UV_CACHE_INNER:-/mnt/shared/uv_cache/ray-install}"
+BAZELISK_HOME_INNER="${BAZELISK_HOME_INNER:-/mnt/shared/bazelisk}"
 PYTHON_VERSION="${PYTHON_VERSION:-3.13}"
 RAY_EXCLUDES_FILE="${RAY_EXCLUDES_FILE:-/tmp/ray_uv_excludes.txt}"
 
@@ -25,6 +27,11 @@ if [[ ! -d "${UV_CACHE_HOST}" ]]; then
   exit 1
 fi
 
+if [[ ! -d "${BAZELISK_CACHE_HOST}" ]]; then
+  echo "ERROR: missing bazelisk cache dir: ${BAZELISK_CACHE_HOST}" >&2
+  exit 1
+fi
+
 echo "[0/4] Normalize workspace ownership for generated Python protobuf outputs"
 docker run --rm \
   --entrypoint /bin/bash \
@@ -32,6 +39,7 @@ docker run --rm \
   -e HOST_GID="$(id -g)" \
   -v "${ROOT_DIR}:/workspace/ray" \
   -v "${UV_CACHE_HOST}:/mnt/shared/uv_cache" \
+  -v "${BAZELISK_CACHE_HOST}:/mnt/shared/bazelisk" \
   -w /workspace/ray \
   "${IMAGE}" \
   -lc "
@@ -39,6 +47,8 @@ docker run --rm \
     chown -R \"\${HOST_UID}:\${HOST_GID}\" python/ray/core/generated python/ray/serve/generated
     mkdir -p '${UV_CACHE_INNER}'
     chown -R \"\${HOST_UID}:\${HOST_GID}\" '${UV_CACHE_INNER}'
+    mkdir -p '${BAZELISK_HOME_INNER}'
+    chown -R \"\${HOST_UID}:\${HOST_GID}\" '${BAZELISK_HOME_INNER}'
   "
 
 echo "[1/4] Build ray_pkg in Zephyr container"
@@ -47,9 +57,10 @@ docker run --rm \
   --user "$(id -u):$(id -g)" \
   -e HOME=/tmp \
   -e XDG_CACHE_HOME=/tmp/.cache \
-  -e BAZELISK_HOME=/tmp/.bazelisk \
+  -e BAZELISK_HOME="${BAZELISK_HOME_INNER}" \
   -v "${ROOT_DIR}:/workspace/ray" \
   -v "${BAZEL_CACHE_HOST}:/mnt/shared/bazel_cache" \
+  -v "${BAZELISK_CACHE_HOST}:/mnt/shared/bazelisk" \
   -v "${UV_CACHE_HOST}:/mnt/shared/uv_cache" \
   -w /workspace/ray \
   "${IMAGE}" \
@@ -66,9 +77,10 @@ docker run --rm \
   --user "$(id -u):$(id -g)" \
   -e HOME=/tmp \
   -e XDG_CACHE_HOME=/tmp/.cache \
-  -e BAZELISK_HOME=/tmp/.bazelisk \
+  -e BAZELISK_HOME="${BAZELISK_HOME_INNER}" \
   -v "${ROOT_DIR}:/workspace/ray" \
   -v "${BAZEL_CACHE_HOST}:/mnt/shared/bazel_cache" \
+  -v "${BAZELISK_CACHE_HOST}:/mnt/shared/bazelisk" \
   -w /workspace/ray \
   "${IMAGE}" \
   -lc "
@@ -88,9 +100,10 @@ docker run --rm \
   --user "$(id -u):$(id -g)" \
   -e HOME=/tmp \
   -e XDG_CACHE_HOME=/tmp/.cache \
-  -e BAZELISK_HOME=/tmp/.bazelisk \
+  -e BAZELISK_HOME="${BAZELISK_HOME_INNER}" \
   -v "${ROOT_DIR}:/workspace/ray" \
   -v "${UV_CACHE_HOST}:/mnt/shared/uv_cache" \
+  -v "${BAZELISK_CACHE_HOST}:/mnt/shared/bazelisk" \
   -w /workspace/ray \
   "${IMAGE}" \
   -lc "
@@ -141,8 +154,9 @@ docker run --rm \
   --user "$(id -u):$(id -g)" \
   -e HOME=/tmp \
   -e XDG_CACHE_HOME=/tmp/.cache \
-  -e BAZELISK_HOME=/tmp/.bazelisk \
+  -e BAZELISK_HOME="${BAZELISK_HOME_INNER}" \
   -v "${ROOT_DIR}:/workspace/ray" \
+  -v "${BAZELISK_CACHE_HOST}:/mnt/shared/bazelisk" \
   -w /workspace/ray \
   "${IMAGE}" \
   -lc "

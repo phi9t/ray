@@ -1,0 +1,41 @@
+services:
+  zephyr-ray:
+    container_name: ${CONTAINER_NAME:-zephyr-ray}
+    image: ${ZEPHYR_IMAGE:-ghcr.io/phi9t/sygaldry/zephyr:sglang-miles-dev}
+    working_dir: /workspace/ray
+    stdin_open: true
+    tty: true
+    restart: "no"
+    shm_size: ${SHM_SIZE:-16gb}
+    gpus: all
+    environment:
+      SPACK_DISABLE_LOCAL_CONFIG: "true"
+      SPACK_USER_CONFIG_PATH: ${CONTAINER_HOME_INNER:-/home/ray}/.spack-clean
+      HOME: ${CONTAINER_HOME_INNER:-/home/ray}
+      XDG_CACHE_HOME: ${CONTAINER_HOME_INNER:-/home/ray}/.cache
+      SYGALDRY_PROJECT_ID: ${SYGALDRY_PROJECT_ID:-ray-compose}
+      NVIDIA_VISIBLE_DEVICES: ${NVIDIA_VISIBLE_DEVICES:-all}
+      NVIDIA_DRIVER_CAPABILITIES: ${NVIDIA_DRIVER_CAPABILITIES:-compute,utility}
+      HF_HOME: /mnt/shared/hf_cache
+      HUGGINGFACE_HUB_CACHE: /mnt/shared/hf_models
+      TRANSFORMERS_CACHE: /mnt/shared/hf_models
+      HF_DATASETS_CACHE: /mnt/shared/hf_cache/datasets
+      UV_CACHE_DIR: /mnt/shared/uv_cache
+      BAZELISK_HOME: /mnt/shared/bazelisk
+      BAZEL_OUTPUT_ROOT: ${BAZEL_OUTPUT_ROOT:-/mnt/shared/bazel_cache/ray-sglang-compose}
+    volumes:
+      - ${WORKSPACE_DIR}:/workspace/ray
+      - ${SHARED_BAZEL_CACHE_DIR:-/mnt/data_infra/zephyr_container_infra/shared/bazel_cache}:/mnt/shared/bazel_cache
+      - ${SHARED_BAZELISK_CACHE_DIR:-/mnt/data_infra/zephyr_container_infra/shared/bazelisk_cache}:/mnt/shared/bazelisk
+      - ${SHARED_UV_CACHE_DIR:-/mnt/data_infra/zephyr_container_infra/shared/uv_cache}:/mnt/shared/uv_cache
+      - ${CONTAINER_HOME_HOST:-/mnt/data_infra/zephyr_container_infra/shared/homes/ray-default}:${CONTAINER_HOME_INNER:-/home/ray}
+      - ${SHARED_HF_CACHE_DIR:-/mnt/data_infra/zephyr_container_infra/shared/hf_cache}:/mnt/shared/hf_cache
+      - ${SHARED_HF_MODELS_DIR:-/mnt/data_infra/zephyr_container_infra/shared/hf_cache/hub}:/mnt/shared/hf_models
+    ports:
+      - ${RAY_DASHBOARD_PORT:-8265}:8265
+      - ${RAY_CLIENT_PORT:-10001}:10001
+      - ${RAY_GCS_PORT:-6379}:6379
+    command:
+      - bash
+      - -lc
+      - sleep infinity

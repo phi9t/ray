@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zephyr Ray E2e Validation"
+  short_description: "Build and validate Ray in Zephyr Spack+uv containers"
+  default_prompt: "Use zephyr-ray-e2e-validation to run native Zephyr Ray build, focused Bazel tests, and comprehensive runtime workload validation with Spack Python and uv layering."

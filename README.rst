@@ -47,6 +47,10 @@ Ray runs on any machine, cluster, cloud provider, and Kubernetes, and features a
 Install Ray with: ``uv pip install --system ray``. For nightly wheels, see the
 `Installation page <https://docs.ray.io/en/latest/ray-overview/installation.html>`__.
 
+Developer note: for Zephyr container infrastructure (Spack + uv layering) build
+and runtime workflow, see ``foundation.org`` and
+``doc/zephyr_spack_uv_ray_build_enablement.org``.
+
 .. _`Serve`: https://docs.ray.io/en/latest/serve/index.html
 .. _`Data`: https://docs.ray.io/en/latest/data/dataset.html
 .. _`Workflow`: https://docs.ray.io/en/latest/workflows/

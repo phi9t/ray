@@ -1,0 +1,244 @@
+#+TITLE: Foundation: Build and Run Ray on Zephyr (Spack + uv)
+#+AUTHOR: Ray Engineering
+#+STARTUP: overview
+
+* Purpose
+
+This file is the quick-start foundation for building and running Ray in the
+Zephyr container infrastructure with the required layering model:
+
+- Spack owns core toolchain/runtime (Python, torch, jax)
+- uv is used for all Python dependency installation
+- Bazel builds Ray artifacts
+
+For deep troubleshooting and full incident history, see:
+
+- ~doc/zephyr_spack_uv_ray_build_enablement.org~
+
+* Non-Negotiable Rules
+
+1. Always activate the Spack environment before build/install/test commands.
+2. Always use ~uv~ instead of ~pip~ for installs.
+3. Always bind uv envs to Spack Python with ~--system-site-packages~.
+4. Never let uv replace Spack torch/jax stack.
+5. Always exclude these packages when installing Ray from source:
+   - ~torch~
+   - ~jax~
+   - ~jaxlib~
+   - ~triton~
+6. For extension compilation, Python headers must come from Spack Python
+   (~python3-config --includes~).
+
+* Required Paths and Artifacts
+
+- Ray workspace: ~/mnt/data_infra/workspace/ray~
+- Orchestrator: ~dev/zephyr/zephyr_ray.sh~
+- Compose file: ~dev/zephyr/docker-compose.zephyr-ray.yml~
+- Legacy native e2e script (compat): ~dev/zephyr_ray_e2e_validate.sh~
+- Skill runner: ~.codex/skills/zephyr-ray-e2e-validation/scripts/run_zephyr_ray_e2e.sh~
+- Shared caches:
+  - ~/mnt/data_infra/zephyr_container_infra/shared/bazel_cache~
+  - ~/mnt/data_infra/zephyr_container_infra/shared/bazelisk_cache~
+  - ~/mnt/data_infra/zephyr_container_infra/shared/uv_cache~
+
+* One-Time Environment Verification
+
+#+begin_src bash
+cd /mnt/data_infra/workspace/ray
+
+source /opt/spack_src/share/spack/setup-env.sh
+spack env activate /opt/spack_env/default >/dev/null
+
+python3 -c "import sys; print(sys.executable, sys.version)"
+python3-config --includes
+#+end_src
+
+Expected:
+- Python executable points into Spack view
+- Python version matches repo expectation (currently 3.13.x in this setup)
+
+* Standard End-to-End Execution (Canonical)
+
+Use the unified Zephyr orchestrator (hard-break command surface):
+
+#+begin_src bash
+cd /mnt/data_infra/workspace/ray
+dev/zephyr/zephyr_ray.sh run-e2e-comprehensive
+#+end_src
+
+Convenience ~just~ aliases:
+
+#+begin_src bash
+cd /mnt/data_infra/workspace/ray
+just check
+just shell
+just preflight
+just build
+just install
+just smoke
+just e2e
+just e2e-comprehensive
+just release
+#+end_src
+
+Release artifact:
+- timestamped log under ~.zephyr-e2e-logs/release-ready-<UTC>.log~
+- hard-fails if ~torch~ or ~jax~ cannot be imported in the Ray runtime context
+- hard-fails if required deps (~torch~, ~jax~) do not resolve from Spack paths
+- hard-fails if excluded deps resolve from inside the Ray venv
+
+The repo-local skill runner remains available and delegates to the same
+workflow conventions:
+
+#+begin_src bash
+cd /mnt/data_infra/workspace/ray
+.codex/skills/zephyr-ray-e2e-validation/scripts/run_zephyr_ray_e2e.sh
+#+end_src
+
+This performs:
+
+1. Compose bring-up and GPU sanity checks
+2. Native Ray e2e build/install/runtime pipeline
+3. Expanded Bazel tests
+4. Comprehensive runtime workload
+
+Success marker:
+
+#+begin_src text
+PASS: comprehensive Zephyr Ray E2E validation completed
+#+end_src
+
+* Compatibility Path (Legacy Script)
+
+If needed, the older native script can still be used:
+
+#+begin_src bash
+cd /mnt/data_infra/workspace/ray
+BAZEL_OUTPUT_ROOT=/workspace/ray/.bazel-output-root \
+  dev/zephyr_ray_e2e_validate.sh
+#+end_src
+
+Success marker:
+
+#+begin_src text
+E2E validation completed successfully.
+#+end_src
+
+* Common Orchestrator Commands
+
+#+begin_src bash
+dev/zephyr/zephyr_ray.sh up
+dev/zephyr/zephyr_ray.sh preflight
+dev/zephyr/zephyr_ray.sh build
+dev/zephyr/zephyr_ray.sh install --venv-reuse
+dev/zephyr/zephyr_ray.sh run-smoke
+dev/zephyr/zephyr_ray.sh run-e2e
+dev/zephyr/zephyr_ray.sh run-e2e-comprehensive
+dev/zephyr/zephyr_ray.sh release-ready
+dev/zephyr/zephyr_ray.sh down
+#+end_src
+
+* Manual Build + Layered Install (Reference)
+
+** Build
+
+#+begin_src bash
+source /opt/spack_src/share/spack/setup-env.sh
+spack env activate /opt/spack_env/default >/dev/null
+
+bazel --batch --output_user_root=/mnt/shared/bazel_cache/ray-sglang-codex-build \
+  build //:ray_pkg --verbose_failures
+#+end_src
+
+** Focused tests
+
+#+begin_src bash
+bazel --batch --output_user_root=/mnt/shared/bazel_cache/ray-sglang-codex-build test \
+  --test_output=errors \
+  //src/ray/common/tests:source_location_test \
+  //src/ray/raylet/tests:wait_manager_test
+#+end_src
+
+To include toolchain-sensitive diagnostics (not part of default comprehensive gate):
+
+#+begin_src bash
+RUN_TOOLCHAIN_SENSITIVE_TESTS=1 dev/zephyr/zephyr_ray.sh run-e2e-comprehensive
+#+end_src
+
+** uv layered install (Spack Python + excludes)
+
+#+begin_src bash
+SPACK_PYTHON="$(command -v python3)"
+PY_INCLUDES="$(${SPACK_PYTHON}-config --includes)"
+
+uv venv --python "$SPACK_PYTHON" --system-site-packages .venv-ray-pkg-py313
+source .venv-ray-pkg-py313/bin/activate
+
+cat > /tmp/ray_uv_excludes.txt <<'EOF'
+torch
+jax
+jaxlib
+triton
+EOF
+
+CFLAGS="${PY_INCLUDES} ${CFLAGS:-}" \
+CPPFLAGS="${PY_INCLUDES} ${CPPFLAGS:-}" \
+SKIP_BAZEL_BUILD=1 RAY_BUILD_REDIS=0 \
+uv pip install --python "$(pwd)/.venv-ray-pkg-py313/bin/python" \
+  --excludes /tmp/ray_uv_excludes.txt ./python
+#+end_src
+
+** Runtime workload smoke
+
+#+begin_src bash
+source .venv-ray-pkg-py313/bin/activate
+python - <<'PY'
+import ray
+ray.init(num_cpus=2, include_dashboard=False, log_to_driver=True)
+@ray.remote
+def f(x): return x * x
+print(ray.get([f.remote(i) for i in range(8)]))
+ray.shutdown()
+PY
+#+end_src
+
+* Common Pitfalls and Recovery
+
+** Dead compose container (~zephyr-ray~)
+
+Symptom:
+- ~container is marked for removal and cannot be started~
+
+Recovery:
+
+#+begin_src bash
+docker rm -f zephyr-ray || true
+WORKSPACE_DIR=/mnt/data_infra/workspace/ray \
+  docker compose -f dev/zephyr/docker-compose.zephyr-ray.yml down --remove-orphans
+#+end_src
+
+** Stale ownership on generated or build dirs
+
+Symptom:
+- ~Permission denied~ while cleaning ~python/build~ or generated protobuf paths
+
+Recovery:
+- run the native e2e preflight stage (included in ~dev/zephyr_ray_e2e_validate.sh~)
+- if needed, re-normalize ownership in container before re-run
+
+** Dashboard crash
+
+Symptom:
+- ~Failed to start the dashboard, return code -11~
+
+Status:
+- known TODO/non-blocking for current build-and-runtime validation
+- use ~include_dashboard=False~ in workload checks
+
+* Operational Notes
+
+- Reusing Bazel and Bazelisk caches is expected and recommended.
+- If the external Bazel endpoint is flaky, retry after connectivity recovers; cached
+  Bazel binary under ~bazelisk_cache~ eliminates repeated downloads.
+- Keep this guide aligned with script behavior when changing
+  ~dev/zephyr_ray_e2e_validate.sh~ or the skill runner.

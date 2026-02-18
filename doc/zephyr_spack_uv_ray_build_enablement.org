@@ -1,0 +1,426 @@
+#+TITLE: Ray Build Enablement on Zephyr (Spack + uv Layering)
+
+#+AUTHOR: Engineering Notes
+#+STARTUP: overview
+
+* Scope
+
+This document is the canonical engineering runbook for building and validating
+Ray in the Zephyr ~sglang~ container while enforcing:
+
+- Spack-owned core runtime/toolchain (including Python, torch/jax core)
+- uv-only Python dependency management for layered installs
+- Bazel-based compilation for ~//:ray_pkg~
+
+It includes:
+
+- The stable workflow (build, test, install, runtime validation)
+- The real failure chain encountered and fixes applied
+- Hard constraints and non-negotiable policies
+- Failure modes, diagnostics, and recovery playbooks
+
+* Hard-Break Interface (Current)
+
+The canonical command surface is now the single orchestrator:
+
+- ~dev/zephyr/zephyr_ray.sh~
+
+Supported commands:
+
+- ~up~, ~down~, ~status~, ~logs~, ~shell~ (activates the Ray venv when installed)
+- ~preflight~, ~debug-env~
+- ~build~, ~install [--venv-reuse|--venv-clear]~
+- ~run-smoke~, ~run-e2e~, ~run-e2e-comprehensive~, ~release-ready~
+
+Repo-local ~just~ convenience aliases:
+
+- ~check~ (verifies the wrapper is executable and runs ~preflight~)
+- ~up~, ~down~, ~status~, ~logs~, ~shell~
+- ~preflight~, ~debug-env~
+- ~build~, ~install~, ~install-clear~
+- ~smoke~, ~e2e~, ~e2e-comprehensive~, ~release~
+
+* Invariants and Policy
+
+** Mandatory Rules
+
+1. Always activate Spack env before build/test/install.
+2. Always use uv for Python installation operations.
+3. Always bind uv env to Spack Python with system packages enabled.
+4. Never override Spack core torch/jax stack from uv install.
+5. For native-extension builds, Python C/C++ headers must come from Spack Python.
+
+** Required Commands Pattern
+
+#+begin_src bash
+source /opt/spack_src/share/spack/setup-env.sh
+spack env activate /opt/spack_env/default >/dev/null
+#+end_src
+
+#+begin_src bash
+SPACK_PYTHON="$(command -v python3)"
+uv venv --python "$SPACK_PYTHON" --system-site-packages .venv-ray-pkg-py313
+#+end_src
+
+#+begin_src text
+Excludes list (one per line):
+torch
+jax
+jaxlib
+triton
+#+end_src
+
+* Environment Contract
+
+** Container and Mounts
+
+- Image: ~ghcr.io/phi9t/sygaldry/zephyr:sglang-miles-dev~
+- Repo mount: ~.../ray:/workspace/ray~
+- Shared Bazel cache: ~.../shared/bazel_cache~
+- Shared uv cache: ~.../shared/uv_cache~
+
+** Cache Strategy
+
+- Bazel shared cache reuse is intentional and recommended.
+- uv cache reuse is allowed, but ownership must be normalized to current host UID/GID.
+
+* Canonical End-to-End Flow
+
+Primary file:
+
+- ~dev/zephyr/zephyr_ray.sh~
+
+Stages for comprehensive validation:
+
+1. preflight (ownership + toolchain checks)
+2. Bazel build ~//:ray_pkg~
+3. uv layered install from local ~./python~ with excludes file
+4. runtime smoke workload
+5. focused Bazel tests + Python integration checks
+
+Execution:
+
+#+begin_src bash
+BAZEL_OUTPUT_ROOT=/workspace/ray/.bazel-output-root \
+  ./dev/zephyr/zephyr_ray.sh run-e2e-comprehensive
+#+end_src
+
+Release gate execution:
+
+#+begin_src bash
+./dev/zephyr/zephyr_ray.sh release-ready
+#+end_src
+
+Release gate includes:
+
+1. excludes-file policy validation (torch/jax/jaxlib/triton)
+2. Spack+GPU runtime health checks (torch CUDA path)
+3. comprehensive e2e build/install/run validation
+4. strict uv-layering integrity checks:
+   - ~torch~ and ~jax~ imports must succeed in Ray runtime context
+   - ~torch~ and ~jax~ must resolve to Spack paths (~/opt/spack_store/*~)
+   - ~torch/jax/jaxlib/triton~ must not be installed inside Ray venv
+5. bill-of-materials capture (python/uv/bazel/compiler/ray metadata, excludes checksum,
+   runtime ~sys.path~ / ~PYTHONPATH~ context)
+
+Release artifact:
+
+- ~.zephyr-e2e-logs/release-ready-<UTC>.log~
+
+Compatibility (legacy) script remains available:
+
+#+begin_src bash
+BAZEL_OUTPUT_ROOT=/workspace/ray/.bazel-output-root \
+  ./dev/zephyr_ray_e2e_validate.sh
+#+end_src
+
+* Real Failure Timeline and Fixes
+
+** Failure 1: ~//:ray_pkg~ packaging permission denied
+
+Symptom:
+
+- build reached genrule ~//:ray_pkg~
+- failed at:
+  - ~rm -rf python/ray/core/generated ...~
+  - ~Permission denied~
+
+Root cause:
+
+- bind-mounted generated protobuf directories were root-owned from prior runs
+- current run used non-root host UID/GID in container
+- Bazel genrule could not clean generated output path
+
+Fix:
+
+- add preflight ownership normalization for:
+  - ~python/ray/core/generated~
+  - ~python/ray/serve/generated~
+
+** Failure 2: uv cache initialization permission denied
+
+Symptom:
+
+- stage ~[3/4]~ failed with:
+  - ~Failed to initialize cache at /mnt/shared/uv_cache/ray-install~
+  - ~Permission denied (os error 13)~
+
+Root cause:
+
+- shared uv cache subtree ownership incompatible with current UID/GID
+
+Fix:
+
+- in preflight:
+  - ~mkdir -p ${UV_CACHE_INNER}~
+  - ~chown -R ${HOST_UID}:${HOST_GID} ${UV_CACHE_INNER}~
+
+** Hardening Decision: Hard-fail preflight
+
+Current state:
+
+- ownership normalization commands are strict (no ~|| true~)
+- if chown fails, script exits immediately
+- this prevents hidden partial runs and non-deterministic failures later in pipeline
+
+* Why the Current Workflow is Stable
+
+1. ABI/toolchain consistency:
+   - compile + install tied to Spack Python and Spack environment
+2. Layering discipline:
+   - uv excludes torch/jax/jaxlib/triton, preventing accidental replacement of Spack core
+3. Deterministic filesystem ownership:
+   - preflight avoids UID/GID drift from mixed root/non-root container writes
+4. Real runtime validation:
+   - final stage validates task scheduling, actor state, object store roundtrip
+
+* Detailed Workflow (Manual)
+
+** Build
+
+#+begin_src bash
+bazel --batch --output_user_root=/mnt/shared/bazel_cache/ray-sglang-codex-build \
+  build //:ray_pkg --verbose_failures
+#+end_src
+
+** Focused tests
+
+#+begin_src bash
+bazel --batch --output_user_root=/mnt/shared/bazel_cache/ray-sglang-codex-build test \
+  --test_output=errors \
+  //src/ray/common/tests:source_location_test \
+  //src/ray/raylet/tests:wait_manager_test
+#+end_src
+
+Toolchain-sensitive test (opt-in only):
+
+#+begin_src bash
+RUN_TOOLCHAIN_SENSITIVE_TESTS=1 dev/zephyr/zephyr_ray.sh run-e2e-comprehensive
+#+end_src
+
+Notes:
+- ~//src/ray/common/tests:status_or_test~ may fail under some GCC versions due to
+  ~-Werror=maybe-uninitialized~ in inline ~StatusOr~ access paths.
+- Keep it out of the default comprehensive gate to preserve deterministic CI-like
+  signal in this Zephyr container stack.
+
+** uv layered install from local source
+
+#+begin_src bash
+SPACK_PYTHON="$(command -v python3)"
+PY_INCLUDES="$(${SPACK_PYTHON}-config --includes)"
+
+uv venv --python "$SPACK_PYTHON" --system-site-packages .venv-ray-pkg-py313
+source .venv-ray-pkg-py313/bin/activate
+
+cat > /tmp/ray_uv_excludes.txt <<'EOF'
+torch
+jax
+jaxlib
+triton
+EOF
+
+CFLAGS="${PY_INCLUDES} ${CFLAGS:-}" \
+CPPFLAGS="${PY_INCLUDES} ${CPPFLAGS:-}" \
+SKIP_BAZEL_BUILD=1 RAY_BUILD_REDIS=0 \
+uv pip install --excludes /tmp/ray_uv_excludes.txt ./python
+#+end_src
+
+** Runtime smoke
+
+#+begin_src bash
+python -c "import ray, ray._raylet; print(ray.__version__, ray._raylet.__file__)"
+#+end_src
+
+* Verification Matrix
+
+** Preflight checks
+
+#+begin_src bash
+id
+ls -ld python/ray/core/generated python/ray/serve/generated
+python3 -c "import sys; print(sys.executable, sys.version)"
+python3-config --includes
+#+end_src
+
+** Build and package checks
+
+#+begin_src bash
+bazel --batch --output_user_root=... build //:ray_pkg --verbose_failures
+test -f bazel-bin/ray_pkg.out
+#+end_src
+
+** Install checks
+
+#+begin_src bash
+python - <<'PY'
+import ray, sys
+print("python=", sys.executable)
+print("ray=", ray.__version__)
+print("_raylet=", ray._raylet.__file__)
+PY
+#+end_src
+
+** Runtime workload checks
+
+Expected from stage ~[4/4]~:
+
+- local Ray startup succeeds
+- remote tasks and actor operations complete
+- object roundtrip assertion passes
+
+* Troubleshooting Playbook
+
+** ~Permission denied~ in generated protobuf cleanup
+
+Check:
+
+#+begin_src bash
+ls -ld python/ray/core/generated python/ray/serve/generated
+#+end_src
+
+Recover:
+
+#+begin_src bash
+chown -R "$(id -u):$(id -g)" python/ray/core/generated python/ray/serve/generated
+#+end_src
+
+** uv cache permission failure
+
+Check:
+
+#+begin_src bash
+ls -ld /mnt/data_infra/zephyr_container_infra/shared/uv_cache
+ls -ld /mnt/data_infra/zephyr_container_infra/shared/uv_cache/ray-install
+#+end_src
+
+Recover:
+
+#+begin_src bash
+mkdir -p /mnt/data_infra/zephyr_container_infra/shared/uv_cache/ray-install
+chown -R "$(id -u):$(id -g)" /mnt/data_infra/zephyr_container_infra/shared/uv_cache/ray-install
+#+end_src
+
+** Python ABI mismatch for ~_raylet.so~
+
+Symptom:
+
+- undefined symbol errors at import time (example historically: ~PyImport_AddModuleRef~)
+
+Check:
+
+#+begin_src bash
+python -c "import sys; print(sys.version)"
+python - <<'PY'
+import pathlib, ray
+print(pathlib.Path(ray.__file__).with_name('_raylet.so'))
+PY
+#+end_src
+
+Mitigation:
+
+- ensure venv Python and build Python are the same minor version
+- enforce Spack Python minor version gate before install
+
+** ~release-ready~ fails due to missing ~torch~ or ~jax~
+
+Symptom:
+
+- release log contains:
+  - ~torch import failed in Ray runtime context~ or
+  - ~jax import failed in Ray runtime context~ or
+  - ~module is not from Spack paths~
+
+Root cause:
+
+- venv runtime context does not see Spack site-packages after activation
+- or Spack environment activation is not applied correctly
+
+Check:
+
+#+begin_src bash
+./dev/zephyr/zephyr_ray.sh debug-env
+./dev/zephyr/zephyr_ray.sh release-ready
+#+end_src
+
+Recover:
+
+- ensure Spack env activation is healthy (~spack env activate /opt/spack_env/default~)
+- ensure release gate runtime has Spack site paths in ~PYTHONPATH~
+- ensure required modules resolve under ~\/opt\/spack_store\/...~ and not non-Spack paths
+- re-run release gate after fixing env path/mount issues
+
+** Bazel cache write failures
+
+Symptom:
+
+- ~mkdir(... output root ...): Permission denied~
+
+Mitigation:
+
+- use writable ~BAZEL_OUTPUT_ROOT~ override, e.g.:
+
+#+begin_src bash
+BAZEL_OUTPUT_ROOT=/workspace/ray/.bazel-output-root ./dev/zephyr_ray_e2e_validate.sh
+#+end_src
+
+* Performance / Security / Regression Notes
+
+** Performance
+
+- Shared Bazel cache substantially reduces iterative build time.
+- If Docker ~\/dev\/shm~ is too small, Ray may fallback object store to ~\/tmp~, hurting performance.
+
+** Security and least privilege
+
+- Runtime build/test/install containers run as host UID/GID, not root.
+- Only preflight ownership correction runs with default container privileges and is scoped to known paths.
+
+** Regression risk areas
+
+- Upstream grpc/third-party changes can invalidate module dependency patches.
+- Spack Python minor version bumps can break expected ABI or packaging assumptions.
+- Shared cache path policy changes can reintroduce permission instability.
+
+* TODOs
+
+- Dashboard startup instability:
+  - Current pipeline treats dashboard as non-blocking for workload validation.
+  - Keep as tracked TODO for Zephyr image/runtime dependency investigation.
+
+* Appendices
+
+** Focused tests currently in script
+
+- ~//src/ray/common/tests:source_location_test~
+- ~//src/ray/raylet/tests:wait_manager_test~
+
+Opt-in only:
+
+- ~//src/ray/common/tests:status_or_test~ (set ~RUN_TOOLCHAIN_SENSITIVE_TESTS=1~)
+
+** Primary artifacts
+
+- Build marker: ~bazel-bin/ray_pkg.out~
+- Package content source: ~bazel-bin/ray_pkg.zip~
+- Validation script: ~dev/zephyr_ray_e2e_validate.sh~
