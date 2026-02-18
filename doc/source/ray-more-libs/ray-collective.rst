@@ -115,8 +115,8 @@ or `cupy <https://docs.cupy.dev/en/stable/install.html>`_ in order to use collec
 
 .. code-block:: python
 
-   pip install torch
-   pip install cupy-cudaxxx # replace xxx with the right cuda version in your environment
+   uv pip install --system torch
+   uv pip install --system cupy-cudaxxx # replace xxx with the right cuda version in your environment
 
 To use these APIs, import the collective package in your actor/task or driver code via:
 

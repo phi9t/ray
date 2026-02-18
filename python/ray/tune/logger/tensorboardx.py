@@ -42,7 +42,7 @@ class TBXLogger(Logger):
             from tensorboardX import SummaryWriter
         except ImportError:
             if log_once("tbx-install"):
-                logger.info('pip install "ray[tune]" to see TensorBoard files.')
+                logger.info('uv pip install --system "ray[tune]" to see TensorBoard files.')
             raise
         self._file_writer = SummaryWriter(self.logdir, flush_secs=30)
         self.last_result = None
@@ -190,7 +190,7 @@ class TBXLoggerCallback(LoggerCallback):
             self._summary_writer_cls = SummaryWriter
         except ImportError:
             if log_once("tbx-install"):
-                logger.info('pip install "ray[tune]" to see TensorBoard files.')
+                logger.info('uv pip install --system "ray[tune]" to see TensorBoard files.')
             raise
         self._trial_writer: Dict["Trial", SummaryWriter] = {}
         self._trial_result: Dict["Trial", Dict] = {}

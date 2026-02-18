@@ -198,7 +198,7 @@ class UnityCatalogConnector:
                 raise RuntimeError(
                     f"Delta table uses Deletion Vectors, which requires deltalake>=0.10.0. "
                     f"Error: {error_msg}\n"
-                    f"Solution: pip install --upgrade 'deltalake>=0.10.0'"
+                    f"Solution: uv pip install --system --upgrade 'deltalake>=0.10.0'"
                 ) from e
             raise
 

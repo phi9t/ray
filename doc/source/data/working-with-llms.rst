@@ -27,7 +27,7 @@ First, install Ray Data with LLM support:
 
 .. code-block:: bash
 
-    pip install -U "ray[data, llm]>=2.49.1"
+    uv pip install --system -U "ray[data, llm]>=2.49.1"
 
 Here's a complete minimal example that runs batch inference:
 
@@ -109,7 +109,7 @@ if specified).
 To optimize model loading, you can configure the `load_format` to `runai_streamer` or `tensorizer`.
 
 .. note::
-    In this case, install vLLM with runai dependencies: `pip install -U "vllm[runai]>=0.10.1"`
+    In this case, install vLLM with runai dependencies: `uv pip install --system -U "vllm[runai]>=0.10.1"`
 
 .. literalinclude:: doc_code/working-with-llms/basic_llm_example.py
     :language: python
@@ -149,7 +149,7 @@ First, install the required dependencies:
 .. code-block:: bash
 
     # Install required dependencies for vision-language models
-    pip install datasets>=4.0.0
+    uv pip install --system datasets>=4.0.0
 
 First, load a vision dataset:
 

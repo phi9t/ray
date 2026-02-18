@@ -28,7 +28,7 @@ First, install Ray Data. To learn more about installing Ray and its libraries, s
 
 .. code-block:: console
 
-    $ pip install -U 'ray[data]'
+    $ uv pip install --system -U 'ray[data]'
 
 Here is an example of how to do perform a simple batch text classification task with Ray Data:
 

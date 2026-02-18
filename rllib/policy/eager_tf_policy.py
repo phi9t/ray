@@ -8,7 +8,7 @@ import os
 import threading
 from typing import Dict, List, Optional, Tuple, Union
 
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray._common.deprecation import (
     DEPRECATED_VALUE,
@@ -784,7 +784,7 @@ def _build_eager_tf_policy(
                         raise RuntimeError(
                             "Converting a TensorFlow model to ONNX requires "
                             "`tf2onnx` to be installed. Install with "
-                            "`pip install tf2onnx`."
+                            "`uv pip install --system tf2onnx`."
                         ) from e
 
                     model_proto, external_tensor_storage = tf2onnx.convert.from_keras(

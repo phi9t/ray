@@ -54,7 +54,7 @@ MLFlow Integration
 ------------------
 
 Tune also provides a logger for `MLflow <https://mlflow.org>`_.
-You can install MLflow via ``pip install mlflow``.
+You can install MLflow via ``uv pip install --system mlflow``.
 See the :doc:`tutorial here </tune/examples/tune-mlflow>`.
 
 .. autosummary::
@@ -68,7 +68,7 @@ Wandb Integration
 -----------------
 
 Tune also provides a logger for `Weights & Biases <https://www.wandb.ai/>`_.
-You can install Wandb via ``pip install wandb``.
+You can install Wandb via ``uv pip install --system wandb``.
 See the :doc:`tutorial here </tune/examples/tune-wandb>`.
 
 .. autosummary::
@@ -83,7 +83,7 @@ Comet Integration
 ------------------------------
 
 Tune also provides a logger for `Comet <https://www.comet.com/>`_.
-You can install Comet via ``pip install comet-ml``.
+You can install Comet via ``uv pip install --system comet-ml``.
 See the :doc:`tutorial here </tune/examples/tune-comet>`.
 
 .. autosummary::
@@ -96,7 +96,7 @@ Aim Integration
 ---------------
 
 Tune also provides a logger for the `Aim <https://aimstack.io/>`_ experiment tracker.
-You can install Aim via ``pip install aim``.
+You can install Aim via ``uv pip install --system aim``.
 See the :doc:`tutorial here </tune/examples/tune-aim>`.
 
 .. autosummary::

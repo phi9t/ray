@@ -7,7 +7,7 @@
 set -exo pipefail
 
 # Install Python dependencies.
-pip3 install --no-cache-dir \
+uv pip install --system --no-cache-dir \
     aiohttp==3.11.16 \
     nbformat==5.9.2 \
     numpy==1.26.4 \

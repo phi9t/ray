@@ -3,7 +3,7 @@
 set -euxo pipefail
 
 # Python dependencies
-pip3 install --no-cache-dir \
+uv pip install --system --no-cache-dir \
     "mcp==1.11.0" \
     "asyncio==3.4.3" \
     "pydantic==2.9.2"

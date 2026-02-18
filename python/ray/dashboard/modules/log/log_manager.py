@@ -15,7 +15,7 @@ from ray.util.state.common import (
 from ray.util.state.state_manager import StateDataSourceClient
 
 if BaseModel is None:
-    raise ModuleNotFoundError("Please install pydantic via `pip install pydantic`.")
+    raise ModuleNotFoundError("Please install pydantic via `uv pip install --system pydantic`.")
 
 
 logger = logging.getLogger(__name__)

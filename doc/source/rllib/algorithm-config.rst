@@ -155,7 +155,7 @@ See this :ref:`RL environment guide <rllib-environments-doc>` for more details.
 
     .. code-block:: bash
 
-        pip install "gymnasium[atari,accept-rom-license,mujoco]"
+        uv pip install --system "gymnasium[atari,accept-rom-license,mujoco]"
 
 Learning rate `lr`
 ~~~~~~~~~~~~~~~~~~

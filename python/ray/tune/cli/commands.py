@@ -50,7 +50,7 @@ OPERATORS = {
 def _check_tabulate():
     """Checks whether tabulate is installed."""
     if tabulate is None:
-        raise ImportError("Tabulate not installed. Please run `pip install tabulate`.")
+        raise ImportError("Tabulate not installed. Please run `uv pip install --system tabulate`.")
 
 
 def print_format_output(dataframe):

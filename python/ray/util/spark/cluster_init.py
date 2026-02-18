@@ -141,7 +141,7 @@ class RayClusterOnSpark:
                     _logger.warning(
                         "Dependencies to launch the optional dashboard API "
                         "server cannot be found. They can be installed with "
-                        f"pip install ray[default], root cause: ({repr(e)})"
+                        f"uv pip install --system ray[default], root cause: ({repr(e)})"
                     )
 
             last_alive_worker_count = 0

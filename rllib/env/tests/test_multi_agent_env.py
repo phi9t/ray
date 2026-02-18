@@ -3,7 +3,7 @@ import unittest
 
 import gymnasium as gym
 import numpy as np
-import tree  # pip install dm-tree
+import tree  # uv pip install --system dm-tree
 
 import ray
 from ray.rllib.algorithms.algorithm_config import AlgorithmConfig

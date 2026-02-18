@@ -39,7 +39,7 @@ Save the following to files named `whisper.Dockerfile` and `resnet.Dockerfile`.
 FROM rayproject/ray:latest-py38-gpu
 
 # Install the package `faster_whisper`, which is a dependency for the Whisper model.
-RUN pip install faster_whisper==0.10.0
+RUN uv pip install --system faster_whisper==0.10.0
 RUN sudo apt-get update && sudo apt-get install curl -y
 
 # Download the source code for the Whisper application into `whisper_example.py`.
@@ -55,7 +55,7 @@ ENV PYTHONPATH "${PYTHONPATH}:/home/ray"
 FROM rayproject/ray:latest-py38-cpu
 
 # Install the packages `torch` and `torchvision`, which are dependencies for the ResNet model.
-RUN pip install torch==2.0.1 torchvision==0.15.2
+RUN uv pip install --system torch==2.0.1 torchvision==0.15.2
 RUN sudo apt-get update && sudo apt-get install curl -y
 
 # Download the source code for the ResNet application into `resnet50_example.py`.

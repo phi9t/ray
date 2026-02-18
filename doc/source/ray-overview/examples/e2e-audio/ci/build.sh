@@ -3,7 +3,7 @@
 set -euxo pipefail
 
 # Install Python dependencies
-pip3 install --no-cache-dir \
+uv pip install --system --no-cache-dir \
     accelerate==1.7.0 \
     datasets[audio]==2.2.1 \
     flashinfer-python==0.2.2.post1 \

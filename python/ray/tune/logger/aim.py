@@ -65,7 +65,7 @@ class AimLoggerCallback(LoggerCallback):
         """
         assert Run is not None, (
             "aim must be installed!. You can install aim with"
-            " the command: `pip install aim`."
+            " the command: `uv pip install --system aim`."
         )
         self._repo_path = repo
         self._experiment_name = experiment_name

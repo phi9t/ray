@@ -16,16 +16,16 @@ The Ray cluster launcher is part of the `ray` CLI. Use the CLI to start, stop an
 
 ```bash
 # install ray
-pip install -U ray[default]
+uv pip install --system -U ray[default]
 ```
 
 ### Install and Configure Azure CLI
 
-Next, install the Azure CLI (`pip install -U azure-cli azure-identity`) and login using `az login`.
+Next, install the Azure CLI (`uv pip install --system -U azure-cli azure-identity`) and login using `az login`.
 
 ```bash
 # Install packages to use azure CLI.
-pip install azure-cli azure-identity
+uv pip install --system azure-cli azure-identity
 
 # Login to azure. This will redirect you to your web browser.
 az login
@@ -37,7 +37,7 @@ Now, install the Azure SDK libraries that enable the Ray cluster launcher to bui
 
 ```bash
 # Install azure SDK libraries.
-pip install azure-core azure-mgmt-network azure-mgmt-common azure-mgmt-resource azure-mgmt-compute msrestazure
+uv pip install --system azure-core azure-mgmt-network azure-mgmt-common azure-mgmt-resource azure-mgmt-compute msrestazure
 ```
 
 ### Start Ray with the Ray cluster launcher

@@ -131,7 +131,7 @@ class MemoryMonitor:
             logger.warning(
                 "WARNING: Not monitoring node memory since `psutil` "
                 "is not installed. Install this with "
-                "`pip install psutil` to enable "
+                "`uv pip install --system psutil` to enable "
                 "debugging of memory-related crashes."
             )
         self.disabled = (

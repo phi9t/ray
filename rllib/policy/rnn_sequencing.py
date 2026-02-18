@@ -16,7 +16,7 @@ import logging
 from typing import List, Optional
 
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray.rllib.policy.sample_batch import SampleBatch
 from ray.rllib.utils.annotations import OldAPIStack

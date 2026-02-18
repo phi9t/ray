@@ -4,7 +4,7 @@
 
 set -exo pipefail
 
-pip3 install -U \
+uv pip install --system -U \
     torch==2.1.1 \
     deepspeed==0.10.2 \
     fairscale==0.4.13 \
@@ -19,4 +19,4 @@ pip3 install -U \
     "urllib3<1.27" \
     transformers==4.36.2 \
     peft==0.7.0
-pip3 install -U flash-attn==2.4.2 --no-build-isolation
+uv pip install --system -U flash-attn==2.4.2 --no-build-isolation

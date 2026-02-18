@@ -46,7 +46,7 @@ b) Not a tune-registered environment creator.
 c) Not a valid env class string.
 
 Try one of the following:
-a) For Atari support: `pip install gymnasium[atari]` and prefix the environment name with `ale_py:`, for example, `"ale_py:ALE/Pong-v5"`.
+a) For Atari support: `uv pip install --system gymnasium[atari]` and prefix the environment name with `ale_py:`, for example, `"ale_py:ALE/Pong-v5"`.
 b) To register your custom env, do `from ray import tune; tune.register_env('[name]', lambda cfg: [return env obj from here using cfg])`.
    Then in your config, do `config.environment(env='[name]').
 c) Make sure you provide a fully qualified classpath, e.g.:
@@ -62,7 +62,7 @@ https://github.com/openai/gym and here: https://github.com/Farama-Foundation/Gym
 
 In order to fix this problem, do the following:
 
-1) Run `pip install gymnasium` on your command line.
+1) Run `uv pip install --system gymnasium` on your command line.
 2) Change all your import statements in your code from
    `import gym` -> `import gymnasium as gym` OR
    `from gym.spaces import Discrete` -> `from gymnasium.spaces import Discrete`

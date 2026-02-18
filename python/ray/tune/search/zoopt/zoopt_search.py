@@ -40,7 +40,7 @@ class ZOOptSearch(Searcher):
     Asynchronous Sequential RAndomized COordinate Shrinking (ASRacos)
     is implemented in Tune.
 
-    To use ZOOptSearch, install zoopt (>=0.4.1): ``pip install -U zoopt``.
+    To use ZOOptSearch, install zoopt (>=0.4.1): ``uv pip install --system -U zoopt``.
 
     Tune automatically converts search spaces to ZOOpt"s format:
 
@@ -166,7 +166,7 @@ class ZOOptSearch(Searcher):
     ):
         assert (
             zoopt is not None
-        ), "ZOOpt not found - please install zoopt by `pip install -U zoopt`."
+        ), "ZOOpt not found - please install zoopt by `uv pip install --system -U zoopt`."
         assert budget is not None, "`budget` should not be None!"
         if mode:
             assert mode in ["min", "max"], "`mode` must be 'min' or 'max'."

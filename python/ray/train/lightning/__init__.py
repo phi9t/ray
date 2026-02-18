@@ -7,7 +7,7 @@ except ModuleNotFoundError:
     except ModuleNotFoundError:
         raise ModuleNotFoundError(
             "PyTorch Lightning isn't installed. To install PyTorch Lightning, "
-            "please run 'pip install lightning'"
+            "please run 'uv pip install --system lightning'"
         )
 # isort: on
 

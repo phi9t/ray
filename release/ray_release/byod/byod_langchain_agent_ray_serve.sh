@@ -3,7 +3,7 @@
 set -euxo pipefail
 
 # Python dependencies
-pip3 install --no-cache-dir \
+uv pip install --system --no-cache-dir \
     "fastapi==0.115.12" \
     "langchain==1.0.5" \
     "langchain-mcp-adapters==0.1.12" \

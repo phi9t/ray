@@ -4,7 +4,7 @@ import math
 from typing import Any, Dict, List, Optional
 
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 from gymnasium.spaces import Space
 
 from ray.rllib.policy.sample_batch import SampleBatch

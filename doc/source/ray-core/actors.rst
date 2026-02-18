@@ -95,7 +95,7 @@ Use `ray list actors` from :ref:`State API <state-api-overview-ref>` to see acto
 
 .. code-block:: bash
 
-  # This API is only available when you install Ray with `pip install "ray[default]"`.
+  # This API is only available when you install Ray with `uv pip install --system "ray[default]"`.
   ray list actors
 
 .. code-block:: bash

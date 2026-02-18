@@ -6,7 +6,7 @@ import logging
 from typing import Dict, List, Optional, Tuple, Type, Union
 
 import gymnasium as gym
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 from gymnasium.spaces import Box, Discrete
 
 import ray

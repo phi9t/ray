@@ -71,7 +71,7 @@ Use `ray list actors --detail` from :ref:`State API <state-api-overview-ref>` to
 
 .. code-block:: bash
 
-  # This API is only available when you download Ray via `pip install "ray[default]"`
+  # This API is only available when you download Ray via `uv pip install --system "ray[default]"`
   ray list actors --detail
 
 .. code-block:: bash
@@ -159,7 +159,7 @@ You could see the actor is dead as a result of the user's `exit_actor()` call:
 
 .. code-block:: bash
 
-  # This API is only available when you download Ray via `pip install "ray[default]"`
+  # This API is only available when you download Ray via `uv pip install --system "ray[default]"`
   ray list actors --detail
 
 .. code-block:: bash

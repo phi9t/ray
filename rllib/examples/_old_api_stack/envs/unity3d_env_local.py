@@ -7,7 +7,7 @@ For a distributed cloud setup example with Unity,
 see `examples/envs/external_envs/unity3d_[server|client].py`
 
 To run this script against a local Unity3D engine:
-1) Install Unity3D and `pip install mlagents`.
+1) Install Unity3D and `uv pip install --system mlagents`.
 
 2) Open the Unity3D Editor and load an example scene from the following
    ml-agents pip package location:

@@ -85,7 +85,7 @@ Use `ray summary tasks` from :ref:`State API <state-api-overview-ref>`  to see r
 
 .. code-block:: bash
 
-  # This API is only available when you download Ray via `pip install "ray[default]"`
+  # This API is only available when you download Ray via `uv pip install --system "ray[default]"`
   ray summary tasks
 
 

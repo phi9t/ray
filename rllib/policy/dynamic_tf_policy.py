@@ -4,7 +4,7 @@ from collections import OrderedDict, namedtuple
 from typing import Callable, Dict, List, Optional, Tuple, Type, Union
 
 import gymnasium as gym
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray._common.deprecation import (
     DEPRECATED_VALUE,

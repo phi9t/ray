@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING, List, Optional, Union
 from urllib.parse import urlparse
 
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 try:
     from smart_open import smart_open

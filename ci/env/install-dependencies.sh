@@ -93,7 +93,7 @@ install_shellcheck() {
 }
 
 install_linters() {
-  pip install -r "${WORKSPACE_DIR}"/python/requirements/lint-requirements.txt
+  uv pip install --system -r "${WORKSPACE_DIR}"/python/requirements/lint-requirements.txt
 
   install_shellcheck
 }
@@ -135,7 +135,7 @@ install_upgrade_pip() {
   if "${python}" -m pip --version || "${python}" -m ensurepip; then  # Configure pip if present
     # 25.3 has breaking change where other Python packages like "click" does not work
     # with it anymore. pip-compile will fail to work with the package's setup code.
-    "${python}" -m pip install pip==25.2
+    "${python}" -m uv pip install --system pip==25.2
 
     # If we're in a CI environment, do some configuration
     if [[ "${CI-}" == "true" ]]; then
@@ -208,7 +208,7 @@ retry_pip_install() {
   # after n seconds.
   for _ in {1..3}; do
     errmsg="$("$@" 2>&1)" && break
-    status=$errmsg && echo "'pip install ...' failed, will retry after n seconds!" && sleep 30
+    status=$errmsg && echo "'uv pip install --system ...' failed, will retry after n seconds!" && sleep 30
   done
   if [[ "$status" != "0" ]]; then
     echo "${status}" && return 1
@@ -253,7 +253,7 @@ install_pip_packages() {
     requirements_files+=("${WORKSPACE_DIR}/python/requirements/ml/rllib-requirements.txt")
     requirements_files+=("${WORKSPACE_DIR}/python/requirements/ml/rllib-test-requirements.txt")
     #TODO(amogkam): Add this back to rllib-requirements.txt once mlagents no longer pins torch<1.9.0 version.
-    pip install --no-dependencies mlagents==0.28.0
+    uv pip install --system --no-dependencies mlagents==0.28.0
 
     # Install MuJoCo.
     sudo apt-get install -y libosmesa6-dev libgl1-mesa-glx libglfw3 patchelf
@@ -299,7 +299,7 @@ install_pip_packages() {
   fi
 
   # TODO(ray-ci): pin the dependencies.
-  CC=gcc retry_pip_install pip install -Ur "${WORKSPACE_DIR}/python/requirements.txt"
+  CC=gcc retry_pip_install uv pip install --system -Ur "${WORKSPACE_DIR}/python/requirements.txt"
 
   # Install deeplearning libraries (Torch + TensorFlow)
   if [[ -n "${TORCH_VERSION-}" || "${DL-}" == "1" || "${RLLIB_TESTING-}" == 1 || "${TRAIN_TESTING-}" == 1 || "${TUNE_TESTING-}" == 1 || "${DOC_TESTING-}" == 1 ]]; then
@@ -307,14 +307,14 @@ install_pip_packages() {
       if [[ -n "${TORCH_VERSION-}" ]]; then
         # Install right away, as some dependencies (e.g. torch-spline-conv) need
         # torch to be installed for their own install.
-        pip install -U "torch==${TORCH_VERSION-1.9.0}" "torchvision==${TORCHVISION_VERSION-0.10.0}"
+        uv pip install --system -U "torch==${TORCH_VERSION-1.9.0}" "torchvision==${TORCHVISION_VERSION-0.10.0}"
         # We won't add dl-cpu-requirements.txt as it would otherwise overwrite our custom
         # torch. Thus we have also have to install tensorflow manually.
         TF_PACKAGE=$(grep -ohE "tensorflow==[^ ;]+" "${WORKSPACE_DIR}/python/requirements/ml/dl-cpu-requirements.txt" | head -n 1)
         TFPROB_PACKAGE=$(grep -ohE "tensorflow-probability==[^ ;]+" "${WORKSPACE_DIR}/python/requirements/ml/dl-cpu-requirements.txt" | head -n 1)
 
         # %%;* deletes everything after ; to get rid of e.g. python version specifiers
-        pip install -U "${TF_PACKAGE%%;*}" "${TFPROB_PACKAGE%%;*}"
+        uv pip install --system -U "${TF_PACKAGE%%;*}" "${TFPROB_PACKAGE%%;*}"
       else
         # Otherwise, use pinned default torch version.
         # Again, install right away, as some dependencies (e.g. torch-spline-conv) need
@@ -323,7 +323,7 @@ install_pip_packages() {
         TORCHVISION_PACKAGE=$(grep -ohE "torchvision==[^ ;]+" "${WORKSPACE_DIR}/python/requirements/ml/dl-cpu-requirements.txt" | head -n 1)
 
         # %%;* deletes everything after ; to get rid of e.g. python version specifiers
-        pip install "${TORCH_PACKAGE%%;*}" "${TORCHVISION_PACKAGE%%;*}"
+        uv pip install --system "${TORCH_PACKAGE%%;*}" "${TORCHVISION_PACKAGE%%;*}"
         requirements_files+=("${WORKSPACE_DIR}/python/requirements/ml/dl-cpu-requirements.txt")
       fi
   fi
@@ -347,7 +347,7 @@ install_pip_packages() {
   fi
 
   # Generate the pip command with collected requirements files
-  pip_cmd="pip install -U -c ${WORKSPACE_DIR}/python/requirements.txt"
+  pip_cmd="uv pip install --system -U -c ${WORKSPACE_DIR}/python/requirements.txt"
 
   if [[ -f "${WORKSPACE_DIR}/python/requirements_compiled.txt" && "${OSTYPE}" != "msys" ]]; then
     # On Windows, some pinned dependencies are not built for win, so we
@@ -369,7 +369,7 @@ install_pip_packages() {
 
   # Install delayed packages
   if [[ "${#delayed_packages[@]}" -gt 0 ]]; then
-    pip install -U -c "${WORKSPACE_DIR}/python/requirements.txt" "${delayed_packages[@]}"
+    uv pip install --system -U -c "${WORKSPACE_DIR}/python/requirements.txt" "${delayed_packages[@]}"
   fi
 
   # Additional Tune dependency for Horovod.
@@ -390,7 +390,7 @@ install_thirdparty_packages() {
   fi
   mkdir -p "${WORKSPACE_DIR}/python/ray/thirdparty_files"
   RAY_THIRDPARTY_FILES="$(realpath "${WORKSPACE_DIR}/python/ray/thirdparty_files")"
-  CC=gcc python -m pip install psutil==5.9.6 colorama==0.4.6 --target="${RAY_THIRDPARTY_FILES}"
+  CC=gcc uv pip install --system psutil==5.9.6 colorama==0.4.6 --target="${RAY_THIRDPARTY_FILES}"
 }
 
 install_dependencies() {

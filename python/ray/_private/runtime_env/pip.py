@@ -54,7 +54,7 @@ class PipProcessor:
         except ImportError:
             raise RuntimeError(
                 f"Please install virtualenv "
-                f"`{sys.executable} -m pip install virtualenv`"
+                f"`{sys.executable} -m uv pip install --system virtualenv`"
                 f"to enable pip runtime env."
             )
         logger.debug("Setting up pip for runtime_env: %s", runtime_env)
@@ -143,7 +143,7 @@ class PipProcessor:
         )
 
         # Install all dependencies
-        # The default options for pip install are
+        # The default options for uv pip install --system are
         #
         # --disable-pip-version-check
         #   Don't periodically check PyPI to determine whether a new version

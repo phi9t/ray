@@ -41,21 +41,21 @@ Before we start, you will need to install some Python dependencies as follows:
 
             .. code-block:: shell
 
-                $ pip install -U "ray[default]" boto3
+                $ uv pip install --system -U "ray[default]" boto3
 
          .. tab-item:: Azure
             :sync: Azure
 
             .. code-block:: shell
 
-                $ pip install -U "ray[default]" azure-cli azure-core
+                $ uv pip install --system -U "ray[default]" azure-cli azure-core
 
          .. tab-item:: GCP
             :sync: GCP
 
             .. code-block:: shell
 
-                $ pip install -U "ray[default]" google-api-python-client
+                $ uv pip install --system -U "ray[default]" google-api-python-client
 
    .. tab-item:: Community Supported
       :sync: Community Supported
@@ -67,7 +67,7 @@ Before we start, you will need to install some Python dependencies as follows:
 
             .. code-block:: shell
 
-                $ pip install -U "ray[default]" aliyun-python-sdk-core aliyun-python-sdk-ecs
+                $ uv pip install --system -U "ray[default]" aliyun-python-sdk-core aliyun-python-sdk-ecs
 
             Aliyun Cluster Launcher Maintainers (GitHub handles): @zhuangzhuang131419, @chenk008
 
@@ -76,7 +76,7 @@ Before we start, you will need to install some Python dependencies as follows:
 
             .. code-block:: shell
 
-                $ pip install -U "ray[default]"
+                $ uv pip install --system -U "ray[default]"
 
             vSphere Cluster Launcher Maintainers (GitHub handles): @roshankathawate, @ankitasonawane30, @VamshikShetty
 

@@ -33,7 +33,7 @@ def _configure_system():
             if version < (0, 0, 10):
                 logger.warning(
                     "Although not used by Ray, a version of pickle5 that leaks memory "
-                    "is found in the environment. Please run 'pip install pickle5 -U' "
+                    "is found in the environment. Please run 'uv pip install --system pickle5 -U' "
                     "to upgrade."
                 )
         except importlib.metadata.PackageNotFoundError:

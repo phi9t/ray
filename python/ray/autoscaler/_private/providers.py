@@ -33,7 +33,7 @@ def _import_aws(provider_config):
     except ImportError as e:
         raise ImportError(
             "The Ray AWS VM launcher requires the AWS SDK for Python (Boto3) "
-            "to be installed. You can install it with `pip install boto3`."
+            "to be installed. You can install it with `uv pip install --system boto3`."
         ) from e
 
     from ray.autoscaler._private.aws.node_provider import AWSNodeProvider
@@ -47,7 +47,7 @@ def _import_gcp(provider_config):
     except ImportError as e:
         raise ImportError(
             "The Ray GCP VM launcher requires the Google API Client to be installed. "
-            "You can install it with `pip install google-api-python-client`."
+            "You can install it with `uv pip install --system google-api-python-client`."
         ) from e
 
     from ray.autoscaler._private.gcp.node_provider import GCPNodeProvider

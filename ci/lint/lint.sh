@@ -6,14 +6,14 @@
 set -exuo pipefail
 
 clang_format() {
-  pip install -c python/requirements_compiled.txt clang-format
+  uv pip install --system -c python/requirements_compiled.txt clang-format
   ./ci/lint/check-git-clang-format-output.sh
 }
 
 pre_commit() {
   # Run pre-commit on all files
   # TODO(MortalHappiness): Run all pre-commit checks because currently we only run some of them.
-  pip install -c python/requirements_compiled.txt pre-commit clang-format
+  uv pip install --system -c python/requirements_compiled.txt pre-commit clang-format
 
   HOOKS=(
     python-no-log-warn
@@ -48,17 +48,17 @@ pre_commit() {
 
 pre_commit_pydoclint() {
   # Run pre-commit pydoclint on all files
-  pip install -c python/requirements_compiled.txt pre-commit clang-format
+  uv pip install --system -c python/requirements_compiled.txt pre-commit clang-format
   pre-commit run pydoclint --all-files --show-diff-on-failure
 }
 
 code_format() {
-  pip install -c python/requirements_compiled.txt -r python/requirements/lint-requirements.txt
+  uv pip install --system -c python/requirements_compiled.txt -r python/requirements/lint-requirements.txt
   FORMAT_SH_PRINT_DIFF=1 ./ci/lint/format.sh --all-scripts
 }
 
 semgrep_lint() {
-  pip install -c python/requirements_compiled.txt semgrep pre-commit
+  uv pip install --system -c python/requirements_compiled.txt semgrep pre-commit
   pre-commit run semgrep --all-files --show-diff-on-failure
 }
 
@@ -68,7 +68,7 @@ banned_words() {
 
 # Use system python to avoid conflicts with uv python in forge image
 doc_readme() {
-  /usr/bin/python -m pip install -c python/requirements_compiled.txt docutils
+  /usr/bin/uv pip install --system -c python/requirements_compiled.txt docutils
   cd python && /usr/bin/python setup.py check --restructuredtext --strict --metadata
 }
 
@@ -92,7 +92,7 @@ bazel_buildifier() {
 }
 
 pytest_format() {
-  pip install -c python/requirements_compiled.txt yq
+  uv pip install --system -c python/requirements_compiled.txt yq
   ./ci/lint/check-pytest-format.sh
 }
 
@@ -106,9 +106,9 @@ _install_ray_no_deps() {
     unzip -o -q /opt/ray-build/ray_py_proto.zip -d python
     mkdir -p python/ray/dashboard/client/build
     tar -xzf /opt/ray-build/dashboard.tar.gz -C python/ray/dashboard/client/build
-    SKIP_BAZEL_BUILD=1 pip install -e "python[all]" --no-deps
+    SKIP_BAZEL_BUILD=1 uv pip install --system -e "python[all]" --no-deps
   else
-    RAY_DISABLE_EXTRA_CPP=1 pip install -e "python[all]" --no-deps
+    RAY_DISABLE_EXTRA_CPP=1 uv pip install --system -e "python[all]" --no-deps
   fi
 }
 

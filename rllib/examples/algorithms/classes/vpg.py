@@ -1,4 +1,4 @@
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 from typing_extensions import Self
 
 from ray.rllib.algorithms import Algorithm

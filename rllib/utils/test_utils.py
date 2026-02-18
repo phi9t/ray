@@ -14,7 +14,7 @@ from typing import (
 
 import gymnasium as gym
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 from gymnasium.spaces import (
     Box,
     Dict as GymDict,

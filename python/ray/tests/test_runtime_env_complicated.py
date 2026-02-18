@@ -87,7 +87,7 @@ def conda_envs(tmp_path_factory):
 
         commands = [
             f"conda activate {env_name}",
-            f"python -m pip install -r {str(reqs)}",
+            f"uv pip install --system -r {str(reqs)}",
             "conda deactivate",
         ]
         if _WIN32:
@@ -104,7 +104,7 @@ def conda_envs(tmp_path_factory):
             stderr=subprocess.PIPE,
         )
         if proc.returncode != 0:
-            print("conda/pip install failed, returned %d" % proc.returncode)
+            print("conda/uv pip install --system failed, returned %d" % proc.returncode)
             print("command", command)
             print(proc.stdout.decode())
             print(proc.stderr.decode())
@@ -1078,7 +1078,7 @@ from setuptools import setup, find_packages
 from setuptools.command.install import install
 
 class InstallTestPackage(install):
-    # this function will be called when pip install this package
+    # this function will be called when uv pip install --system this package
     def run(self):
         assert os.environ.get('{TEST_ENV_NAME}') == '{TEST_ENV_VALUE}'
         super().run()

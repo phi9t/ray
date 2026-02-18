@@ -50,7 +50,7 @@ if [[ -z "${NO_INSTALL}" ]]; then
   grep '==' ./requirements_py310.txt > /tmp/requirements_nohash.txt
   sed -i 's/ \\//' /tmp/requirements_nohash.txt  # Remove ending slashes.
   sed -i 's/\[.*\]//g' /tmp/requirements_nohash.txt  # Remove extras.
-  pip install -c /tmp/requirements_nohash.txt -e .
+  uv pip install --system -c /tmp/requirements_nohash.txt -e .
 fi
 
 RETRY_NUM=0

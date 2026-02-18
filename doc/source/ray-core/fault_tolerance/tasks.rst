@@ -52,7 +52,7 @@ Use `ray list tasks` from :ref:`State API CLI <state-api-overview-ref>` to query
 
 .. code-block:: bash
 
-  # This API is only available when you download Ray via `pip install "ray[default]"`
+  # This API is only available when you download Ray via `uv pip install --system "ray[default]"`
   ray list tasks
 
 .. code-block:: bash
@@ -115,7 +115,7 @@ Use `ray list tasks -f task_id=\<task_id\>` from :ref:`State API CLI <state-api-
 
 .. code-block:: bash
 
-  # This API is only available when you download Ray via `pip install "ray[default]"`
+  # This API is only available when you download Ray via `uv pip install --system "ray[default]"`
   ray list tasks -f task_id=16310a0f0a45af5cffffffffffffffffffffffff01000000
 
 .. code-block:: bash

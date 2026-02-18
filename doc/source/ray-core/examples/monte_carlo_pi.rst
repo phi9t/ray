@@ -22,7 +22,7 @@ The more points that we sample to calculate this approximation, the closer the v
 We use Ray :ref:`tasks <ray-remote-functions>` to distribute the work of sampling and Ray :ref:`actors <ray-remote-classes>` to track the progress of these distributed sampling tasks.
 The code can run on your laptop and can be easily scaled to large :ref:`clusters <cluster-index>` to increase the accuracy of the estimate.
 
-To get started, install Ray via ``pip install -U ray``. See :ref:`Installing Ray <installation>` for more installation options.
+To get started, install Ray via ``uv pip install --system -U ray``. See :ref:`Installing Ray <installation>` for more installation options.
 
 Starting Ray
 ------------

@@ -96,7 +96,7 @@ class PyArrowFileSystem(BaseCloudFileSystem):
             from azure.identity import DefaultAzureCredential
         except ImportError:
             raise ImportError(
-                "You must `pip install adlfs azure-identity` "
+                "You must `uv pip install --system adlfs azure-identity` "
                 "to use Azure/ABFSS URIs. "
                 "Note that these must be preinstalled on all nodes in the Ray cluster."
             )

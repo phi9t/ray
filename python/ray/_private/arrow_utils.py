@@ -41,7 +41,7 @@ def _check_pyarrow_version():
                 raise ImportError(
                     f"Dataset requires pyarrow >= {_PYARROW_SUPPORTED_VERSION_MIN}, but "
                     f"{version} is installed. Reinstall with "
-                    f'`pip install -U "pyarrow"`. '
+                    f'`uv pip install --system -U "pyarrow"`. '
                 )
         else:
             logger.warning(

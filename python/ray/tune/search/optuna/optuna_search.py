@@ -332,7 +332,7 @@ class OptunaSearch(Searcher):
         seed: Optional[int] = None,
         evaluated_rewards: Optional[List] = None,
     ):
-        assert ot is not None, "Optuna must be installed! Run `pip install optuna`."
+        assert ot is not None, "Optuna must be installed! Run `uv pip install --system optuna`."
         super(OptunaSearch, self).__init__(metric=metric, mode=mode)
 
         if isinstance(space, dict) and space:

@@ -166,11 +166,11 @@ class VideoProcessor:
     def _process_one_sync(self, source: str) -> Dict[str, Any]:
         if _av_mod is None:
             raise ImportError(
-                "PyAV is required for VideoProcessor. Install with `pip install av`."
+                "PyAV is required for VideoProcessor. Install with `uv pip install --system av`."
             )
         if _PIL_Image is None:
             raise ImportError(
-                "Pillow is required for VideoProcessor. Install with `pip install pillow`."
+                "Pillow is required for VideoProcessor. Install with `uv pip install --system pillow`."
             )
 
         resolved, is_memory, cleanup_path = self._resolve_source_for_decode(source)
@@ -428,7 +428,7 @@ class VideoProcessor:
                 np = importlib.import_module("numpy")
             except Exception as e:
                 raise ImportError(
-                    "NumPy is required for numpy output_format. Install with `pip install numpy`."
+                    "NumPy is required for numpy output_format. Install with `uv pip install --system numpy`."
                 ) from e
 
             if self._preprocess:

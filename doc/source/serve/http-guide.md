@@ -102,7 +102,7 @@ Serve supports WebSockets via FastAPI:
 
 Decorate the function that handles WebSocket requests with `@app.websocket`. Read more about FastAPI WebSockets in the [FastAPI documentation](https://fastapi.tiangolo.com/advanced/websockets/).
 
-Query the deployment using the `websockets` package (`pip install websockets`):
+Query the deployment using the `websockets` package (`uv pip install --system websockets`):
 
 ```{literalinclude} doc_code/http_guide/websockets_example.py
 :start-after: __websocket_serve_client_start__

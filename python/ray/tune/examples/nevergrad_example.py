@@ -2,7 +2,7 @@
 
 It also checks that it is usable with a separate scheduler.
 
-Requires the Nevergrad library to be installed (`pip install nevergrad`).
+Requires the Nevergrad library to be installed (`uv pip install --system nevergrad`).
 """
 
 import time

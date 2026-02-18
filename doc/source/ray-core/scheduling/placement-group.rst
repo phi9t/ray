@@ -141,7 +141,7 @@ Let's verify the placement group is successfully created.
 
 .. code-block:: bash
 
-  # This API is only available when you download Ray via `pip install "ray[default]"`
+  # This API is only available when you download Ray via `uv pip install --system "ray[default]"`
   ray list placement-groups
 
 .. code-block:: bash
@@ -180,7 +180,7 @@ You can verify the new placement group is pending creation.
 
 .. code-block:: bash
 
-  # This API is only available when you download Ray via `pip install "ray[default]"`
+  # This API is only available when you download Ray via `uv pip install --system "ray[default]"`
   ray list placement-groups
 
 .. code-block:: bash
@@ -339,7 +339,7 @@ You can also verify the actor is created using ``ray list actors``.
 
 .. code-block:: bash
 
-  # This API is only available when you download Ray via `pip install "ray[default]"`
+  # This API is only available when you download Ray via `uv pip install --system "ray[default]"`
   ray list actors --detail
 
 .. code-block:: bash
@@ -525,7 +525,7 @@ Ray provides several useful tools to inspect the placement group states and reso
 
       .. note::
 
-        Ray dashboard is only available when you install Ray is with ``pip install "ray[default]"``.
+        Ray dashboard is only available when you install Ray is with ``uv pip install --system "ray[default]"``.
 
     .. tab-item:: Ray State API
 
@@ -536,7 +536,7 @@ Ray provides several useful tools to inspect the placement group states and reso
 
       .. note::
 
-        State API is only available when you install Ray is with ``pip install "ray[default]"``
+        State API is only available when you install Ray is with ``uv pip install --system "ray[default]"``
 
 Inspect Placement Group Scheduling State
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

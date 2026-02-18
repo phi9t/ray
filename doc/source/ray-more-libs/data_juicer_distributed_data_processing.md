@@ -62,8 +62,8 @@ Data-Juicer team tested the MinHash-based RayDeduplicator on datasets sized at 2
 Before starting, you should install Data-Juicer and its `dist` requirements:
 
 ```shell
-pip install -v -e .  # Install the minimal requirements of Data-Juicer
-pip install -v -e ".[dist]"  # Include dependencies on Ray and other distributed libraries
+uv pip install --system -v -e .  # Install the minimal requirements of Data-Juicer
+uv pip install --system -v -e ".[dist]"  # Include dependencies on Ray and other distributed libraries
 ```
 
 Then start a Ray cluster (ref to the [Ray doc](start-ray) for more details):

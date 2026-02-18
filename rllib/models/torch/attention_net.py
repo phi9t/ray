@@ -12,7 +12,7 @@ from typing import Dict, Optional, Union
 
 import gymnasium as gym
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 from gymnasium.spaces import Box, Discrete, MultiDiscrete
 
 from ray._common.deprecation import deprecation_warning

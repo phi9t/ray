@@ -32,7 +32,7 @@ Create a new virtual environment and install dependencies.
 
     conda create -n myenv python=3.10
     conda activate myenv
-    pip install "ray[default]" debugpy
+    uv pip install --system "ray[default]" debugpy
 
 
 Start a Ray cluster

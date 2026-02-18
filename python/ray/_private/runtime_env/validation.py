@@ -264,14 +264,13 @@ def parse_and_validate_pip(pip: Union[str, List[str], Dict]) -> Optional[Dict]:
            file contents will be read split into a list.
         3) A python dictionary that has three fields:
             a) packages (required, List[str]): a list of pip packages, it same as 1).
-            b) pip_check (optional, bool): whether to enable pip check at the end of pip
-               install, default to False.
+            b) pip_check (optional, bool): whether to enable pip check at the end of uv pip install --system, default to False.
             c) pip_version (optional, str): the version of pip, ray will spell
                the package name 'pip' in front of the `pip_version` to form the final
                requirement string, the syntax of a requirement specifier is defined in
                full in PEP 508.
             d) pip_install_options (optional, List[str]): user-provided options for
-              `pip install` command, defaults to ["--disable-pip-version-check", "--no-cache-dir"].
+              `uv pip install --system` command, defaults to ["--disable-pip-version-check", "--no-cache-dir"].
 
     The returned parsed value will be a list of pip packages. If a Ray library
     (e.g. "ray[serve]") is specified, it will be deleted and replaced by its
@@ -354,9 +353,9 @@ def parse_and_validate_pip(pip: Union[str, List[str], Dict]) -> Optional[Dict]:
             "runtime_env['pip'] must be of type str or " f"List[str], got {type(pip)}"
         )
 
-    # Eliminate duplicates to prevent `pip install` from erroring. Use
+    # Eliminate duplicates to prevent `uv pip install --system` from erroring. Use
     # OrderedDict to preserve the order of the list.  This makes the output
-    # deterministic and easier to debug, because pip install can have
+    # deterministic and easier to debug, because uv pip install --system can have
     # different behavior depending on the order of the input.
     result["packages"] = list(OrderedDict.fromkeys(result["packages"]))
 

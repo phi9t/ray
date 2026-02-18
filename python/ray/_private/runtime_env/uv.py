@@ -58,7 +58,7 @@ class UvProcessor:
         except ImportError:
             raise RuntimeError(
                 f"Please install virtualenv "
-                f"`{sys.executable} -m pip install virtualenv`"
+                f"`{sys.executable} -m uv pip install --system virtualenv`"
                 f"to enable uv runtime env."
             )
 

@@ -75,7 +75,7 @@ To write data to formats other than Parquet, read the :ref:`Input/Output referen
 
         .. code-block:: console
 
-            pip install gcsfs
+            uv pip install --system gcsfs
 
         Then, create a ``GCSFileSystem`` and specify a URI with the ``gcs://`` scheme.
 
@@ -100,7 +100,7 @@ To write data to formats other than Parquet, read the :ref:`Input/Output referen
 
         .. code-block:: console
 
-            pip install adlfs
+            uv pip install --system adlfs
 
         Then, create a ``AzureBlobFileSystem`` and specify a URI with the ``az://`` scheme.
 

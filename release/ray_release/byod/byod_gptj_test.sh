@@ -2,4 +2,4 @@
 
 set -exo pipefail
 
-pip3 install -c "$HOME/requirements_compiled.txt" myst-parser myst-nb
+uv pip install --system -c "$HOME/requirements_compiled.txt" myst-parser myst-nb

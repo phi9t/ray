@@ -7,10 +7,10 @@ This "hello world" example uses Ray Compiled Graph. First, install Ray.
 
 .. code-block:: bash
 
-    pip install "ray[cgraph]"
+    uv pip install --system "ray[cgraph]"
     
     # For a ray version before 2.41, use the following instead:
-    # pip install "ray[adag]"
+    # uv pip install --system "ray[adag]"
 
 
 First, define a simple actor that echoes its argument.

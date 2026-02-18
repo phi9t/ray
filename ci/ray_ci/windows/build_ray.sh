@@ -25,7 +25,7 @@ fi
 powershell ci/pipeline/fix-windows-container-networking.ps1
 
 # Build ray and ray wheels
-pip install -v -e python
+uv pip install --system -v -e python
 pip wheel -e python -w .whl
 
 # Clean up caches to speed up docker build

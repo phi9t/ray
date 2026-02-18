@@ -7,7 +7,7 @@ try:
 except (ImportError, ModuleNotFoundError) as e:
     raise RuntimeError(
         "fsspec is a required dependency of Ray Train and Ray Tune. "
-        "Please install with: `pip install fsspec`"
+        "Please install with: `uv pip install --system fsspec`"
     ) from e
 
 try:
@@ -17,7 +17,7 @@ try:
 except (ImportError, ModuleNotFoundError) as e:
     raise RuntimeError(
         "pyarrow is a required dependency of Ray Train and Ray Tune. "
-        "Please install with: `pip install pyarrow`"
+        "Please install with: `uv pip install --system pyarrow`"
     ) from e
 # isort: on
 

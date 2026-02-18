@@ -4,7 +4,7 @@ from typing import Dict, List, Optional, Tuple, Union
 
 import gymnasium as gym
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 import ray
 from ray._common.deprecation import Deprecated
@@ -587,7 +587,7 @@ class TFPolicy(Policy):
                 raise RuntimeError(
                     "Converting a TensorFlow model to ONNX requires "
                     "`tf2onnx` to be installed. Install with "
-                    "`pip install tf2onnx`."
+                    "`uv pip install --system tf2onnx`."
                 ) from e
 
             with self.get_session().graph.as_default():

@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING, Set
 
 import gymnasium as gym
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray.rllib.utils.annotations import DeveloperAPI
 from ray.rllib.utils.error import ERR_MSG_OLD_GYM_API, UnsupportedSpaceException

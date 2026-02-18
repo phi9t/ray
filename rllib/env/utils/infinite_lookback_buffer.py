@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Optional, Union
 
 import gymnasium as gym
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 from gymnasium.utils.env_checker import data_equivalence
 
 from ray.rllib.utils.numpy import LARGE_INTEGER, one_hot, one_hot_multidiscrete

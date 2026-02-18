@@ -45,7 +45,7 @@ Ray Serve is built on top of Ray, so it easily scales to many machines and offer
 Install Ray Serve and its dependencies:
 
 ```bash
-pip install "ray[serve]"
+uv pip install --system "ray[serve]"
 ```
 Define a simple "hello world" application, run it locally, and query it over HTTP.
 
@@ -79,7 +79,7 @@ Use Serve's [FastAPI](https://fastapi.tiangolo.com/) integration to elegantly ha
 
 :::{tab-item} Hugging Face Transformers model
 
-To run this example, install the following: ``pip install transformers``
+To run this example, install the following: ``uv pip install --system transformers``
 
 Serve a pre-trained [Hugging Face Transformers](https://huggingface.co/docs/transformers/index) model using Ray Serve.
 The model we'll use is a sentiment analysis model: it will take a text string as input and return if the text was "POSITIVE" or "NEGATIVE."

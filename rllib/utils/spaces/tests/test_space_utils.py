@@ -3,7 +3,7 @@
 import unittest
 
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 from gymnasium.spaces import Box, Dict, Discrete, MultiBinary, MultiDiscrete, Tuple
 
 from ray.rllib.utils.spaces.space_utils import (

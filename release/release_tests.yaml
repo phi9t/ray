@@ -347,7 +347,7 @@
 
   run:
     timeout: 1800
-    script: pip install -Ur dreambooth/requirements.txt && bash dreambooth_run.sh
+    script: uv pip install --system -Ur dreambooth/requirements.txt && bash dreambooth_run.sh
     artifact_path: /tmp/artifacts/example_out.jpg
 
   # variations: A10G not available on GCE, yet.
@@ -370,7 +370,7 @@
 
   run:
     timeout: 1800
-    script: pip install -Ur dreambooth/requirements.txt && bash dreambooth_run.sh --lora
+    script: uv pip install --system -Ur dreambooth/requirements.txt && bash dreambooth_run.sh --lora
     artifact_path: /tmp/artifacts/example_out.jpg
 
 - name: air_example_gptj_deepspeed_fine_tuning
@@ -4595,7 +4595,7 @@
     cluster_compute: ci/aws.yaml
 
   run:
-    prepare: pip install -e .
+    prepare: uv pip install --system -e .
     prepare_timeout: 300
     script: bash ci/run_tests.sh
     timeout: 3600

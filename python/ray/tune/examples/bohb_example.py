@@ -3,7 +3,7 @@
 """This example demonstrates the usage of BOHB with Ray Tune.
 
 Requires the HpBandSter and ConfigSpace libraries to be installed
-(`pip install hpbandster ConfigSpace`).
+(`uv pip install --system hpbandster ConfigSpace`).
 """
 
 import json

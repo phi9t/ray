@@ -52,7 +52,7 @@ class AxSearch(Searcher):
 
     .. code-block:: bash
 
-        $ pip install ax-platform
+        $ uv pip install --system ax-platform
 
     Parameters:
         space: Parameters in the experiment search space.
@@ -157,7 +157,7 @@ class AxSearch(Searcher):
             ax is not None
         ), """Ax must be installed!
             You can install AxSearch with the command:
-            `pip install ax-platform`."""
+            `uv pip install --system ax-platform`."""
 
         if mode:
             assert mode in ["min", "max"], "`mode` must be 'min' or 'max'."

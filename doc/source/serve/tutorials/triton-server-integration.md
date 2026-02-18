@@ -7,7 +7,7 @@ This guide shows how to build an application with stable diffusion model using [
 ## Preparation
 
 ### Installation
-It is recommended to use the `nvcr.io/nvidia/tritonserver:23.12-py3` image which already has the Triton Server python API library installed, and install the ray serve lib by `pip install "ray[serve]"` inside the image.
+It is recommended to use the `nvcr.io/nvidia/tritonserver:23.12-py3` image which already has the Triton Server python API library installed, and install the ray serve lib by `uv pip install --system "ray[serve]"` inside the image.
 
 ### Build and export a model
 For this application, the encoder is exported to ONNX format and the stable diffusion model is exported to be TensorRT engine format which is being compatible with Triton Server.

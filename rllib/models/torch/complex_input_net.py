@@ -1,5 +1,5 @@
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 from gymnasium.spaces import Box, Discrete, MultiDiscrete
 
 from ray.rllib.models.catalog import ModelCatalog

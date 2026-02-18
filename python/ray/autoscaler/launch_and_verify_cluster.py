@@ -130,7 +130,7 @@ def check_file(file_path):
 def override_wheels_url(config_yaml, wheel_url):
     setup_commands = config_yaml.get("setup_commands", [])
     setup_commands.append(
-        f'pip3 uninstall -y ray && pip3 install -U "ray[default] @ {wheel_url}"'
+        f'pip3 uninstall -y ray && uv pip install --system -U "ray[default] @ {wheel_url}"'
     )
     config_yaml["setup_commands"] = setup_commands
 

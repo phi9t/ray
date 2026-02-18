@@ -31,10 +31,10 @@ rm -rf "${WORKSPACE_DIR}/python/ray/thirdparty_files"
 eval "${WORKSPACE_DIR}/ci/ci.sh build"
 
 # Install test requirements
-python -m pip install pytest -c "${WORKSPACE_DIR}/python/requirements_compiled.txt"
+uv pip install --system pytest -c "${WORKSPACE_DIR}/python/requirements_compiled.txt"
 
 # Train requirements.
 # TODO: make this dynamic
 if [ "${TRAIN_MINIMAL_INSTALL-}" = 1 ]; then
-    python -m pip install -U "ray[tune]"
+    uv pip install --system -U "ray[tune]"
 fi

@@ -16,7 +16,7 @@ LINUX_SET_CHOWN_CMD = "sudo chown root:root `which {profiler}`"
 PROFILER_PERMISSIONS_ERROR_MESSAGE = """
 Note that this command requires `{profiler}` to be installed with root permissions. You
 can install `{profiler}` and give it root permissions as follows:
-  $ pip install {profiler}
+  $ uv pip install --system {profiler}
   $ {set_chown_command}
   $ sudo chmod u+s `which {profiler}`
 

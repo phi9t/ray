@@ -10,7 +10,7 @@ python:
   conda_packages: []
 
 post_build_cmds:
-  - pip3 uninstall -y ray && pip3 install -U {{ env["RAY_WHEELS"] | default("ray") }}
-  - pip3 install ray[default]
+  - pip3 uninstall -y ray && uv pip install --system -U {{ env["RAY_WHEELS"] | default("ray") }}
+  - uv pip install --system ray[default]
   - echo {{env["DATESTAMP"]}}
   - {{ env["RAY_WHEELS_SANITY_CHECK"] | default("echo No Ray wheels sanity check") }}

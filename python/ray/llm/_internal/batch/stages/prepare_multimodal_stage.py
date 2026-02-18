@@ -32,7 +32,7 @@ class PrepareMultimodalUDF(StatefulStageUDF):
         except ImportError as e:
             raise ImportError(
                 "vLLM is not installed or failed to import. Please run "
-                "`pip install ray[llm]` to install required dependencies."
+                "`uv pip install --system ray[llm]` to install required dependencies."
             ) from e
 
         self.model_config = ModelConfig(model=model)
@@ -92,7 +92,7 @@ class PrepareMultimodalUDF(StatefulStageUDF):
         except ImportError as e:
             raise ImportError(
                 "vLLM is not installed or failed to import. Please run "
-                "`pip install ray[llm]` to install required dependencies."
+                "`uv pip install --system ray[llm]` to install required dependencies."
             ) from e
 
         async def _get_mm_data(row: Dict[str, Any], conversation, fut, uuid):

@@ -29,19 +29,19 @@ and macOS by choosing the option that best matches your use case.
 
         .. code-block:: shell
 
-          pip install -U "ray[data,train,tune,serve]"
+          uv pip install --system -U "ray[data,train,tune,serve]"
 
           # For reinforcement learning support, install RLlib instead.
-          # pip install -U "ray[rllib]"
+          # uv pip install --system -U "ray[rllib]"
 
         **For general Python applications**
 
         .. code-block:: shell
 
-          pip install -U "ray[default]"
+          uv pip install --system -U "ray[default]"
 
           # If you don't want Ray Dashboard or Cluster Launcher, install Ray with minimal dependencies instead.
-          # pip install -U "ray"
+          # uv pip install --system -U "ray"
 
     .. tab-item:: Advanced
 
@@ -51,23 +51,23 @@ and macOS by choosing the option that best matches your use case.
 
           * - Command
             - Installed components
-          * - `pip install -U "ray"`
+          * - `uv pip install --system -U "ray"`
             - Core
-          * - `pip install -U "ray[default]"`
+          * - `uv pip install --system -U "ray[default]"`
             - Core, Dashboard, Cluster Launcher
-          * - `pip install -U "ray[data]"`
+          * - `uv pip install --system -U "ray[data]"`
             - Core, Data
-          * - `pip install -U "ray[train]"`
+          * - `uv pip install --system -U "ray[train]"`
             - Core, Train
-          * - `pip install -U "ray[tune]"`
+          * - `uv pip install --system -U "ray[tune]"`
             - Core, Tune
-          * - `pip install -U "ray[serve]"`
+          * - `uv pip install --system -U "ray[serve]"`
             - Core, Dashboard, Cluster Launcher, Serve
-          * - `pip install -U "ray[serve-grpc]"`
+          * - `uv pip install --system -U "ray[serve-grpc]"`
             - Core, Dashboard, Cluster Launcher, Serve with gRPC support
-          * - `pip install -U "ray[rllib]"`
+          * - `uv pip install --system -U "ray[rllib]"`
             - Core, Tune, RLlib
-          * - `pip install -U "ray[all]"`
+          * - `uv pip install --system -U "ray[all]"`
             - Core, Dashboard, Cluster Launcher, Data, Train, Tune, Serve, RLlib. This option isn't recommended. Specify the extras you need as shown below instead.
 
         .. tip::
@@ -77,7 +77,7 @@ and macOS by choosing the option that best matches your use case.
 
           .. code-block:: shell
 
-            pip install -U "ray[default,train]"
+            uv pip install --system -U "ray[default,train]"
 
 .. _install-nightlies:
 
@@ -91,10 +91,10 @@ You can install the nightly Ray wheels via the following links. These daily rele
   # Clean removal of previous install
   pip uninstall -y ray
   # Install Ray with support for the dashboard + cluster launcher
-  pip install -U "ray[default] @ LINK_TO_WHEEL.whl"
+  uv pip install --system -U "ray[default] @ LINK_TO_WHEEL.whl"
 
   # Install Ray with minimal dependencies
-  # pip install -U LINK_TO_WHEEL.whl
+  # uv pip install --system -U LINK_TO_WHEEL.whl
 
 .. tab-set::
 
@@ -169,13 +169,13 @@ You can install the Ray wheels of any particular commit on ``master`` with the f
 
 .. code-block:: bash
 
-    pip install https://s3-us-west-2.amazonaws.com/ray-wheels/master/{COMMIT_HASH}/ray-{RAY_VERSION}-{PYTHON_VERSION}-{PYTHON_VERSION}-{OS_VERSION}.whl
+    uv pip install --system https://s3-us-west-2.amazonaws.com/ray-wheels/master/{COMMIT_HASH}/ray-{RAY_VERSION}-{PYTHON_VERSION}-{PYTHON_VERSION}-{OS_VERSION}.whl
 
 For example, here are the Ray 3.0.0.dev0 wheels for Python 3.10, MacOS for commit ``4f2ec46c3adb6ba9f412f09a9732f436c4a5d0c9``:
 
 .. code-block:: bash
 
-    pip install https://s3-us-west-2.amazonaws.com/ray-wheels/master/4f2ec46c3adb6ba9f412f09a9732f436c4a5d0c9/ray-3.0.0.dev0-cp310-cp310-macosx_12_0_arm64.whl
+    uv pip install --system https://s3-us-west-2.amazonaws.com/ray-wheels/master/4f2ec46c3adb6ba9f412f09a9732f436c4a5d0c9/ray-3.0.0.dev0-cp310-cp310-macosx_12_0_arm64.whl
 
 There are minor variations to the format of the wheel filename; it's best to match against the format in the URLs listed in the :ref:`Nightlies section <install-nightlies>`.
 Here's a summary of the variations:
@@ -207,7 +207,7 @@ Multi-node clusters are untested. To get started with local Ray development:
 
 #. Install Ray as you normally would.
 
-   * ``pip install ray``
+   * ``uv pip install --system ray``
 
 .. _windows-support:
 
@@ -292,7 +292,7 @@ at https://anaconda.org/conda-forge/ray-default
 
   Ray conda packages are maintained by the community, not the Ray team. While
   using a conda environment, it is recommended to install Ray from PyPi using
-  `pip install ray` in the newly created environment.
+  `uv pip install --system ray` in the newly created environment.
 
 Building Ray from Source
 ------------------------
@@ -436,7 +436,7 @@ Install Ray Java with Maven
 
    All Ray Java APIs are experimental and only supported by the community.
 
-Before installing Ray Java with Maven, you should install Ray Python with `pip install -U ray` . Note that the versions of Ray Java and Ray Python must match.
+Before installing Ray Java with Maven, you should install Ray Python with `uv pip install --system -U ray` . Note that the versions of Ray Java and Ray Python must match.
 Note that nightly Ray python wheels are also required if you want to install Ray Java snapshot version.
 
 Find the latest Ray Java release in the `central repository <https://mvnrepository.com/artifact/io.ray>`__. To use the latest Ray Java release in your application, add the following entries in your ``pom.xml``:
@@ -487,9 +487,9 @@ The latest Ray Java snapshot can be found in `sonatype repository <https://oss.s
 
 .. note::
 
-  When you run ``pip install`` to install Ray, Java jars are installed as well. The above dependencies are only used to build your Java code and to run your code in local mode.
+  When you run ``uv pip install --system`` to install Ray, Java jars are installed as well. The above dependencies are only used to build your Java code and to run your code in local mode.
 
-  If you want to run your Java code in a multi-node Ray cluster, it's better to exclude Ray jars when packaging your code to avoid jar conflicts if the versions (installed Ray with ``pip install`` and maven dependencies) don't match.
+  If you want to run your Java code in a multi-node Ray cluster, it's better to exclude Ray jars when packaging your code to avoid jar conflicts if the versions (installed Ray with ``uv pip install --system`` and maven dependencies) don't match.
 
 .. _ray-install-cpp:
 
@@ -504,7 +504,7 @@ You can install and use Ray C++ API as follows.
 
 .. code-block:: bash
 
-  pip install -U ray[cpp]
+  uv pip install --system -U ray[cpp]
 
   # Create a Ray C++ project template to start with.
   ray cpp --generate-bazel-project-template-to ray-template

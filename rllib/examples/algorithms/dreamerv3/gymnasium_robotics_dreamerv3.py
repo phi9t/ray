@@ -17,7 +17,7 @@ https://arxiv.org/pdf/2010.02193.pdf
 try:
     import gymnasium_robotics  # noqa
 except (ImportError, ModuleNotFoundError):
-    print("You have to `pip install gymnasium_robotics` in order to run this example!")
+    print("You have to `uv pip install --system gymnasium_robotics` in order to run this example!")
 
 import gymnasium as gym
 

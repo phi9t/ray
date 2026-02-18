@@ -123,7 +123,7 @@ class SGLangEngineWrapper:
         except ImportError as e:
             raise ImportError(
                 "SGLang is not installed or failed to import. Please run "
-                "`pip install sglang[all]` to install required dependencies."
+                "`uv pip install --system sglang[all]` to install required dependencies."
             ) from e
 
         # Initialize the SGLang engine

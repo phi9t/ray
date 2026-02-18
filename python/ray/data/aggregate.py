@@ -1425,7 +1425,7 @@ class ApproximateQuantile(AggregateFnV2):
         except ImportError as exc:
             raise ImportError(
                 "ApproximateQuantile requires the `datasketches` package. "
-                "Install it with `pip install datasketches`."
+                "Install it with `uv pip install --system datasketches`."
             ) from exc
         return kll_floats_sketch
 
@@ -1523,7 +1523,7 @@ class ApproximateTopK(AggregateFnV2):
         except ImportError as exc:
             raise ImportError(
                 "ApproximateTopK requires the `datasketches` package. "
-                "Install it with `pip install datasketches`."
+                "Install it with `uv pip install --system datasketches`."
             ) from exc
         return frequent_strings_sketch
 

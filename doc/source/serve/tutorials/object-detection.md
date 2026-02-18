@@ -16,7 +16,7 @@ This tutorial demonstrates how to deploy a production-ready object detection ser
 Install the required dependencies:
 
 ```bash
-pip install "ray[serve]" requests torch pillow numpy opencv-python-headless pandas "gitpython>=3.1.30"
+uv pip install --system "ray[serve]" requests torch pillow numpy opencv-python-headless pandas "gitpython>=3.1.30"
 ```
 
 ## Implementation
@@ -84,7 +84,7 @@ ImportError: libGL.so.1: cannot open shared object file: No such file or directo
 This typically happens when running `opencv-python` in headless environments like containers. The solution is to use the headless version:
 
 ```bash
-pip uninstall opencv-python; pip install opencv-python-headless
+pip uninstall opencv-python; uv pip install --system opencv-python-headless
 ```
 :::
 

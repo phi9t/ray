@@ -28,7 +28,7 @@ class ServeSubmissionClient(SubmissionClient):
         if requests is None:
             raise RuntimeError(
                 "The Serve CLI requires the ray[default] "
-                'installation: `pip install "ray[default]"`'
+                'installation: `uv pip install --system "ray[default]"`'
             )
 
         invalid_address_message = (

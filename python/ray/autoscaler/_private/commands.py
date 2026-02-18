@@ -431,7 +431,7 @@ def _bootstrap_config(
         cli_logger.abort(
             "Not all Ray autoscaler dependencies were found. "
             "In Ray 1.4+, the Ray CLI, autoscaler, and dashboard will "
-            'only be usable via `pip install "ray[default]"`. Please '
+            'only be usable via `uv pip install --system "ray[default]"`. Please '
             "update your install command."
         )
     resolved_config = provider_cls.bootstrap_config(config)

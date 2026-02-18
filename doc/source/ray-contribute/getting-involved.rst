@@ -109,7 +109,7 @@ If you are running tests for the first time, you can install the required depend
 
 .. code-block:: shell
 
-    pip install -c python/requirements_compiled.txt -r python/requirements/test-requirements.txt
+    uv pip install --system -c python/requirements_compiled.txt -r python/requirements/test-requirements.txt
 
 Testing for Python development
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -239,7 +239,7 @@ We also have tests for code formatting and linting that need to pass before merg
 
 .. code-block:: shell
 
-  pip install -c python/requirements_compiled.txt -r python/requirements/lint-requirements.txt
+  uv pip install --system -c python/requirements_compiled.txt -r python/requirements/lint-requirements.txt
 
 * If developing for C++, you will need `clang-format <https://docs.kernel.org/dev-tools/clang-format.html>`_ version ``12`` (download this version of Clang from `here <http://releases.llvm.org/download.html>`_)
 
@@ -247,7 +247,7 @@ You can run the following locally:
 
 .. code-block:: shell
 
-    pip install -U pre-commit==3.5.0
+    uv pip install --system -U pre-commit==3.5.0
     pre-commit install  # automatic checks before committing
     pre-commit run ruff -a
 

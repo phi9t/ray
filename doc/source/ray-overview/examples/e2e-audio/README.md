@@ -28,7 +28,7 @@ Ray Data is particularly powerful for this use case because it:
 Install the dependencies using:
 
 ```bash
-pip install -r requirements.txt
+uv pip install --system -r requirements.txt
 ```
 
 This tutorial runs on a cluster with five L4 GPU worker nodes.

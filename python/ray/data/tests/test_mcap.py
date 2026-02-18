@@ -13,7 +13,7 @@ from ray.tests.conftest import *  # noqa
 MCAP_AVAILABLE = importlib.util.find_spec("mcap") is not None
 pytestmark = pytest.mark.skipif(
     not MCAP_AVAILABLE,
-    reason="mcap module not available. Install with: pip install mcap",
+    reason="mcap module not available. Install with: uv pip install --system mcap",
 )
 
 

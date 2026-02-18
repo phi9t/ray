@@ -75,7 +75,7 @@ DEFAULT_NATIVE_LIBRARY_PATH = os.path.join(RAY_PATH, "cpp", "lib")
 DASHBOARD_DEPENDENCY_ERROR_MESSAGE = (
     "Not all Ray Dashboard dependencies were "
     "found. To use the dashboard please "
-    "install Ray using `pip install "
+    "install Ray using `uv pip install --system "
     "ray[default]`."
 )
 
@@ -169,7 +169,7 @@ def _build_python_executable_command_memory_profileable(
     except ImportError:
         raise ImportError(
             "Memray is required to memory profiler on components "
-            f"{components_to_memory_profile}. Run `pip install memray`."
+            f"{components_to_memory_profile}. Run `uv pip install --system memray`."
         )
     if component in components_to_memory_profile:
         session_dir = Path(session_dir)

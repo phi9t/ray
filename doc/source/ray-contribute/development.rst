@@ -73,7 +73,7 @@ Create a virtual environment to prevent version conflicts and to develop with an
 
         .. code-block:: shell
 
-            python -m pip install --upgrade pip wheel
+            uv pip install --system --upgrade pip wheel
 
 .. _python-develop:
 
@@ -93,7 +93,7 @@ RLlib, Tune, Autoscaler, and most Python files do not require you to build and c
 .. code-block:: shell
 
     # For example, for Python 3.10:
-    pip install -U https://s3-us-west-2.amazonaws.com/ray-wheels/latest/ray-3.0.0.dev0-cp310-cp310-manylinux2014_x86_64.whl
+    uv pip install --system -U https://s3-us-west-2.amazonaws.com/ray-wheels/latest/ray-3.0.0.dev0-cp310-cp310-manylinux2014_x86_64.whl
 
 4. Replace Python files in the installed package with your local editable copy. We provide a simple script to help you do this: ``python python/ray/setup-dev.py``. Running the script will remove the  ``ray/tune``, ``ray/rllib``, ``ray/autoscaler`` dir (among other directories) bundled with the ``ray`` pip package, and replace them with links to your local code. This way, changing files in your git clone will directly affect the behavior of your installed Ray.
 
@@ -110,13 +110,13 @@ RLlib, Tune, Autoscaler, and most Python files do not require you to build and c
     # This links all folders except "_private" and "dashboard" without user prompt.
     python python/ray/setup-dev.py -y --skip _private dashboard
 
-.. warning:: Do not run ``pip uninstall ray`` or ``pip install -U`` (for Ray or Ray wheels) if setting up your environment this way. To uninstall or upgrade, you must first ``rm -rf`` the pip-installation site (usually a directory at the ``site-packages/ray`` location), then do a pip reinstall (see the command above), and finally run the above ``setup-dev.py`` script again.
+.. warning:: Do not run ``pip uninstall ray`` or ``uv pip install --system -U`` (for Ray or Ray wheels) if setting up your environment this way. To uninstall or upgrade, you must first ``rm -rf`` the pip-installation site (usually a directory at the ``site-packages/ray`` location), then do a pip reinstall (see the command above), and finally run the above ``setup-dev.py`` script again.
 
 .. code-block:: shell
 
     # To uninstall, delete the symlinks first.
     rm -rf <package path>/site-packages/ray # Path will be in the output of `setup-dev.py`.
-    pip uninstall ray # or `pip install -U <wheel>`
+    pip uninstall ray # or `uv pip install --system -U <wheel>`
 
 Preparing to build Ray on Linux
 -------------------------------
@@ -207,12 +207,12 @@ Enter into the ``python/`` directory inside of the Ray project directory and ins
   # Install Ray.
   cd python/
   # Install required dependencies.
-  pip install -r requirements.txt
+  uv pip install --system -r requirements.txt
   # You may need to set the following two env vars if you have a macOS ARM64(M1) platform.
   # See https://github.com/grpc/grpc/issues/25082 for more details.
   # export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
   # export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
-  pip install -e . --verbose  # Add --user if you see a permission denied error.
+  uv pip install --system -e . --verbose  # Add --user if you see a permission denied error.
 
 The ``-e`` means "editable", so changes you make to files in the Ray
 directory will take effect without reinstalling the package.
@@ -284,12 +284,12 @@ Define an environment variable BAZEL_PATH to full exe path (example:
   # cd to the directory under which the ray source tree will be downloaded.
   git clone -c core.symlinks=true https://github.com/ray-project/ray.git
   cd ray\python
-  pip install -e . --verbose
+  uv pip install --system -e . --verbose
 
 Environment variables that influence builds
 --------------------------------------------
 
-You can tweak the build with the following environment variables (when running ``pip install -e .`` or ``python setup.py install``):
+You can tweak the build with the following environment variables (when running ``uv pip install --system -e .`` or ``python setup.py install``):
 
 - ``RAY_BUILD_CORE``: If set and equal to ``1``, the core parts will be built. Defaults to ``1``.
 - ``RAY_INSTALL_JAVA``: If set and equal to ``1``, extra build steps will be executed
@@ -323,14 +323,14 @@ Dependencies for the linter (``pre-commit``) can be installed with:
 
 .. code-block:: shell
 
-  pip install -c python/requirements_compiled.txt pre-commit
+  uv pip install --system -c python/requirements_compiled.txt pre-commit
   pre-commit install
 
 Dependencies for running Ray unit tests under ``python/ray/tests`` can be installed with:
 
 .. code-block:: shell
 
- pip install -c python/requirements_compiled.txt -r python/requirements/test-requirements.txt
+ uv pip install --system -c python/requirements_compiled.txt -r python/requirements/test-requirements.txt
 
 Requirement files for running Ray Data / ML library tests are under ``python/requirements/``.
 
@@ -343,7 +343,7 @@ To start using ``pre-commit``:
 
 .. code-block:: shell
 
-   pip install pre-commit
+   uv pip install --system pre-commit
    pre-commit install
 
 This will install pre-commit into the current environment, and enable pre-commit checks every time
@@ -448,4 +448,4 @@ Then you should run the following commands:
 .. code-block:: bash
 
   rm -rf python/ray/thirdparty_files/
-  python3 -m pip install psutil
+  uv pip install --system psutil

@@ -32,7 +32,7 @@ First, install RLlib, `PyTorch <https://pytorch.org>`__, and `Farama Gymnasium <
 
 .. code-block:: bash
 
-    pip install "ray[rllib]" torch "gymnasium[atari,accept-rom-license,mujoco]"
+    uv pip install --system "ray[rllib]" torch "gymnasium[atari,accept-rom-license,mujoco]"
 
 
 .. _rllib-python-api:

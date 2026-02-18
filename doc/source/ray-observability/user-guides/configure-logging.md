@@ -59,7 +59,7 @@ printed from the autoscaler respectively. They're usually empty except when the 
 - ``raylet.[out|err]``: A log file of raylets.
 - ``runtime_env_agent.[log|out|err]``: Every Ray node has one agent that manages {ref}`Runtime Environment <runtime-environments>` creation, deletion, and caching.
   ``.log`` files contain logs generated from the runtime env agent's logger. ``.out`` and ``.err`` files contain stdout and stderr printed from the runtime env agent respectively. They're usually empty except when the runtime env agent crashes unexpectedly.
- The logs of the actual installations for ``pip install`` logs are in the following ``runtime_env_setup-[job_id].log`` file.
+ The logs of the actual installations for ``uv pip install --system`` logs are in the following ``runtime_env_setup-[job_id].log`` file.
 - ``runtime_env_setup-ray_client_server_[port].log``: Logs from installing {ref}`Runtime Environments <runtime-environments>` for a job when connecting with {ref}`Ray Client <ray-client-ref>`.
 - ``runtime_env_setup-[job_id].log``: Logs from installing {ref}`runtime environments <runtime-environments>` for a Task, Actor, or Job. This file is only present if you install a runtime environment.
 

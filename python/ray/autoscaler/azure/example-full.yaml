@@ -167,11 +167,11 @@ setup_commands: []
 # below with a git checkout <your_sha> (and possibly a recompile).
 # To run the nightly version of ray (as opposed to the latest), either use a rayproject docker image
 # that has the "nightly" (e.g. "rayproject/ray-ml:nightly-gpu") or uncomment the following line:
-# - pip install -U "ray[default] @ https://s3-us-west-2.amazonaws.com/ray-wheels/latest/ray-3.0.0.dev0-cp38-cp38-manylinux2014_x86_64.whl"
+# - uv pip install --system -U "ray[default] @ https://s3-us-west-2.amazonaws.com/ray-wheels/latest/ray-3.0.0.dev0-cp38-cp38-manylinux2014_x86_64.whl"
 
 # Custom commands that will be run on the head node after common setup.
 head_setup_commands:
-    - pip install -U azure-core==1.35.0 azure-cli-core==2.77.0 azure-identity==1.23.1 azure-mgmt-compute==35.0.0 azure-mgmt-network==29.0.0 azure-mgmt-resource==24.0.0 azure-common==1.1.28 msrest==0.7.1 msrestazure==0.6.4.post1
+    - uv pip install --system -U azure-core==1.35.0 azure-cli-core==2.77.0 azure-identity==1.23.1 azure-mgmt-compute==35.0.0 azure-mgmt-network==29.0.0 azure-mgmt-resource==24.0.0 azure-common==1.1.28 msrest==0.7.1 msrestazure==0.6.4.post1
 
 # Custom commands that will be run on worker nodes after common setup.
 worker_setup_commands: []

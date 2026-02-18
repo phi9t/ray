@@ -732,7 +732,7 @@ def _get_memory_usage() -> Tuple[float, float, Optional[str]]:
         return (
             np.nan,
             np.nan,
-            "Unknown memory usage. Please run `pip install psutil` to resolve",
+            "Unknown memory usage. Please run `uv pip install --system psutil` to resolve",
         )
 
 

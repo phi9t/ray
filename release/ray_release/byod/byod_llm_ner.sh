@@ -3,10 +3,10 @@
 set -exo pipefail
 
 # Will use lockfile instead later
-# pip3 install --no-cache-dir -r https://raw.githubusercontent.com/anyscale/e2e-llm-workflows/refs/heads/main/lockfile.txt
+# uv pip install --system --no-cache-dir -r https://raw.githubusercontent.com/anyscale/e2e-llm-workflows/refs/heads/main/lockfile.txt
 
 # Install Python dependencies
-pip3 install --no-cache-dir \
+uv pip install --system --no-cache-dir \
     "xgrammar==0.1.11" \
     "pynvml==12.0.0" \
     "hf_transfer==0.1.9" \

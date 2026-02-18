@@ -9,7 +9,7 @@ This example uses a DistilBERT model to build an IMDB review classification appl
 To run this example, install the following:
 
 ```bash
-pip install "ray[serve]" requests torch transformers
+uv pip install --system "ray[serve]" requests torch transformers
 ```
 
 This example uses the [distilbert-base-uncased](https://huggingface.co/docs/transformers/tasks/sequence_classification) model and [FastAPI](https://fastapi.tiangolo.com/). Save the following code to a file named distilbert_app.py:

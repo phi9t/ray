@@ -199,7 +199,7 @@ def _run_and_process_output(
     the logging experience considerably worse, but it only degrades
     to old-style logging.
 
-    For example, `pip install` outputs HUNDREDS of progress-bar lines
+    For example, `uv pip install --system` outputs HUNDREDS of progress-bar lines
     when downloading a package, and we have to
     read + regex + write all of them.
 

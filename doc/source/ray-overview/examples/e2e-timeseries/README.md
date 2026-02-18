@@ -23,7 +23,7 @@ These tutorials implement an end-to-end time-series application including:
 Run the following:
 
 ```bash
-pip install -r requirements.txt && pip install -e .
+uv pip install --system -r requirements.txt && uv pip install --system -e .
 ```
 
 ## Acknowledgements

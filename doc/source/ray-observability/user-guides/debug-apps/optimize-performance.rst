@@ -108,7 +108,7 @@ not have root permissions, the Dashboard prompts with instructions on how to set
 
     This command requires `py-spy` to be installed with root permissions. You
     can install `py-spy` and give it root permissions as follows:
-      $ pip install py-spy
+      $ uv pip install --system py-spy
       $ sudo chown root:root `which py-spy`
       $ sudo chmod u+s `which py-spy`
 

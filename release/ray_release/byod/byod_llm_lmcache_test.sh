@@ -4,4 +4,4 @@
 
 set -exo pipefail
 
-pip3 install "lmcache==0.3.3"
+uv pip install --system "lmcache==0.3.3"

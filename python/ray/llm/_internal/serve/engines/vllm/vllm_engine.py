@@ -132,7 +132,7 @@ class VLLMEngine(LLMEngine):
 
         if vllm is None:
             raise ImportError(
-                "vLLM is not installed. Please install it with `pip install ray[llm]`."
+                "vLLM is not installed. Please install it with `uv pip install --system ray[llm]`."
             )
         from vllm import envs as vllm_envs
 

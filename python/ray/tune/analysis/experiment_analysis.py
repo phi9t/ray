@@ -329,7 +329,7 @@ class ExperimentAnalysis:
         if not pd:
             raise ValueError(
                 "`best_result_df` requires pandas. Install with "
-                "`pip install pandas`."
+                "`uv pip install --system pandas`."
             )
 
         best_result = flatten_dict(self.best_result, delimiter=self._delimiter())
@@ -345,7 +345,7 @@ class ExperimentAnalysis:
         """Get all the last results as a pandas dataframe."""
         if not pd:
             raise ValueError(
-                "`results_df` requires pandas. Install with `pip install pandas`."
+                "`results_df` requires pandas. Install with `uv pip install --system pandas`."
             )
         return pd.DataFrame.from_records(
             [

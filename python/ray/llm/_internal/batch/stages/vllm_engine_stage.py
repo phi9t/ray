@@ -251,7 +251,7 @@ class vLLMEngineWrapper:
         except ImportError as e:
             raise ImportError(
                 "vLLM is not installed or failed to import. Please run "
-                "`pip install ray[llm]` to install required dependencies."
+                "`uv pip install --system ray[llm]` to install required dependencies."
             ) from e
 
         # Construct PoolerConfig if override_pooler_config is specified.

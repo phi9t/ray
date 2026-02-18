@@ -11,16 +11,16 @@ The Ray cluster launcher is part of the `ray` CLI. Use the CLI to start, stop an
 
 ```bash
 # install ray
-pip install -U ray[default]
+uv pip install --system -U ray[default]
 ```
 
 ## Install and Configure AWS Python SDK (Boto3)
 
-Next, install AWS SDK using `pip install -U boto3` and configure your AWS credentials following [the AWS guide](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html).
+Next, install AWS SDK using `uv pip install --system -U boto3` and configure your AWS credentials following [the AWS guide](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html).
 
 ```bash
 # install AWS Python SDK (boto3)
-pip install -U boto3
+uv pip install --system -U boto3
 
 # setup AWS credentials using environment variables
 export AWS_ACCESS_KEY_ID=foo

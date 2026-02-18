@@ -24,7 +24,7 @@ To start, install Ray Data:
 
 .. code-block:: bash
 
-    pip install -U "ray[data]"
+    uv pip install --system -U "ray[data]"
 
 Using Ray Data for offline inference involves four basic steps:
 

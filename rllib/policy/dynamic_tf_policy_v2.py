@@ -4,7 +4,7 @@ from collections import OrderedDict
 from typing import Dict, List, Optional, Tuple, Type, Union
 
 import gymnasium as gym
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray.rllib.models.catalog import ModelCatalog
 from ray.rllib.models.modelv2 import ModelV2

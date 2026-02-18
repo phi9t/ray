@@ -626,6 +626,22 @@ def build(build_python, build_java, build_cpp, build_redis):
     if BAZEL_ARGS:
         bazel_flags.extend(shlex.split(BAZEL_ARGS))
 
+    # Zephyr sglang containers layer uv packages on top of Spack. In this
+    # environment, forcing bfd can break Bazel links that use --start-lib,
+    # while forcing lld can break foreign_cc's gcc + -B/usr/bin flow.
+    # Prefer gcc+gold in-container unless explicit linker flags were supplied.
+    if bazel_env.get("SYGALDRY_IN_CONTAINER") == "1" and sys.platform.startswith(
+        "linux"
+    ):
+        bazel_env.setdefault("CC", "gcc")
+        bazel_env.setdefault("CXX", "g++")
+        if not any(flag.startswith("--linkopt=-fuse-ld=") for flag in bazel_flags):
+            bazel_flags.append("--linkopt=-fuse-ld=gold")
+        if not any(
+            flag.startswith("--host_linkopt=-fuse-ld=") for flag in bazel_flags
+        ):
+            bazel_flags.append("--host_linkopt=-fuse-ld=gold")
+
     if BAZEL_LIMIT_CPUS:
         n = int(BAZEL_LIMIT_CPUS)  # the value must be an int
         bazel_flags.append(f"--local_cpu_resources={n}")

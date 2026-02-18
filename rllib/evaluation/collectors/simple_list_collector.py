@@ -3,7 +3,7 @@ import logging
 from typing import TYPE_CHECKING, Dict, List, Optional, Tuple, Union
 
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 from gymnasium.spaces import Space
 
 from ray.rllib.env.base_env import _DUMMY_AGENT_ID

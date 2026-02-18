@@ -23,7 +23,7 @@ Create a Python file called `fake.py` and save the following Serve application t
 This app creates and returns a fake email address. It relies on the [Faker package](https://github.com/joke2k/faker) to create the fake email address. Install the `Faker` package locally to run it:
 
 ```console
-% pip install Faker==18.13.0
+% uv pip install --system Faker==18.13.0
 
 ...
 
@@ -48,7 +48,7 @@ You can extend these images and add your own dependencies to them by using them 
 # File name: Dockerfile
 FROM rayproject/ray:2.9.0
 
-RUN pip install Faker==18.13.0
+RUN uv pip install --system Faker==18.13.0
 ```
 
 In general, the `rayproject/ray` images contain only the dependencies needed to import Ray and the Ray libraries. You can extend images from either of these repos to build your custom images.
@@ -77,7 +77,7 @@ Use the [WORKDIR](https://docs.docker.com/engine/reference/builder/#workdir) and
 # File name: Dockerfile
 FROM rayproject/ray:2.9.0
 
-RUN pip install Faker==18.13.0
+RUN uv pip install --system Faker==18.13.0
 
 # Set the working dir for the container to /serve_app
 WORKDIR /serve_app

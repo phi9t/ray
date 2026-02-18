@@ -2,7 +2,7 @@ import dataclasses
 from collections import defaultdict
 from typing import List, Optional
 
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 import ray
 from ray.rllib.env.multi_agent_episode import MultiAgentEpisode

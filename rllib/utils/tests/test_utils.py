@@ -2,7 +2,7 @@ import unittest
 
 import gymnasium as gym
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 import ray
 from ray.rllib.utils.framework import try_import_tf, try_import_torch

@@ -92,7 +92,7 @@ Enable fast downloads with Hugging Face's `hf_transfer` library:
 1. Install the library:
 
 ```bash
-pip install hf_transfer
+uv pip install --system hf_transfer
 ```
 
 2. Set the `HF_HUB_ENABLE_HF_TRANSFER` environment variable:
@@ -343,7 +343,7 @@ config = LLMConfig(
 
 ### Slow downloads from Hugging Face
 
-- Install `hf_transfer`: `pip install hf_transfer`
+- Install `hf_transfer`: `uv pip install --system hf_transfer`
 - Set `HF_HUB_ENABLE_HF_TRANSFER=1` in `runtime_env`
 - Consider moving the model to S3/GCS in your cloud region and using RunAI streamer, and use sharding for large models
 

@@ -227,7 +227,7 @@ To read formats other than Parquet, see the :ref:`Input/Output reference <input-
 
         .. code-block:: console
 
-            pip install gcsfs
+            uv pip install --system gcsfs
 
         Then, create a ``GCSFileSystem`` and specify URIs with the ``gs://`` scheme.
 
@@ -265,7 +265,7 @@ To read formats other than Parquet, see the :ref:`Input/Output reference <input-
 
         .. code-block:: console
 
-            pip install adlfs
+            uv pip install --system adlfs
 
         Then, create a ``AzureBlobFileSystem`` and specify URIs with the `az://` scheme.
 
@@ -692,7 +692,7 @@ First, install the required dependencies
 
 .. code-block:: console
 
-    pip install huggingface_hub
+    uv pip install --system huggingface_hub
 
 Set your Hugging Face token to authenticate. While public datasets can be read without
 a token, Hugging Face rate limits are more aggressive without a token. To read Hugging
@@ -852,7 +852,7 @@ Call :func:`~ray.data.read_sql` to read data from a database that provides a
 
         .. code-block:: console
 
-            pip install mysql-connector-python
+            uv pip install --system mysql-connector-python
 
         Then, define your connection logic and query the database.
 
@@ -891,7 +891,7 @@ Call :func:`~ray.data.read_sql` to read data from a database that provides a
 
         .. code-block:: console
 
-            pip install psycopg2-binary
+            uv pip install --system psycopg2-binary
 
         Then, define your connection logic and query the database.
 
@@ -928,7 +928,7 @@ Call :func:`~ray.data.read_sql` to read data from a database that provides a
 
         .. code-block:: console
 
-            pip install snowflake-connector-python
+            uv pip install --system snowflake-connector-python
 
         Then, define your connection logic and query the database.
 
@@ -997,8 +997,8 @@ Call :func:`~ray.data.read_sql` to read data from a database that provides a
 
         .. code-block:: console
 
-            pip install google-cloud-bigquery
-            pip install google-cloud-bigquery-storage
+            uv pip install --system google-cloud-bigquery
+            uv pip install --system google-cloud-bigquery-storage
 
         To read data from BigQuery, call :func:`~ray.data.read_bigquery` and specify the project id, dataset, and query (if applicable).
 
@@ -1079,7 +1079,7 @@ First, install the required dependencies:
 
 .. code-block:: console
 
-    pip install kafka-python
+    uv pip install --system kafka-python
 
 Then, specify your Kafka configuration and read from topics.
 

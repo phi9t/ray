@@ -4,7 +4,7 @@ Ray Client
 ==========
 
 .. warning::
-   Ray Client requires pip package `ray[client]`. If you installed the minimal Ray (e.g. `pip install ray`), please reinstall by executing `pip install ray[client]`.
+   Ray Client requires pip package `ray[client]`. If you installed the minimal Ray (e.g. `uv pip install --system ray`), please reinstall by executing `uv pip install --system ray[client]`.
 
 **What is the Ray Client?**
 

@@ -15,7 +15,7 @@ try:
     import deepspeed  # noqa: F401
 except ImportError as e:
     raise RuntimeError(
-        "Please install deepspeed with `pip install --user deepspeed`."
+        "Please install deepspeed with `uv pip install --system --user deepspeed`."
     ) from e
 
 from accelerate import Accelerator, DeepSpeedPlugin

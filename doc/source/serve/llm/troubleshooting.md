@@ -42,7 +42,7 @@ serve.run(app, blocking=True)
 
 ### Why is downloading the model so slow?
 
-If you're using Hugging Face models, you can enable fast download by setting `HF_HUB_ENABLE_HF_TRANSFER` and installing `pip install hf_transfer`.
+If you're using Hugging Face models, you can enable fast download by setting `HF_HUB_ENABLE_HF_TRANSFER` and installing `uv pip install --system hf_transfer`.
 
 ```python
 from ray import serve

@@ -27,7 +27,7 @@ Ray Serve LLM excels at highly distributed multi-node inference workloads:
 ## Requirements
 
 ```bash
-pip install ray[serve,llm]
+uv pip install --system ray[serve,llm]
 ```
 
 ```{toctree}

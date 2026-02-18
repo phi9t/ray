@@ -2,7 +2,7 @@
 
 It also checks that it is usable with a separate scheduler.
 
-Requires the HyperOpt library to be installed (`pip install hyperopt`).
+Requires the HyperOpt library to be installed (`uv pip install --system hyperopt`).
 
 For an example of using a Tune search space, see
 :doc:`/tune/examples/hyperopt_example`.

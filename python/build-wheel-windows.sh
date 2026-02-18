@@ -100,8 +100,8 @@ build_wheel_windows() {
     unset PYTHON2_BIN_PATH PYTHON3_BIN_PATH  # make sure these aren't set by some chance
     build_dashboard
 
-    python -m pip install pip==25.2
-    python -m pip install wheel==0.45.1 delvewheel==1.11.2 setuptools==80.9.0
+    uv pip install --system pip==25.2
+    uv pip install --system wheel==0.45.1 delvewheel==1.11.2 setuptools==80.9.0
 
     cd "${WORKSPACE_DIR}"/python
     # Set the commit SHA in _version.py.

@@ -70,7 +70,7 @@ class _ManagerMode(str, Enum):
             global needs_rich_warning
             if needs_rich_warning:
                 print(
-                    "[dataset]: Run `pip install rich` to enable "
+                    "[dataset]: Run `uv pip install --system rich` to enable "
                     "execution progress reporting."
                 )
                 needs_rich_warning = False

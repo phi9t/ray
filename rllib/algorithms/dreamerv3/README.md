@@ -72,7 +72,7 @@ space into a new ``Box(-1, 1, (64, 64, 3), f32)``.
 
 First we quickly install ``flappy_bird_gymnasium`` in our dev environment:
 ```shell
-$ pip install flappy_bird_gymnasium
+$ uv pip install --system flappy_bird_gymnasium
 ```
 
 Now, let's create a new python file for this RLlib experiment and call it ``flappy_bird.py``:

@@ -481,7 +481,7 @@ class TestPyArrowFileSystemAzureSupport:
             "builtins.__import__", side_effect=ImportError("No module named 'adlfs'")
         ):
             with pytest.raises(
-                ImportError, match="You must `pip install adlfs azure-identity`"
+                ImportError, match="You must `uv pip install --system adlfs azure-identity`"
             ):
                 PyArrowFileSystem._create_abfss_filesystem(
                     "abfss://container@account.dfs.core.windows.net/path"
@@ -493,7 +493,7 @@ class TestPyArrowFileSystemAzureSupport:
             "builtins.__import__", side_effect=ImportError("No module named 'adlfs'")
         ):
             with pytest.raises(
-                ImportError, match="You must `pip install adlfs azure-identity`"
+                ImportError, match="You must `uv pip install --system adlfs azure-identity`"
             ):
                 PyArrowFileSystem._create_azure_filesystem(
                     "azure://container@account.blob.core.windows.net/path"

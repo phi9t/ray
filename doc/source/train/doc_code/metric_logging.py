@@ -8,7 +8,7 @@ os.environ["RAY_TRAIN_V2_ENABLED"] = "1"
 
 # __torchmetrics_start__
 
-# First, pip install torchmetrics
+# First, uv pip install --system torchmetrics
 # This code is tested with torchmetrics==0.7.3 and torch==1.12.1
 
 import os

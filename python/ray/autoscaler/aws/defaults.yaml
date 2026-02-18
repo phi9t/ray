@@ -124,11 +124,11 @@ setup_commands:
     - >-
         (stat $HOME/anaconda3/envs/tensorflow2_p310/ &> /dev/null &&
         echo 'export PATH="$HOME/anaconda3/envs/tensorflow2_p310/bin:$PATH"' >> ~/.bashrc) || true
-    - which ray || pip install -U "ray[default] @ https://s3-us-west-2.amazonaws.com/ray-wheels/latest/ray-3.0.0.dev0-cp310-cp310-manylinux2014_x86_64.whl"
+    - which ray || uv pip install --system -U "ray[default] @ https://s3-us-west-2.amazonaws.com/ray-wheels/latest/ray-3.0.0.dev0-cp310-cp310-manylinux2014_x86_64.whl"
 
 # Custom commands that will be run on the head node after common setup.
 head_setup_commands:
-    - pip install 'boto3>=1.4.8'  # 1.4.8 adds InstanceMarketOptions
+    - uv pip install --system 'boto3>=1.4.8'  # 1.4.8 adds InstanceMarketOptions
 
 # Custom commands that will be run on worker nodes after common setup.
 worker_setup_commands: []

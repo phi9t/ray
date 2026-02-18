@@ -192,7 +192,7 @@ To try out push-based shuffle, set the environment variable ``RAY_DATA_PUSH_BASE
     $ RAY_DATA_PUSH_BASED_SHUFFLE=1 python sort_benchmark.py --num-partitions=10 --partition-size=1e7
 
     # Dataset size: 10 partitions, 0.01GB partition size, 0.1GB total
-    # [dataset]: Run `pip install tqdm` to enable progress reporting.
+    # [dataset]: Run `uv pip install --system tqdm` to enable progress reporting.
     # 2022-05-04 17:30:28,806	INFO push_based_shuffle.py:118 -- Using experimental push-based shuffle.
     # Finished in 9.571171760559082
     # ...

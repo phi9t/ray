@@ -15,8 +15,8 @@ instance using Ray Serve and FastAPI.
 :::
 
 ```bash
-pip install "optimum-neuron==0.0.13" "diffusers==0.21.4"
-pip install "ray[serve]" requests transformers
+uv pip install --system "optimum-neuron==0.0.13" "diffusers==0.21.4"
+uv pip install --system "ray[serve]" requests transformers
 ```
 
 This example uses the [Stable Diffusion-XL](https://huggingface.co/aws-neuron/stable-diffusion-xl-base-1-0-1024x1024) model and [FastAPI](https://fastapi.tiangolo.com/).

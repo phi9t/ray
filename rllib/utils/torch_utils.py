@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Dict, List, Optional, Union
 
 import gymnasium as gym
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 from gymnasium.spaces import Discrete, MultiDiscrete
 from packaging import version
 

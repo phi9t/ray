@@ -5,7 +5,7 @@
 set -exo pipefail
 
 # Install Python dependencies
-pip3 install --no-cache-dir \
+uv pip install --system --no-cache-dir \
     boto3==1.26.76 \
     imageio-ffmpeg==0.6.0 \
     opencv-python-headless==4.11.0.86 \

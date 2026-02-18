@@ -27,7 +27,7 @@ Tune further integrates with a wide range of additional hyperparameter optimizat
 
     .. tab-item:: Quickstart
 
-        To run this example, install the following: ``pip install "ray[tune]"``.
+        To run this example, install the following: ``uv pip install --system "ray[tune]"``.
 
         In this quick-start example you `minimize` a simple function of the form ``f(x) = a**2 + b``, our `objective` function.
         The closer ``a`` is to zero and the smaller ``b`` is, the smaller the total value of ``f(x)``.

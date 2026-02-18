@@ -89,7 +89,7 @@ Install RLlib and `PyTorch <https://pytorch.org>`__, as shown below:
 
 .. code-block:: bash
 
-    pip install "ray[rllib]" torch
+    uv pip install --system "ray[rllib]" torch
 
 .. note::
 
@@ -102,7 +102,7 @@ Install RLlib and `PyTorch <https://pytorch.org>`__, as shown below:
 
     .. code-block:: bash
 
-        pip install "gymnasium[atari,accept-rom-license,mujoco]"
+        uv pip install --system "gymnasium[atari,accept-rom-license,mujoco]"
 
 This is all, you can now start coding against RLlib. Here is an example for running the :ref:`PPO Algorithm <ppo>` on the
 `Taxi domain <https://gymnasium.farama.org/environments/toy_text/taxi/>`__.
@@ -214,7 +214,7 @@ click the dropdowns below:
     |                                                                                           |
     | .. code-block:: bash                                                                      |
     |                                                                                           |
-    |     pip install "gymnasium[atari,accept-rom-license,mujoco]"``                            |
+    |     uv pip install --system "gymnasium[atari,accept-rom-license,mujoco]"``                            |
     |                                                                                           |
     | .. code-block:: python                                                                    |
     |                                                                                           |
@@ -226,7 +226,7 @@ click the dropdowns below:
     |                                                                                           |
     | .. code-block:: bash                                                                      |
     |                                                                                           |
-    |     pip install "pettingzoo[all]"                                                         |
+    |     uv pip install --system "pettingzoo[all]"                                                         |
     |                                                                                           |
     | .. code-block:: python                                                                    |
     |                                                                                           |

@@ -1056,5 +1056,5 @@ def try_import_msgpack(error: bool = False):
         if error:
             raise ImportError(
                 "Could not import or setup msgpack and msgpack_numpy! "
-                "Try running `pip install msgpack msgpack_numpy` first."
+                "Try running `uv pip install --system msgpack msgpack_numpy` first."
             )

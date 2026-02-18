@@ -14,7 +14,7 @@ This section assumes that you have a list of machines and that the nodes in the 
 
 ```bash
 # install ray
-pip install -U "ray[default]"
+uv pip install --system -U "ray[default]"
 ```
 
 ### Start the Head Node
@@ -84,7 +84,7 @@ The Ray cluster launcher is part of the `ray` command line tool. It allows you t
 
 ```bash
 # install ray
-pip install "ray[default]"
+uv pip install --system "ray[default]"
 ```
 
 ### Start Ray with the Ray cluster launcher

@@ -45,10 +45,10 @@ initialization_commands:
   - sudo apt-get install -y python3-pip python-is-python3
 
 setup_commands:
-  - pip install 'ray[default]'
+  - uv pip install --system 'ray[default]'
 
 head_setup_commands:
-  - pip install google-api-python-client
+  - uv pip install --system google-api-python-client
 
 # Specify the node type of the head node (as configured above).
 head_node_type: ray_head_default

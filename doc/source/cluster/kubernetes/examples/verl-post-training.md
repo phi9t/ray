@@ -51,7 +51,7 @@ kubectl exec -it $HEAD_POD -- bash
 
 # Follow the instructions in https://verl.readthedocs.io/en/latest/start/install.html#install-from-docker-image to install verl.
 git clone https://github.com/volcengine/verl && cd verl
-pip3 install -e .[vllm]
+uv pip install --system -e .[vllm]
 ```
 
 # Step 5: Prepare the dataset and download `Qwen2.5-0.5B-Instruct` model

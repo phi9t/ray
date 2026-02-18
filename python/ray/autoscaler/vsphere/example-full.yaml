@@ -111,7 +111,7 @@ setup_commands: []
 
 # Custom commands that will be run on the head node after common setup.
 head_setup_commands:
-    - pip install 'git+https://github.com/vmware/vsphere-automation-sdk-python.git'
+    - uv pip install --system 'git+https://github.com/vmware/vsphere-automation-sdk-python.git'
 
 # Custom commands that will be run on worker nodes after common setup.
 worker_setup_commands: []

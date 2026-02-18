@@ -125,7 +125,7 @@ def _convert_pandas_to_batch_type(
         if not pyarrow:
             raise ValueError(
                 "Attempted to convert data to Pyarrow Table but Pyarrow "
-                "is not installed. Please do `pip install pyarrow` to "
+                "is not installed. Please do `uv pip install --system pyarrow` to "
                 "install Pyarrow."
             )
         return pyarrow.Table.from_pandas(data)

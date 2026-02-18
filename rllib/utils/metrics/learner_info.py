@@ -2,7 +2,7 @@ from collections import defaultdict
 from typing import Dict
 
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray.rllib.policy.sample_batch import DEFAULT_POLICY_ID
 from ray.rllib.utils.annotations import OldAPIStack

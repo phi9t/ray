@@ -48,7 +48,7 @@ class NevergradSearch(Searcher):
 
     .. code-block:: bash
 
-        $ pip install nevergrad
+        $ uv pip install --system nevergrad
 
     Parameters:
         optimizer: Optimizer class provided from Nevergrad.
@@ -135,7 +135,7 @@ class NevergradSearch(Searcher):
             ng is not None
         ), """Nevergrad must be installed!
             You can install Nevergrad with the command:
-            `pip install nevergrad`."""
+            `uv pip install --system nevergrad`."""
         if mode:
             assert mode in ["min", "max"], "`mode` must be 'min' or 'max'."
 

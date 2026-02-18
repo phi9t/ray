@@ -144,7 +144,7 @@ def setup_mlflow(
     """
     if not mlflow:
         raise RuntimeError(
-            "mlflow was not found - please install with `pip install mlflow`"
+            "mlflow was not found - please install with `uv pip install --system mlflow`"
         )
 
     default_trial_id = None

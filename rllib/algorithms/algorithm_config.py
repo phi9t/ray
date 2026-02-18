@@ -5565,7 +5565,7 @@ class AlgorithmConfig(_Config):
                     (
                         "TensorFlow was specified as the framework to use (via `config."
                         "framework([tf|tf2])`)! However, no installation was "
-                        "found. You can install TensorFlow via `pip install tensorflow`"
+                        "found. You can install TensorFlow via `uv pip install --system tensorflow`"
                     )
                 )
         elif self.framework_str == "torch":
@@ -5574,7 +5574,7 @@ class AlgorithmConfig(_Config):
                     (
                         "PyTorch was specified as the framework to use (via `config."
                         "framework('torch')`)! However, no installation was found. You "
-                        "can install PyTorch via `pip install torch`."
+                        "can install PyTorch via `uv pip install --system torch`."
                     )
                 )
 

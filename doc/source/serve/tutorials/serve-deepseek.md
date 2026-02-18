@@ -13,7 +13,7 @@ This example shows how to deploy DeepSeek R1 or V3 with Ray Serve LLM.
 To run this example, install the following:
 
 ```bash
-pip install "ray[llm]==2.46.0"
+uv pip install --system "ray[llm]==2.46.0"
 ```
 
 Note: Deploying DeepSeek-R1 requires at least 720GB of free disk space per worker node to store model weights.

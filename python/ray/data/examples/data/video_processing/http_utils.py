@@ -29,7 +29,7 @@ class HTTPConnection:
     def get_sync_client(self):
         if requests is None:
             raise ImportError(
-                "requests is required for HTTPConnection. Install with `pip install requests`."
+                "requests is required for HTTPConnection. Install with `uv pip install --system requests`."
             )
         if self._sync_client is None or not self.reuse_client:
             if self._sync_client is not None and not self.reuse_client:
@@ -43,7 +43,7 @@ class HTTPConnection:
     async def get_async_client(self):
         if aiohttp is None:
             raise ImportError(
-                "aiohttp is required for HTTPConnection. Install with `pip install aiohttp`."
+                "aiohttp is required for HTTPConnection. Install with `uv pip install --system aiohttp`."
             )
         if self._async_client is None or not self.reuse_client:
             if (

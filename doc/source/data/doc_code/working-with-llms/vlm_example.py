@@ -154,7 +154,7 @@ def load_vision_dataset():
         return vision_dataset
     except ImportError:
         print(
-            "huggingface_hub package not available. Install with: pip install huggingface_hub"
+            "huggingface_hub package not available. Install with: uv pip install --system huggingface_hub"
         )
         return None
     except Exception as e:

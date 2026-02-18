@@ -8,7 +8,7 @@ to efficiently optimize hyperparameters for a machine learning model. ASHA is pa
 large-scale hyperparameter optimization as it can adaptively allocate resources and end 
 poorly performing trials early.
 
-Requirements: `pip install "ray[tune]"`
+Requirements: `uv pip install --system "ray[tune]"`
 
 .. literalinclude:: /../../python/ray/tune/examples/async_hyperband_example.py
 

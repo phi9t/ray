@@ -74,7 +74,7 @@ sudo apt-get update && \
 Install the required Python packages (these can also be included in your image):
 
 ```bash
-pip install --force-reinstall --no-cache-dir "unstructured[all-docs]==0.18.21" "pandas==2.3.3"
+uv pip install --system --force-reinstall --no-cache-dir "unstructured[all-docs]==0.18.21" "pandas==2.3.3"
 ```
 
 Setup and initialize Ray Data:

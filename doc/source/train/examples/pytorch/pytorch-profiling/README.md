@@ -47,7 +47,7 @@ With Ray Train, you can profile distributed training workloads across multiple w
 
 ```bash
 %%bash
-pip install torch torchvision matplotlib
+uv pip install --system torch torchvision matplotlib
 ```
 
 ## Distributed training with Ray Train and PyTorch Profiler
@@ -438,7 +438,7 @@ After generating the `trace.json` files, you can use Tensorboard, or drag the `t
 
 Use the script below to start the Tensorboard.
 ```
-pip install torch_tb_profiler
+uv pip install --system torch_tb_profiler
 
 # Once you run the above code, the profiling result is saved under `/mnt/cluster_storage/logs/`
 tensorboard --logdir=/mnt/cluster_storage/logs/

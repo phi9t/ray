@@ -150,7 +150,7 @@ applies up to 30 "noop" actions after a reset, which aren't part of the episode:
 
 .. testcode::
 
-    import gymnasium as gym  # `pip install gymnasium[atari,accept-rom-license]`
+    import gymnasium as gym  # `uv pip install --system gymnasium[atari,accept-rom-license]`
 
     from ray.rllib.algorithms.ppo import PPOConfig
     from ray.rllib.env.wrappers.atari_wrappers import wrap_atari_for_new_api_stack

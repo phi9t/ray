@@ -6,7 +6,7 @@ forever until they fail. To set up the project you need to run
 
 .. code-block:: bash
 
-    $ pip install anyscale
+    $ uv pip install --system anyscale
     $ anyscale init
 
 Note that all the long running test is running inside virtual environment, tensorflow_p36

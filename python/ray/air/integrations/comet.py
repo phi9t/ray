@@ -21,7 +21,7 @@ def _import_comet():
     try:
         import comet_ml  # noqa: F401
     except ImportError:
-        raise RuntimeError("pip install 'comet-ml' to use CometLoggerCallback")
+        raise RuntimeError("uv pip install --system 'comet-ml' to use CometLoggerCallback")
 
     return comet_ml
 
@@ -37,7 +37,7 @@ class CometLoggerCallback(LoggerCallback):
     Comet for tracking.
 
     In order to use the CometLoggerCallback you must first install Comet
-    via ``pip install comet_ml``
+    via ``uv pip install --system comet_ml``
 
     Then set the following environment variables
     ``export COMET_API_KEY=<Your API Key>``

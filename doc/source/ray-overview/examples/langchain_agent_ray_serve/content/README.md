@@ -66,7 +66,7 @@ For more information on LLM serving and Ray Serve, see the following:
 ```bash
 %%bash
 # Install dependencies
-pip install -r requirements.txt
+uv pip install --system -r requirements.txt
 ```
 
 ## Implementation: Building the services

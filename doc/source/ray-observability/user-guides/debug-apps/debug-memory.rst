@@ -186,7 +186,7 @@ First, install ``memray``.
 
 .. code-block:: bash
 
-  pip install memray
+  uv pip install --system memray
 
 ``memray`` supports a Python context manager to enable memory profiling. You can write the ``memray`` profiling file wherever you want.
 But in this example, we will write them to `/tmp/ray/session_latest/logs` because Ray dashboard allows you to download files inside the log folder.

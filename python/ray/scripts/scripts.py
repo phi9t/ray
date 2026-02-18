@@ -2013,8 +2013,8 @@ def stack():
     COMMAND = """
 pyspy=`which py-spy`
 if [ ! -e "$pyspy" ]; then
-    echo "ERROR: Please 'pip install py-spy'" \
-        "or 'pip install ray[default]' first."
+    echo "ERROR: Please 'uv pip install --system py-spy'" \
+        "or 'uv pip install --system ray[default]' first."
     exit 1
 fi
 # Set IFS to iterate over lines instead of over words.
@@ -2587,7 +2587,7 @@ def cpp(show_library_path, generate_bazel_project_template_to):
     include_dir = os.path.join(cpp_dir, "include")
     lib_dir = os.path.join(cpp_dir, "lib")
     if not os.path.isdir(cpp_dir):
-        raise ValueError('Please install ray with C++ API by "pip install ray[cpp]".')
+        raise ValueError('Please install ray with C++ API by "uv pip install --system ray[cpp]".')
     if show_library_path:
         cli_logger.print("Ray C++ include path {} ", cf.bold(f"{include_dir}"))
         cli_logger.print("Ray C++ library path {} ", cf.bold(f"{lib_dir}"))

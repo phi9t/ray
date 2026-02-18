@@ -19,7 +19,7 @@ Install the necessary packages before you begin:
 
 .. code-block:: bash
 
-    pip install "ray[train]" torch "transformers[torch]" datasets evaluate numpy scikit-learn
+    uv pip install --system "ray[train]" torch "transformers[torch]" datasets evaluate numpy scikit-learn
 
 
 Quickstart

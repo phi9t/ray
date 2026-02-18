@@ -8,7 +8,7 @@ try:
 except ImportError as exc:
     raise ImportError(
         "Can't import ray.train as some dependencies are missing. "
-        'Run `pip install "ray[train]"` to fix.'
+        'Run `uv pip install --system "ray[train]"` to fix.'
     ) from exc
 # isort: on
 
@@ -33,7 +33,7 @@ if is_v2_enabled():
     except (ImportError, ModuleNotFoundError) as exc:
         raise ImportError(
             "`ray.train.v2` requires the pydantic package, which is missing. "
-            "Run the following command to fix this: `pip install pydantic`"
+            "Run the following command to fix this: `uv pip install --system pydantic`"
         ) from exc
     from ray.train.v2.api.callback import UserCallback  # noqa: F811
     from ray.train.v2.api.config import (  # noqa: F811

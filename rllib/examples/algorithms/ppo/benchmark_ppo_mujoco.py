@@ -10,7 +10,7 @@ from ray.tune import Stopper
 # Needs the following packages to be installed on Ubuntu:
 #   sudo apt-get libosmesa-dev
 #   sudo apt-get install patchelf
-#   python -m pip install "gymnasium[mujoco]"
+#   uv pip install --system "gymnasium[mujoco]"
 # Might need to be added to bashsrc:
 #   export MUJOCO_GL=osmesa"
 #   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.mujoco/mujoco200/bin"

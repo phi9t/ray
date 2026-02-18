@@ -41,7 +41,7 @@ _WIN32 = os.name == "nt"
 
 
 def _resolve_current_ray_path() -> str:
-    # When ray is built from source with pip install -e,
+    # When ray is built from source with uv pip install --system -e,
     # ray.__file__ returns .../python/ray/__init__.py and this function returns
     # ".../python".
     # When ray is installed from a prebuilt binary, ray.__file__ returns
@@ -53,7 +53,7 @@ def _resolve_current_ray_path() -> str:
 def _get_ray_setup_spec():
     """Find the Ray setup_spec from the currently running Ray.
 
-    This function works even when Ray is built from source with pip install -e.
+    This function works even when Ray is built from source with uv pip install --system -e.
     """
     ray_source_python_path = _resolve_current_ray_path()
     setup_py_path = os.path.join(ray_source_python_path, "setup.py")
@@ -116,7 +116,7 @@ def current_ray_pip_specifier(
     """The pip requirement specifier for the running version of Ray.
 
     Returns:
-        A string which can be passed to `pip install` to install the
+        A string which can be passed to `uv pip install --system` to install the
         currently running Ray version, or None if running on a version
         built from source locally (likely if you are developing Ray).
 

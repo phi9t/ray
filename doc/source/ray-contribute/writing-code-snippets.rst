@@ -326,7 +326,7 @@ To locally test examples, install the Ray fork of `pytest-sphinx`.
 
 .. code-block:: bash
 
-    pip install git+https://github.com/ray-project/pytest-sphinx
+    uv pip install --system git+https://github.com/ray-project/pytest-sphinx
 
 Then, run pytest on a module, docstring, or user guide.
 

@@ -11,7 +11,7 @@ def _check_lmcache_installed():
         import lmcache  # noqa: F401
     except ImportError:
         raise ImportError(
-            "LMCache is not installed. Please install it with `pip install lmcache`."
+            "LMCache is not installed. Please install it with `uv pip install --system lmcache`."
         )
 
 

@@ -12,7 +12,7 @@ from ray.rllib.utils.typing import ModelConfigDict, TensorType
 try:
     from dnc import DNC
 except ModuleNotFoundError:
-    print("dnc module not found. Did you forget to 'pip install dnc'?")
+    print("dnc module not found. Did you forget to 'uv pip install --system dnc'?")
     raise
 
 torch, nn = try_import_torch()

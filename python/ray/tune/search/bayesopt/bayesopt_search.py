@@ -51,7 +51,7 @@ class BayesOptSearch(Searcher):
 
     .. code-block:: bash
 
-        pip install bayesian-optimization==1.4.3
+        uv pip install --system bayesian-optimization==1.4.3
 
     Initializing this search algorithm with a ``space`` requires that it's
     in the ``BayesianOptimization`` search space format. Otherwise, you
@@ -154,7 +154,7 @@ class BayesOptSearch(Searcher):
     ):
         assert byo is not None, (
             "BayesOpt must be installed!. You can install BayesOpt with"
-            " the command: `pip install bayesian-optimization==1.4.3`."
+            " the command: `uv pip install --system bayesian-optimization==1.4.3`."
         )
         if mode:
             assert mode in ["min", "max"], "`mode` must be 'min' or 'max'."

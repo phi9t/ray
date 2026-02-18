@@ -3,7 +3,7 @@ try:
     import tensorflow as tf  # noqa: F401
 except ModuleNotFoundError:
     raise ModuleNotFoundError(
-        "TensorFlow isn't installed. To install TensorFlow, run 'pip install "
+        "TensorFlow isn't installed. To install TensorFlow, run 'uv pip install --system "
         "tensorflow'."
     )
 # isort: on

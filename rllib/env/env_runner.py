@@ -3,7 +3,7 @@ import logging
 from typing import TYPE_CHECKING, Any, Dict, Optional, Tuple
 
 import gymnasium as gym
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 import ray
 from ray.rllib.core import COMPONENT_RL_MODULE

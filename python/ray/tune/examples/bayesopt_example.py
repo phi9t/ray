@@ -2,7 +2,7 @@
 
 It also checks that it is usable with a separate scheduler.
 
-Requires the BayesOpt library to be installed (`pip install bayesian-optimization`).
+Requires the BayesOpt library to be installed (`uv pip install --system bayesian-optimization`).
 """
 import time
 

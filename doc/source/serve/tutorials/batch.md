@@ -23,7 +23,7 @@ This tutorial focuses on online serving with batching. For offline batch process
 ## Prerequisites
 
 ```python
-pip install "ray[serve] transformers"
+uv pip install --system "ray[serve] transformers"
 ```
 
 ## Define the Deployment

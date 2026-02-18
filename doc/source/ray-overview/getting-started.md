@@ -40,7 +40,7 @@ Here's an example of how to scale offline inference and training ingest with Ray
 To run this example, install Ray Data:
 
 ```bash
-pip install -U "ray[data]"
+uv pip install --system -U "ray[data]"
 ```
 ````
 
@@ -99,7 +99,7 @@ To run this example install Ray Train and PyTorch packages:
 
 :::{note}
 ```bash
-pip install -U "ray[train]" torch torchvision
+uv pip install --system -U "ray[train]" torch torchvision
 ```
 :::
 
@@ -172,7 +172,7 @@ To run this example install Ray Train and Tensorflow packages:
 
 :::{note}
 ```bash
-pip install -U "ray[train]" tensorflow
+uv pip install --system -U "ray[train]" tensorflow
 ```
 :::
 
@@ -257,7 +257,7 @@ With Tune, you can launch a multi-node distributed hyperparameter sweep in less 
 To run this example, install Ray Tune:
 
 ```bash
-pip install -U "ray[tune]"
+uv pip install --system -U "ray[tune]"
 ```
 ````
 
@@ -269,7 +269,7 @@ This example runs a small grid search with an iterative training function.
 :start-after: __quick_start_begin__
 ```
 
-If TensorBoard is installed (`pip install tensorboard`), you can automatically visualize all trial results:
+If TensorBoard is installed (`uv pip install --system tensorboard`), you can automatically visualize all trial results:
 
 ```bash
 tensorboard --logdir ~/ray_results
@@ -295,7 +295,7 @@ Learn more about Ray Tune
 To run this example, install Ray Serve and scikit-learn:
 
 ```{code-block} bash
-pip install -U "ray[serve]" scikit-learn
+uv pip install --system -U "ray[serve]" scikit-learn
 ```
 ````
 
@@ -329,7 +329,7 @@ Learn more about Ray Serve
 To run this example, install `rllib` and either `tensorflow` or `pytorch`:
 
 ```bash
-pip install -U "ray[rllib]" tensorflow  # or torch
+uv pip install --system -U "ray[rllib]" tensorflow  # or torch
 ```
 You may also need CMake installed on your system.
 
@@ -376,7 +376,7 @@ The examples below show you how to:
 To run this example install Ray Core:
 
 ```bash
-pip install -U "ray"
+uv pip install --system -U "ray"
 ```
 :::
 
@@ -472,7 +472,7 @@ maintain its own internal state.
 To run this example install Ray Core:
 
 ```bash
-pip install -U "ray"
+uv pip install --system -U "ray"
 ```
 :::
 
@@ -582,7 +582,7 @@ Ray programs can run on a single machine, or seamlessly scale to large clusters.
 To run this example install the following:
 
 ```bash
-pip install -U "ray[default]" boto3
+uv pip install --system -U "ray[default]" boto3
 ```
 
 If you haven't already, configure your credentials as described in the [documentation for boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html#guide-credentials).
@@ -675,7 +675,7 @@ Ray dashboard provides a visual interface that displays real-time system metrics
 To get started with the dashboard, install the default installation as follows:
 
 ```bash
-pip install -U "ray[default]"
+uv pip install --system -U "ray[default]"
 ```
 ````
 The dashboard automatically becomes available when running Ray scripts. Access the dashboard through the default URL, http://localhost:8265.
@@ -699,7 +699,7 @@ Ray state APIs allow users to conveniently access the current state (snapshot) o
 To get started with the state API, install the default installation as follows:
 
 ```bash
-pip install -U "ray[default]"
+uv pip install --system -U "ray[default]"
 ```
 ````
 

@@ -7,7 +7,7 @@ from typing import (
 )
 
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 from gymnasium.spaces import Box
 
 from ray.rllib.policy.policy import Policy

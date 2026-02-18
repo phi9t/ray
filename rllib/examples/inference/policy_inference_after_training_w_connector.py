@@ -86,7 +86,7 @@ Done performing action inference through 10 Episodes
 """
 import os
 
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray.rllib.connectors.env_to_module import EnvToModulePipeline
 from ray.rllib.connectors.module_to_env import ModuleToEnvPipeline

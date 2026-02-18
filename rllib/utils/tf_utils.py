@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING, Any, Callable, List, Optional, Type, Union
 
 import gymnasium as gym
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 from gymnasium.spaces import Discrete, MultiDiscrete
 
 from ray.rllib.utils import force_list

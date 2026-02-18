@@ -37,7 +37,7 @@ except ImportError as e:
 def resize(img: np.ndarray, height: int, width: int) -> np.ndarray:
     if not cv2:
         raise ModuleNotFoundError(
-            "`opencv` not installed! Do `pip install opencv-python`"
+            "`opencv` not installed! Do `uv pip install --system opencv-python`"
         )
     return cv2.resize(img, (width, height), interpolation=cv2.INTER_AREA)
 
@@ -46,7 +46,7 @@ def resize(img: np.ndarray, height: int, width: int) -> np.ndarray:
 def rgb2gray(img: np.ndarray) -> np.ndarray:
     if not cv2:
         raise ModuleNotFoundError(
-            "`opencv` not installed! Do `pip install opencv-python`"
+            "`opencv` not installed! Do `uv pip install --system opencv-python`"
         )
     return cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 
@@ -55,6 +55,6 @@ def rgb2gray(img: np.ndarray) -> np.ndarray:
 def imread(img_file: str) -> np.ndarray:
     if not cv2:
         raise ModuleNotFoundError(
-            "`opencv` not installed! Do `pip install opencv-python`"
+            "`opencv` not installed! Do `uv pip install --system opencv-python`"
         )
     return cv2.imread(img_file).astype(np.float32)

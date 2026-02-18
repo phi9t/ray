@@ -422,7 +422,7 @@ class SACConfig(AlgorithmConfig):
         if self.framework in ["tf", "tf2"] and tfp is None:
             logger.warning(
                 "You need `tensorflow_probability` in order to run SAC! "
-                "Install it via `pip install tensorflow_probability`. Your "
+                "Install it via `uv pip install --system tensorflow_probability`. Your "
                 f"tf.__version__={tf.__version__ if tf else None}."
                 "Trying to import tfp results in the following error:"
             )

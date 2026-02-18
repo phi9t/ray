@@ -28,7 +28,7 @@ try:
 
 except ModuleNotFoundError as e:
     e.msg += (
-        '. You can run `pip install "ray[serve]"` to install all Ray Serve'
+        '. You can run `uv pip install --system "ray[serve]"` to install all Ray Serve'
         " dependencies."
     )
     raise e

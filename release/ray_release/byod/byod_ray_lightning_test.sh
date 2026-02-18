@@ -4,6 +4,6 @@
 
 set -exo pipefail
 
-pip3 install -U --force-reinstall ray-lightning pytorch-lightning lightning-bolts
-pip3 install --force-reinstall torch==1.11.0
-pip3 install --force-reinstall torchvision==0.12.0
+uv pip install --system -U --force-reinstall ray-lightning pytorch-lightning lightning-bolts
+uv pip install --system --force-reinstall torch==1.11.0
+uv pip install --system --force-reinstall torchvision==0.12.0

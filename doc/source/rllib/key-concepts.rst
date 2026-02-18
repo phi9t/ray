@@ -325,7 +325,7 @@ and using them to gather experiences in parallel:
 
 .. testcode::
 
-    import tree  # pip install dm_tree
+    import tree  # uv pip install --system dm_tree
     import ray
     from ray.rllib.algorithms.ppo import PPOConfig
     from ray.rllib.env.single_agent_env_runner import SingleAgentEnvRunner

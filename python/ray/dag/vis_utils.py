@@ -48,7 +48,7 @@ def _check_pydot_and_graphviz():
         import pydot
     except ImportError:
         raise ImportError(
-            "pydot is required to plot DAG, install it with `pip install pydot`."
+            "pydot is required to plot DAG, install it with `uv pip install --system pydot`."
         )
     try:
         pydot.Dot.create(pydot.Dot())

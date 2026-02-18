@@ -450,7 +450,7 @@ def wait_for_gpu(
 ):
     """Checks if a given GPU has freed memory.
 
-    Requires ``gputil`` to be installed: ``pip install gputil``.
+    Requires ``gputil`` to be installed: ``uv pip install --system gputil``.
 
     Args:
         gpu_id: GPU id or uuid to check.

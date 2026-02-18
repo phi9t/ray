@@ -9,7 +9,7 @@ RUN sudo apt update && sudo apt install -y \
     && sudo rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies.
-RUN pip install --no-cache-dir \
+RUN uv pip install --system --no-cache-dir \
     boto3==1.26.76 \
     imageio-ffmpeg==0.6.0 \
     opencv-python-headless==4.11.0.86 \

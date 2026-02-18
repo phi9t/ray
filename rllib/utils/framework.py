@@ -4,7 +4,7 @@ import sys
 from typing import TYPE_CHECKING, Any, Optional
 
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 import ray
 from ray._common.deprecation import Deprecated
@@ -127,7 +127,7 @@ def try_import_jax(error: bool = False):
             raise ImportError(
                 "Could not import JAX! RLlib requires you to "
                 "install at least one deep-learning framework: "
-                "`pip install [torch|tensorflow|jax]`."
+                "`uv pip install --system [torch|tensorflow|jax]`."
             )
         return None, None
 
@@ -176,7 +176,7 @@ def try_import_tf(error: bool = False):
                 raise ImportError(
                     "Could not import TensorFlow! RLlib requires you to "
                     "install at least one deep-learning framework: "
-                    "`pip install [torch|tensorflow|jax]`."
+                    "`uv pip install --system [torch|tensorflow|jax]`."
                 )
             return None, tf_stub, None
 
@@ -219,7 +219,7 @@ class _KerasStub:
 # Fake classes under keras (e.g for tf.keras.Model)
 class _FakeTfClassStub:
     def __init__(self, *a, **kw):
-        raise ImportError("Could not import `tensorflow`. Try pip install tensorflow.")
+        raise ImportError("Could not import `tensorflow`. Try uv pip install --system tensorflow.")
 
 
 @DeveloperAPI
@@ -278,7 +278,7 @@ class _NNStub:
 # Fake class for e.g. torch.nn.Module to allow it to be inherited from.
 class _FakeTorchClassStub:
     def __init__(self, *a, **kw):
-        raise ImportError("Could not import `torch`. Try pip install torch.")
+        raise ImportError("Could not import `torch`. Try uv pip install --system torch.")
 
 
 class _ParallelStub:
@@ -314,7 +314,7 @@ def try_import_torch(error: bool = False):
             raise ImportError(
                 "Could not import PyTorch! RLlib requires you to "
                 "install at least one deep-learning framework: "
-                "`pip install [torch|tensorflow|jax]`."
+                "`uv pip install --system [torch|tensorflow|jax]`."
             )
         return _torch_stubs()
 

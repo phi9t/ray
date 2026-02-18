@@ -33,7 +33,7 @@ that uses legacy Tensorflow 1 and another that uses Tensorflow 2.
 
 This is supported on Mac OS and Linux using Ray's {ref}`runtime-environments` feature.
 As with all other Ray actor options, pass the runtime environment in via `ray_actor_options` in
-your deployment.  Be sure to first run `pip install "ray[default]"` to ensure the
+your deployment.  Be sure to first run `uv pip install --system "ray[default]"` to ensure the
 Runtime Environments feature is installed.
 
 Example:

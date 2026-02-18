@@ -169,7 +169,7 @@ app = build_openai_app({"llm_configs": [llm_config]})
 
 **Dependencies:**  
 ```bash
-pip install "ray[serve,llm]"
+uv pip install --system "ray[serve,llm]"
 ```
 
 ---

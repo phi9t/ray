@@ -8,7 +8,7 @@ sudo apt-get update && \
     sudo rm -rf /var/lib/apt/lists/*
 
 # Install python dependencies
-pip3 install --no-cache-dir \
+uv pip install --system --no-cache-dir \
     "unstructured[all-docs]==0.16.23" \
     "sentence-transformers==3.4.1" \
     "chromadb==0.6.3" \

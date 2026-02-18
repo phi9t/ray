@@ -9,7 +9,7 @@ from ray.util.annotations import PublicAPI
 try:
     from gradio import Blocks, routes
 except ModuleNotFoundError:
-    print("Gradio isn't installed. Run `pip install gradio` to install Gradio.")
+    print("Gradio isn't installed. Run `uv pip install --system gradio` to install Gradio.")
     raise
 
 logger = logging.getLogger(SERVE_LOGGER_NAME)

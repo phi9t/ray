@@ -4,8 +4,8 @@
 
 set -exo pipefail
 
-pip3 install -U --force-reinstall pytorch-lightning lightning-bolts
+uv pip install --system -U --force-reinstall pytorch-lightning lightning-bolts
 pip uninstall ray_lightning -y # Uninstall first so pip does a reinstall.
-pip3 install -U --no-cache-dir git+https://github.com/ray-project/ray_lightning#ray_lightning
-pip3 install --force-reinstall torch==1.11.0
-pip3 install --force-reinstall torchvision==0.12.0
+uv pip install --system -U --no-cache-dir git+https://github.com/ray-project/ray_lightning#ray_lightning
+uv pip install --system --force-reinstall torch==1.11.0
+uv pip install --system --force-reinstall torchvision==0.12.0

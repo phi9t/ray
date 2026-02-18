@@ -115,8 +115,8 @@ setup_commands:
     # Note: if you're developing Ray, you probably want to create an AMI that
     # has your Ray repo pre-cloned. Then, you can replace the pip installs
     # below with a git checkout <your_sha> (and possibly a recompile).
-    - source activate pytorch_p36 && pip install -U ray
-    - source activate pytorch_p36 && pip install -U ray[rllib] ray[tune] ray
+    - source activate pytorch_p36 && uv pip install --system -U ray
+    - source activate pytorch_p36 && uv pip install --system -U ray[rllib] ray[tune] ray
     # Consider uncommenting these if you also want to run apt-get commands during setup
     # - sudo pkill -9 apt-get || true
     # - sudo pkill -9 dpkg || true
@@ -124,7 +124,7 @@ setup_commands:
 
 # Custom commands that will be run on the head node after common setup.
 head_setup_commands:
-    - pip install 'boto3>=1.4.8'  # 1.4.8 adds InstanceMarketOptions
+    - uv pip install --system 'boto3>=1.4.8'  # 1.4.8 adds InstanceMarketOptions
 
 # Custom commands that will be run on worker nodes after common setup.
 worker_setup_commands: []

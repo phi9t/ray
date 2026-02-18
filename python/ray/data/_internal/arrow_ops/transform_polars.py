@@ -25,7 +25,7 @@ def check_polars_installed():
         import polars as pl
     except ImportError:
         raise ImportError(
-            "polars not installed. Install with `pip install polars` or set "
+            "polars not installed. Install with `uv pip install --system polars` or set "
             "`DataContext.use_polars_sort = False` to fall back to pyarrow"
         )
 

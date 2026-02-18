@@ -2,4 +2,4 @@
 
 cd "${0%/*}" || exit 1
 
-pip install -U -r ./driver_requirements.txt
+uv pip install --system -U -r ./driver_requirements.txt

@@ -5,7 +5,7 @@ State API
 
 .. note::
 
-    APIs are :ref:`alpha <api-stability-alpha>`. This feature requires a full installation of Ray using ``pip install "ray[default]"``.
+    APIs are :ref:`alpha <api-stability-alpha>`. This feature requires a full installation of Ray using ``uv pip install --system "ray[default]"``.
 
 For an overview with examples see :ref:`Monitoring Ray States <state-api-overview-ref>`.
 

@@ -3,7 +3,7 @@
 set -euxo pipefail
 
 # Install Python dependencies
-pip3 install --no-cache-dir \
+uv pip install --system --no-cache-dir \
     "matplotlib==3.10.0" \
     "torch==2.7.1" \
     "transformers==4.52.3" \

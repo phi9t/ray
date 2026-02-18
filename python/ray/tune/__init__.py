@@ -8,7 +8,7 @@ try:
 except ImportError as exc:
     raise ImportError(
         "Can't import ray.tune as some dependencies are missing. "
-        'Run `pip install "ray[tune]"` to fix.'
+        'Run `uv pip install --system "ray[tune]"` to fix.'
     ) from exc
 # isort: on
 

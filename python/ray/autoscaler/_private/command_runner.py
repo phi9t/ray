@@ -68,7 +68,7 @@ def set_using_login_shells(val: bool):
 
     Non-interactive shells have the benefit of receiving less output from
     subcommands (since progress bars and TTY control codes are not printed).
-    Sometimes this can be significant since e.g. `pip install` prints
+    Sometimes this can be significant since e.g. `uv pip install --system` prints
     hundreds of progress bar lines when downloading.
 
     Login shells have the benefit of working very close to how a proper bash

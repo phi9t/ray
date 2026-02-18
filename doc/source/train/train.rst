@@ -58,7 +58,7 @@ To install Ray Train, run:
 
 .. code-block:: console
 
-    $ pip install -U "ray[train]"
+    $ uv pip install --system -U "ray[train]"
 
 To learn more about installing Ray and its libraries, see
 :ref:`Installing Ray <installation>`.

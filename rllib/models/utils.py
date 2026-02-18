@@ -259,7 +259,7 @@ def get_initializer(name, framework="tf"):
 
     if framework == "jax":
         _, flax = try_import_jax()
-        assert flax is not None, "`flax` not installed. Try `pip install jax flax`."
+        assert flax is not None, "`flax` not installed. Try `uv pip install --system jax flax`."
         import flax.linen as nn
 
         if name in [None, "default", "xavier_uniform"]:
@@ -268,7 +268,7 @@ def get_initializer(name, framework="tf"):
             return nn.initializers.xavier_normal()
     if framework == "torch":
         _, nn = try_import_torch()
-        assert nn is not None, "`torch` not installed. Try `pip install torch`."
+        assert nn is not None, "`torch` not installed. Try `uv pip install --system torch`."
         if name in [None, "default", "xavier_uniform"]:
             return nn.init.xavier_uniform_
         elif name == "xavier_normal":
@@ -280,7 +280,7 @@ def get_initializer(name, framework="tf"):
         tf1, tf, tfv = try_import_tf()
         assert (
             tf is not None
-        ), "`tensorflow` not installed. Try `pip install tensorflow`."
+        ), "`tensorflow` not installed. Try `uv pip install --system tensorflow`."
         if name in [None, "default", "xavier_uniform"]:
             return tf.keras.initializers.GlorotUniform
         elif name == "xavier_normal":

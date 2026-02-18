@@ -193,7 +193,7 @@ You can use any of these implementations by wrapping the ``fsspec`` filesystem w
 .. testcode::
     :skipif: True
 
-    # Make sure to install: `pip install -U s3fs`
+    # Make sure to install: `uv pip install --system -U s3fs`
     import s3fs
     import pyarrow.fs
 

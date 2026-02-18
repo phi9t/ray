@@ -421,7 +421,7 @@ The API is directly compatible with RLlib through the built-in
 
 .. testcode::
 
-    import pyspiel  # pip install open_spiel
+    import pyspiel  # uv pip install --system open_spiel
 
     from ray.rllib.algorithms.ppo import PPOConfig
     from ray.rllib.env.wrappers.open_spiel import OpenSpielEnv

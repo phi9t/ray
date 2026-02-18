@@ -178,7 +178,7 @@ def prepare_model(
     if parallel_strategy == "fsdp" and Version(torch.__version__) < Version("1.11.0"):
         raise ImportError(
             "FullyShardedDataParallel requires torch>=1.11.0. "
-            "Run `pip install 'torch>=1.11.0'` to use FullyShardedDataParallel."
+            "Run `uv pip install --system 'torch>=1.11.0'` to use FullyShardedDataParallel."
         )
 
     record_extra_usage_tag(TagKey.TRAIN_TORCH_PREPARE_MODEL, "1")

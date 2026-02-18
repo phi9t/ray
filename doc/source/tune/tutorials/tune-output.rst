@@ -46,7 +46,7 @@ To visualize learning in tensorboard, install tensorboardX:
 
 .. code-block:: bash
 
-    $ pip install tensorboardX
+    $ uv pip install --system tensorboardX
 
 Then, after you run an experiment, you can visualize your experiment with TensorBoard by specifying
 the output directory of your results.

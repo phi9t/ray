@@ -16,7 +16,7 @@ instance using Ray Serve and FastAPI.
 :::
 
 ```bash
-python -m pip install "ray[serve]" requests transformers
+uv pip install --system "ray[serve]" requests transformers
 ```
 
 This example uses the [j-hartmann/emotion-english-distilroberta-base](https://huggingface.co/j-hartmann/emotion-english-distilroberta-base) model and [FastAPI](https://fastapi.tiangolo.com/).

@@ -619,7 +619,7 @@ def _visualize_execution_schedule(
     except ImportError:
         raise ImportError(
             "Please install graphviz to visualize the execution schedule. "
-            "You can install it by running `pip install graphviz`."
+            "You can install it by running `uv pip install --system graphviz`."
         )
 
     dot = graphviz.Digraph(comment="DAG")

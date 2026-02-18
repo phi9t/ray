@@ -391,8 +391,8 @@ class RayParams:
             if get_ray_client_dependency_error() is not None:
                 raise ValueError(
                     "Ray Client requires pip package `ray[client]`. "
-                    "If you installed the minimal Ray (e.g. `pip install ray`), "
-                    "please reinstall by executing `pip install ray[client]`."
+                    "If you installed the minimal Ray (e.g. `uv pip install --system ray`), "
+                    "please reinstall by executing `uv pip install --system ray[client]`."
                 )
             if (
                 self.ray_client_server_port < 1024

@@ -9,7 +9,7 @@ import threading
 from typing import Dict, List, Optional, Tuple, Type, Union
 
 import gymnasium as gym
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray.rllib.models.catalog import ModelCatalog
 from ray.rllib.models.modelv2 import ModelV2
@@ -724,7 +724,7 @@ class EagerTFPolicyV2(Policy):
                 raise RuntimeError(
                     "Converting a TensorFlow model to ONNX requires "
                     "`tf2onnx` to be installed. Install with "
-                    "`pip install tf2onnx`."
+                    "`uv pip install --system tf2onnx`."
                 ) from e
 
             model_proto, external_tensor_storage = tf2onnx.convert.from_keras(

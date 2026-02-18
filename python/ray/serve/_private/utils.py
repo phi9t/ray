@@ -334,7 +334,7 @@ def require_packages(packages: List[str]):
         ...     ... # doctest: +SKIP
         >>> func() # doctest: +SKIP
         ImportError: func requires ["numpy", "package_a"] but
-        ["package_a"] are not available, please pip install them.
+        ["package_a"] are not available, please uv pip install --system them.
     """
 
     def decorator(func):
@@ -350,7 +350,7 @@ def require_packages(packages: List[str]):
                     raise ImportError(
                         f"{func} requires packages {packages} to run but "
                         f"{missing_packages} are missing. Please "
-                        "`pip install` them or add them to "
+                        "`uv pip install --system` them or add them to "
                         "`runtime_env`."
                     )
                 func._require_packages_checked = True

@@ -116,7 +116,7 @@ def setup_wandb(
     """
     if not wandb:
         raise RuntimeError(
-            "Wandb was not found - please install with `pip install wandb`"
+            "Wandb was not found - please install with `uv pip install --system wandb`"
         )
 
     default_trial_id = None
@@ -599,7 +599,7 @@ class WandbLoggerCallback(LoggerCallback):
     ):
         if not wandb:
             raise RuntimeError(
-                "Wandb was not found - please install with `pip install wandb`"
+                "Wandb was not found - please install with `uv pip install --system wandb`"
             )
 
         if save_checkpoints:

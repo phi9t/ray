@@ -64,7 +64,7 @@ class HyperOptSearch(Searcher):
 
     .. code-block:: bash
 
-        pip install -U hyperopt
+        uv pip install --system -U hyperopt
 
 
     Parameters:
@@ -161,7 +161,7 @@ class HyperOptSearch(Searcher):
     ):
         assert (
             hpo is not None
-        ), "HyperOpt must be installed! Run `pip install hyperopt`."
+        ), "HyperOpt must be installed! Run `uv pip install --system hyperopt`."
         if mode:
             assert mode in ["min", "max"], "`mode` must be 'min' or 'max'."
         super(HyperOptSearch, self).__init__(

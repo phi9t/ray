@@ -381,7 +381,7 @@ if __name__ == "__main__":
         help=(
             "Minimal agent only contains a subset of features that don't "
             "require additional dependencies installed when ray is installed "
-            "by `pip install 'ray[default]'`."
+            "by `uv pip install --system 'ray[default]'`."
         ),
     )
     parser.add_argument(

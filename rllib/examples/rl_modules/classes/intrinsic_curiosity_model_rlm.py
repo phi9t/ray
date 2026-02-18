@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Any, Dict
 
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray.rllib.core.columns import Columns
 from ray.rllib.core.rl_module.apis import SelfSupervisedLossAPI

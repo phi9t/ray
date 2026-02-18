@@ -70,7 +70,7 @@ DEFAULT_AMI = {
 # this should probably also happens somewhere else
 assert Version(boto3.__version__) >= Version(
     "1.4.8"
-), "Boto3 version >= 1.4.8 required, try `pip install -U boto3`"
+), "Boto3 version >= 1.4.8 required, try `uv pip install --system -U boto3`"
 
 
 def key_pair(i, region, key_name):

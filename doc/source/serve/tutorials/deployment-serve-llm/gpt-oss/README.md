@@ -106,8 +106,8 @@ app = build_openai_app({"llm_configs": [llm_config]})
 gpt-oss integration is available starting from `ray>=2.49.0` and `vllm==0.10.1`.
 
 ```bash
-pip install "ray[serve,llm]>=2.49.0"
-pip install "vllm==0.10.1"
+uv pip install --system "ray[serve,llm]>=2.49.0"
+uv pip install --system "vllm==0.10.1"
 ```
 
 ---
@@ -211,7 +211,7 @@ FROM anyscale/ray:2.49.0-slim-py312-cu128
 RUN sudo apt-get update && \
     sudo apt-get install -y --no-install-recommends build-essential
 
-RUN pip install vllm==0.10.1
+RUN uv pip install --system vllm==0.10.1
 ```
 
 Create your Anyscale service configuration in a new `service.yaml` file and reference the Dockerfile with `containerfile`:
@@ -396,7 +396,7 @@ Value error, The checkpoint you are trying to load has model type `gpt_oss` but 
 ```
 Older vLLM and Transformers versions don't register `gpt_oss`, raising an error when vLLM hands off to Transformers. Upgrade **vLLM ≥ 0.10.1** and let your package resolver such as `pip` handle the other dependencies.
 ```bash
-pip install -U "vllm>=0.10.1"
+uv pip install --system -U "vllm>=0.10.1"
 ```
 
 ---

@@ -20,7 +20,7 @@ This tutorial should help you with following use cases:
 This tutorial serves the [DialoGPT](https://huggingface.co/microsoft/DialoGPT-small) language model. Install the Hugging Face library to access it:
 
 ```
-pip install "ray[serve]" transformers torch
+uv pip install --system "ray[serve]" transformers torch
 ```
 
 ## Create a streaming deployment
@@ -127,7 +127,7 @@ Bind the `Chatbot` to a language model. For this tutorial, use the `"microsoft/D
 :end-before: __chatbot_bind_end__
 ```
 
-Run the model with `serve run chatbot:app`. Query it using the `websockets` package, using `pip install websockets`:
+Run the model with `serve run chatbot:app`. Query it using the `websockets` package, using `uv pip install --system websockets`:
 
 ```{literalinclude} ../doc_code/streaming_tutorial.py
 :language: python

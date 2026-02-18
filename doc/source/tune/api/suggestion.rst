@@ -151,7 +151,7 @@ In order to use this search algorithm, you will need to install ``HpBandSter`` a
 
 .. code-block:: bash
 
-    $ pip install hpbandster ConfigSpace
+    $ uv pip install --system hpbandster ConfigSpace
 
 See the `BOHB paper <https://arxiv.org/abs/1807.01774>`_ for more details.
 

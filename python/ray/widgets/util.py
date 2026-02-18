@@ -84,7 +84,7 @@ def _has_missing(
 
     if missing:
         if not message:
-            message = f"Run `pip install {' '.join(missing)}` for rich notebook output."
+            message = f"Run `uv pip install --system {' '.join(missing)}` for rich notebook output."
 
         # stacklevel=3: First level is this function, then ensure_notebook_deps,
         # then the actual function affected.
@@ -117,7 +117,7 @@ def _has_outdated(
         install_str = " ".join(install_args)
 
         if not message:
-            message = f"Run `pip install -U {install_str}` for rich notebook output."
+            message = f"Run `uv pip install --system -U {install_str}` for rich notebook output."
 
         # stacklevel=3: First level is this function, then ensure_notebook_deps,
         # then the actual function affected.
@@ -148,7 +148,7 @@ def repr_with_fallback(
         a single text/plain mimetype.
     """
     message = (
-        "Run `pip install -U ipywidgets`, then restart "
+        "Run `uv pip install --system -U ipywidgets`, then restart "
         "the notebook server for rich notebook output."
     )
     if _can_display_ipywidgets(*notebook_deps, message=message):

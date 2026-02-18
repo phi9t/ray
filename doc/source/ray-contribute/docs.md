@@ -50,7 +50,7 @@ conda activate docs
 Install the documentation dependencies with the following command:
 
 ```shell
-pip install -r requirements-doc.lock.txt
+uv pip install --system -r requirements-doc.lock.txt
 ```
 
 Don't use `-U` in this step; `requirements-doc.lock.txt` is a lock file that pins the exact versions of all the required dependencies.
@@ -429,7 +429,7 @@ Vale catches typos and grammatical errors. It also enforces stylistic rules like
     Otherwise, use PyPI.
 
     ```bash
-    pip install vale
+    uv pip install --system vale
     ```
 
     For more information on installation, see the [Vale documentation](https://vale.sh/docs/vale-cli/installation/).
@@ -452,7 +452,7 @@ Vale catches typos and grammatical errors. It also enforces stylistic rules like
     Otherwise, use PyPI.
 
     ```bash
-    pip install vale
+    uv pip install --system vale
     ```
 
     For more information on installation, see the [Vale documentation](https://vale.sh/docs/vale-cli/installation/).
@@ -512,7 +512,7 @@ If you want to use the word anyway, modify the appropriate field in the [WordLis
 If you run into a problem building the docs, following these steps can help isolate or eliminate most issues:
 
 1. **Clean out build artifacts.** Use `make clean` to clean out docs build artifacts in the working directory. Sphinx uses caching to avoid doing work, and this sometimes causes problems. This is particularly true if you build the docs, then `git pull origin master` to pull in recent changes, and then try to build docs again.
-2. **Check your environment.** Use `pip list` to check the installed dependencies. Compare them to `doc/requirements-doc.txt`. The documentation build system doesn't have the same dependency requirements as Ray. You don't need to run ML models or execute code on distributed systems in order to build the docs. In fact, it's best to use a completely separate docs build environment from the environment you use to run Ray to avoid dependency conflicts.  When installing requirements, do `pip install -r doc/requirements-doc.txt`. Don't use `-U` because you don't want to upgrade any dependencies during the installation.
+2. **Check your environment.** Use `pip list` to check the installed dependencies. Compare them to `doc/requirements-doc.txt`. The documentation build system doesn't have the same dependency requirements as Ray. You don't need to run ML models or execute code on distributed systems in order to build the docs. In fact, it's best to use a completely separate docs build environment from the environment you use to run Ray to avoid dependency conflicts.  When installing requirements, do `uv pip install --system -r doc/requirements-doc.txt`. Don't use `-U` because you don't want to upgrade any dependencies during the installation.
 3. **Ensure a modern version of Python.** The docs build system doesn't keep the same dependency and Python version requirements as Ray. Use a modern version of Python when building docs. Newer versions of Python can be substantially faster than preceding versions. Consult <https://endoflife.date/python> for the latest version support information.
 4. **Enable breakpoints in Sphinx**. Add -P to the `SPHINXOPTS` in `doc/Makefile` to tell `sphinx` to stop when it encounters a breakpoint, and remove `-j auto` to disable parallel builds. Now you can put breakpoints in the modules you're trying to import, or in `sphinx` code itself, which can help isolate build stubborn build issues.
 5. **[Incremental build] Side navigation bar doesn't reflect new pages** If you are adding new pages, they should always show up in the side navigation bar on index pages. However, incremental builds with `make local` skips rebuilding many other pages, so Sphinx doesn't update the side navigation bar on those pages. To build docs with correct side navigation bar on all pages, consider using `make develop`.

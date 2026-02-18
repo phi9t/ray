@@ -3,7 +3,7 @@ import time
 from typing import Any, Dict, List, Optional, Tuple, Type, Union
 
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray._common.deprecation import DEPRECATED_VALUE, Deprecated, deprecation_warning
 from ray.rllib.utils import deep_update, force_tuple

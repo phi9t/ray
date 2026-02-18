@@ -53,7 +53,7 @@ Runtime environments
 
 .. note::
 
-    This feature requires a full installation of Ray using ``pip install "ray[default]"``. This feature is available starting with Ray 1.4.0 and is currently supported on macOS and Linux, with beta support on Windows.
+    This feature requires a full installation of Ray using ``uv pip install --system "ray[default]"``. This feature is available starting with Ray 1.4.0 and is currently supported on macOS and Linux, with beta support on Windows.
 
 The second way to set up dependencies is to install them dynamically while Ray is running.
 
@@ -282,7 +282,7 @@ However, using runtime environments you can dynamically specify packages to be a
 
 
 You may also specify your ``pip`` dependencies either via a Python list or a local ``requirements.txt`` file.
-Consider specifying a ``requirements.txt`` file when your ``pip install`` command requires options such as ``--extra-index-url`` or ``--find-links``; see `<https://pip.pypa.io/en/stable/reference/requirements-file-format/#>`_ for details.
+Consider specifying a ``requirements.txt`` file when your ``uv pip install --system`` command requires options such as ``--extra-index-url`` or ``--find-links``; see `<https://pip.pypa.io/en/stable/reference/requirements-file-format/#>`_ for details.
 Alternatively, you can specify a ``conda`` environment, either as a Python dictionary or via a local ``environment.yml`` file.  This conda environment can include ``pip`` packages.
 For details, head to the :ref:`API Reference <runtime-environments-api-ref>`.
 
@@ -550,9 +550,9 @@ The ``runtime_env`` is a Python dictionary or a Python class :class:`ray.runtime
 
 - ``pip`` (dict | List[str] | str): Either (1) a list of pip `requirements specifiers <https://pip.pypa.io/en/stable/cli/pip_install/#requirement-specifiers>`_, (2) a string containing the path to a local pip
   `“requirements.txt” <https://pip.pypa.io/en/stable/user_guide/#requirements-files>`_ file, or (3) a python dictionary that has three fields: (a) ``packages`` (required, List[str]): a list of pip packages,
-  (b) ``pip_check`` (optional, bool): whether to enable `pip check <https://pip.pypa.io/en/stable/cli/pip_check/>`_ at the end of pip install, defaults to ``False``.
+  (b) ``pip_check`` (optional, bool): whether to enable `pip check <https://pip.pypa.io/en/stable/cli/pip_check/>`_ at the end of uv pip install --system, defaults to ``False``.
   (c) ``pip_version`` (optional, str): the version of pip; Ray will spell the package name "pip" in front of the ``pip_version`` to form the final requirement string.
-  (d) ``pip_install_options`` (optional, List[str]): user-provided options for ``pip install`` command. Defaults to ``["--disable-pip-version-check", "--no-cache-dir"]``.
+  (d) ``pip_install_options`` (optional, List[str]): user-provided options for ``uv pip install --system`` command. Defaults to ``["--disable-pip-version-check", "--no-cache-dir"]``.
   The syntax of a requirement specifier is defined in full in `PEP 508 <https://www.python.org/dev/peps/pep-0508/>`_.
   This will be installed in the Ray workers at runtime.  Packages in the preinstalled cluster environment will still be available.
   To use a library like Ray Serve or Ray Tune, you will need to include ``"ray[serve]"`` or ``"ray[tune]"`` here.
@@ -777,7 +777,7 @@ Any local files downloaded by the environments are cached at ``/tmp/ray/session_
 How long does it take to install or to load from cache?
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-The install time usually mostly consists of the time it takes to run ``pip install`` or ``conda create`` / ``conda activate``, or to upload/download a ``working_dir``, depending on which ``runtime_env`` options you're using.
+The install time usually mostly consists of the time it takes to run ``uv pip install --system`` or ``conda create`` / ``conda activate``, or to upload/download a ``working_dir``, depending on which ``runtime_env`` options you're using.
 This could take seconds or minutes.
 
 On the other hand, loading a runtime environment from the cache should be nearly as fast as the ordinary Ray worker startup time, which is on the order of a few seconds. A new Ray worker is started for every Ray actor or task that requires a new runtime environment.
@@ -861,14 +861,14 @@ Currently, four types of remote URIs are supported for hosting ``working_dir`` a
 - ``HTTPS``: ``HTTPS`` refers to URLs that start with ``https``.
   These are particularly useful because remote Git providers (e.g. GitHub, Bitbucket, GitLab, etc.) use ``https`` URLs as download links for repository archives.
   This allows you to host your dependencies on remote Git providers, push updates to them, and specify which dependency versions (i.e. commits) your jobs should use.
-  To use packages via ``HTTPS`` URIs, you must have the ``smart_open`` library (you can install it using ``pip install smart_open``).
+  To use packages via ``HTTPS`` URIs, you must have the ``smart_open`` library (you can install it using ``uv pip install --system smart_open``).
 
   - Example:
 
     - ``runtime_env = {"working_dir": "https://github.com/example_username/example_repository/archive/HEAD.zip"}``
 
 - ``S3``: ``S3`` refers to URIs starting with ``s3://`` that point to compressed packages stored in `AWS S3 <https://aws.amazon.com/s3/>`_.
-  To use packages via ``S3`` URIs, you must have the ``smart_open`` and ``boto3`` libraries (you can install them using ``pip install smart_open`` and ``pip install boto3``).
+  To use packages via ``S3`` URIs, you must have the ``smart_open`` and ``boto3`` libraries (you can install them using ``uv pip install --system smart_open`` and ``uv pip install --system boto3``).
   Ray does not explicitly pass in any credentials to ``boto3`` for authentication.
   ``boto3`` will use your environment variables, shared credentials file, and/or AWS config file to authenticate access.
   See the `AWS boto3 documentation <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html>`_ to learn how to configure these.
@@ -878,7 +878,7 @@ Currently, four types of remote URIs are supported for hosting ``working_dir`` a
     - ``runtime_env = {"working_dir": "s3://example_bucket/example_file.zip"}``
 
 - ``GS``: ``GS`` refers to URIs starting with ``gs://`` that point to compressed packages stored in `Google Cloud Storage <https://cloud.google.com/storage>`_.
-  To use packages via ``GS`` URIs, you must have the ``smart_open`` and ``google-cloud-storage`` libraries (you can install them using ``pip install smart_open`` and ``pip install google-cloud-storage``).
+  To use packages via ``GS`` URIs, you must have the ``smart_open`` and ``google-cloud-storage`` libraries (you can install them using ``uv pip install --system smart_open`` and ``uv pip install --system google-cloud-storage``).
   Ray does not explicitly pass in any credentials to the ``google-cloud-storage``'s ``Client`` object.
   ``google-cloud-storage`` will use your local service account key(s) and environment variables by default.
   Follow the steps on Google Cloud Storage's `Getting started with authentication <https://cloud.google.com/docs/authentication/getting-started>`_ guide to set up your credentials, which allow Ray to access your remote package.
@@ -888,7 +888,7 @@ Currently, four types of remote URIs are supported for hosting ``working_dir`` a
     - ``runtime_env = {"working_dir": "gs://example_bucket/example_file.zip"}``
 
 - ``Azure``: ``Azure`` refers to URIs starting with ``azure://`` that point to compressed packages stored in `Azure Blob Storage <https://azure.microsoft.com/en-us/products/storage/blobs>`_.
-  To use packages via ``Azure`` URIs, you must have the ``smart_open``, ``azure-storage-blob``, and ``azure-identity`` libraries (you can install them using ``pip install smart_open[azure] azure-storage-blob azure-identity``).
+  To use packages via ``Azure`` URIs, you must have the ``smart_open``, ``azure-storage-blob``, and ``azure-identity`` libraries (you can install them using ``uv pip install --system smart_open[azure] azure-storage-blob azure-identity``).
   Ray supports two authentication methods for Azure Blob Storage:
   
   1. Connection string: Set the environment variable ``AZURE_STORAGE_CONNECTION_STRING`` with your Azure storage connection string.

@@ -19,7 +19,7 @@ RayDP can be installed from PyPI and supports PySpark 3.0 and 3.1.
 
 .. code-block:: bash
 
-  pip install raydp
+  uv pip install --system raydp
 
 .. note::
   RayDP requires ray >= 1.2.0

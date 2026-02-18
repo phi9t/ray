@@ -213,7 +213,7 @@ def do_exec_tasks(
             except ImportError:
                 raise ImportError(
                     "Please install nvtx to enable nsight profiling. "
-                    "You can install it by running `pip install nvtx`."
+                    "You can install it by running `uv pip install --system nvtx`."
                 )
             nvtx_profile = nvtx.Profile()
             nvtx_profile.enable()
@@ -3090,7 +3090,7 @@ class CompiledDAG:
         except ImportError:
             raise ImportError(
                 "Please install graphviz to visualize the compiled graph. "
-                "You can install it by running `pip install graphviz`."
+                "You can install it by running `uv pip install --system graphviz`."
             )
         from ray.dag import (
             ClassMethodNode,

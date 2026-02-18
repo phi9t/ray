@@ -132,7 +132,7 @@ class StateApiClient(SubmissionClient):
         if requests is None:
             raise RuntimeError(
                 "The Ray state CLI & SDK require the ray[default] "
-                "installation: `pip install 'ray[default']``"
+                "installation: `uv pip install --system 'ray[default']``"
             )
         if not headers:
             headers = {"Content-Type": "application/json"}
@@ -213,7 +213,7 @@ class StateApiClient(SubmissionClient):
                 err_str += (
                     "Failed to connect to API server. Please check the API server "
                     "log for details. Make sure dependencies are installed with "
-                    "`pip install ray[default]`. Please also check dashboard is "
+                    "`uv pip install --system ray[default]`. Please also check dashboard is "
                     "available, and included when starting ray cluster, "
                     "i.e. `ray start --include-dashboard=True --head`. "
                 )

@@ -144,7 +144,7 @@ def _create_default_callbacks(
                     "The TensorboardX logger cannot be instantiated because "
                     "either TensorboardX or one of it's dependencies is not "
                     "installed. Please make sure you have the latest version "
-                    "of TensorboardX installed: `pip install -U tensorboardx`"
+                    "of TensorboardX installed: `uv pip install --system -U tensorboardx`"
                 )
 
     return callbacks

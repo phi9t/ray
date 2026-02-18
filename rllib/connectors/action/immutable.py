@@ -1,6 +1,6 @@
 from typing import Any
 
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray.rllib.connectors.connector import (
     ActionConnector,

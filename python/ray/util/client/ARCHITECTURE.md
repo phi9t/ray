@@ -10,7 +10,7 @@ It does all the bookkeeping and keeps things in scope for the clients that conne
 Generally, the client side lives in `ray/util/client` and the server lives in `ray/util/client/server`.
 By convention, the `ray/util/client` avoids importing `ray` directly, but the server side, being just another Ray application, is allowed to do so.
 This separation exists both for dependency cycle reasons and also to, if desired in the future, pull either portion out into its own repo or sub-installation.
-(eg, `pip install ray_client`)
+(eg, `uv pip install --system ray_client`)
 
 The `ray` global variable of type `RayAPIStub` in [`ray/util/client/__init__.py`](./__init__.py) acts as the equivalent API surface as does the `ray` package.
 Functions in the `ray` namespace are methods on the RayAPIStub object.

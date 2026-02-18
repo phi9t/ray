@@ -9,7 +9,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple, Type, Union
 
 import gymnasium as gym
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 from packaging import version
 
 import ray

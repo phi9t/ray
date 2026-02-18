@@ -2,7 +2,7 @@ from typing import Any, List, Optional, Union
 
 import gymnasium as gym
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray.rllib.utils.annotations import DeveloperAPI
 

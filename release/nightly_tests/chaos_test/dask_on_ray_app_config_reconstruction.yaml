@@ -7,8 +7,8 @@ python:
   conda_packages: []
 
 post_build_cmds:
-  # - pip install fastparquet
-  - pip3 install boto3 s3fs
-  - pip3 uninstall -y ray && pip3 install -U {{ env["RAY_WHEELS"] | default("ray") }}
-  - pip3 install ray[default]
+  # - uv pip install --system fastparquet
+  - uv pip install --system boto3 s3fs
+  - pip3 uninstall -y ray && uv pip install --system -U {{ env["RAY_WHEELS"] | default("ray") }}
+  - uv pip install --system ray[default]
   - {{ env["RAY_WHEELS_SANITY_CHECK"] | default("echo No Ray wheels sanity check") }}

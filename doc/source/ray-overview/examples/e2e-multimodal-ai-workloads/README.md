@@ -66,8 +66,8 @@ uv add --editable ./doggos
 
 ```bash
 # Pip setup instructions
-pip install -q -r /home/ray/default/requirements.txt
-pip install -e ./doggos
+uv pip install --system -q -r /home/ray/default/requirements.txt
+uv pip install --system -e ./doggos
 ```
 
 **Note**: Run the entire tutorial for free on [Anyscale](https://console.anyscale.com/)—all dependencies come pre-installed, and compute autoscales automatically. To run it elsewhere, install the dependencies from the [`containerfile`](https://github.com/anyscale/multimodal-ai/tree/main/containerfile) and provision the appropriate GPU resources.

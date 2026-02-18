@@ -211,7 +211,7 @@ Clone the Ray repository, go to the example directory, and install dependencies.
 
    git clone https://github.com/ray-project/ray.git
    cd doc/source/templates/05_dreambooth_finetuning
-   pip install -Ur dreambooth/requirements.txt
+   uv pip install --system -Ur dreambooth/requirements.txt
 
 Prepare some directories and environment variables.
 

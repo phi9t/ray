@@ -1,7 +1,7 @@
 import platform
 from typing import List
 
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 import ray
 from ray.rllib.algorithms.algorithm_config import AlgorithmConfig

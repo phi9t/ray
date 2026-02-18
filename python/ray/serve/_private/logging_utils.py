@@ -479,7 +479,7 @@ def configure_component_memory_profiler(
             logger.warning(
                 "RAY_SERVE_ENABLE_MEMORY_PROFILING is enabled, but memray "
                 "is not installed. No memory profiling is happening. "
-                "`pip install memray` to enable memory profiling."
+                "`uv pip install --system memray` to enable memory profiling."
             )
 
 

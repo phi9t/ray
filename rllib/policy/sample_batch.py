@@ -6,7 +6,7 @@ from numbers import Number
 from typing import Dict, Iterator, List, Optional, Set, Union
 
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray._common.deprecation import Deprecated, deprecation_warning
 from ray.rllib.core.columns import Columns

@@ -1,7 +1,7 @@
 """Test that runtime_env raises good errors if ray[default] is not installed.
 
 
-In CI, this file is run with a minimal ray installation (`pip install ray`.)
+In CI, this file is run with a minimal ray installation (`uv pip install --system ray`.)
 
 To run this test file locally, remove some dependency that appears in
 ray[default] but not in ray (e.g., `pip uninstall aiohttp`) and set

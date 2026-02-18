@@ -5,7 +5,7 @@ try:
 except ImportError:
     raise ModuleNotFoundError(
         "pydantic isn't installed."
-        "To install pydantic, please run 'pip install pydantic'"
+        "To install pydantic, please run 'uv pip install --system pydantic'"
     )
 
 

@@ -21,7 +21,7 @@ The Ray cluster launcher is part of the `ray` CLI. Use the CLI to start, stop an
 
 ```bash
 # install ray
-pip install -U ray[default]
+uv pip install --system -U ray[default]
 ```
 
 ## Start Ray with the Ray cluster launcher

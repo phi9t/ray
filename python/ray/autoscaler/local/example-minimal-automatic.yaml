@@ -33,7 +33,7 @@ auth:
 # For the latest Python 3.7 Linux wheels:
 # setup_commands:
   # - if [ $(which ray) ]; then pip uninstall ray -y; fi
-  # - pip install -U "ray[default] @ https://s3-us-west-2.amazonaws.com/ray-wheels/latest/ray-3.0.0.dev0-cp37-cp37m-manylinux2014_x86_64.whl"
+  # - uv pip install --system -U "ray[default] @ https://s3-us-west-2.amazonaws.com/ray-wheels/latest/ray-3.0.0.dev0-cp37-cp37m-manylinux2014_x86_64.whl"
 
 # Defaults are empty to avoid any surprise changes to on-prem cluster's state.
 # Refer to example yamls for examples of ray installation in setup commands.

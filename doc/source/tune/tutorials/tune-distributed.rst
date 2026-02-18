@@ -183,7 +183,7 @@ Here is an example for running Tune on spot instances. This assumes your AWS cre
 
 .. code-block:: bash
 
-    $ pip install ray torch torchvision filelock
+    $ uv pip install --system ray torch torchvision filelock
 
 2. Download an example cluster yaml here: :download:`tune-default.yaml </../../python/ray/tune/examples/tune-default.yaml>`
 3. Run ``ray submit`` as below to run Tune across them. Append ``[--start]`` if the cluster is not up yet. Append ``[--stop]`` to automatically shutdown your nodes after running.

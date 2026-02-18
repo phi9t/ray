@@ -2,7 +2,7 @@
 
 It also checks that it is usable with a separate scheduler.
 
-Requires the Ax library to be installed (`pip install ax-platform`).
+Requires the Ax library to be installed (`uv pip install --system ax-platform`).
 """
 
 import time

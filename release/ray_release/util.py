@@ -173,7 +173,7 @@ def run_bash_script(bash_script: str) -> None:
 def reinstall_anyscale_dependencies() -> None:
     logger.info("Re-installing `anyscale` package")
     subprocess.check_output(
-        "pip install -U anyscale",
+        "uv pip install --system -U anyscale",
         shell=True,
         text=True,
     )

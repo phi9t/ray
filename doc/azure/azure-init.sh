@@ -8,7 +8,7 @@ TYPE=$5
 
 echo "Installing wheel..."
 sudo -u "$USERNAME" -i /bin/bash -l -c "conda init bash"
-sudo -u "$USERNAME" -i /bin/bash -l -c "conda activate $CONDA_ENV; pip install $WHEEL"
+sudo -u "$USERNAME" -i /bin/bash -l -c "conda activate $CONDA_ENV; uv pip install --system $WHEEL"
 
 echo "Setting up service scripts..."
 cat > /home/"$USERNAME"/ray-head.sh << EOM

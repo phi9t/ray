@@ -53,12 +53,12 @@ class TrainHead(SubprocessModule):
             from ray.train.v2._internal.state.schema import TrainRunsResponse
         except ImportError:
             logger.exception(
-                "Train is not installed. Please run `pip install ray[train]` "
+                "Train is not installed. Please run `uv pip install --system ray[train]` "
                 "when setting up Ray on your cluster."
             )
             return Response(
                 status=500,
-                text="Train is not installed. Please run `pip install ray[train]` "
+                text="Train is not installed. Please run `uv pip install --system ray[train]` "
                 "when setting up Ray on your cluster.",
             )
 
@@ -273,12 +273,12 @@ class TrainHead(SubprocessModule):
             from ray.train._internal.state.schema import TrainRunsResponse
         except ImportError:
             logger.exception(
-                "Train is not installed. Please run `pip install ray[train]` "
+                "Train is not installed. Please run `uv pip install --system ray[train]` "
                 "when setting up Ray on your cluster."
             )
             return Response(
                 status=500,
-                text="Train is not installed. Please run `pip install ray[train]` "
+                text="Train is not installed. Please run `uv pip install --system ray[train]` "
                 "when setting up Ray on your cluster.",
             )
 
@@ -450,7 +450,7 @@ class TrainHead(SubprocessModule):
             return self._train_stats_actor
         except ImportError:
             logger.exception(
-                "Train is not installed. Please run `pip install ray[train]` "
+                "Train is not installed. Please run `uv pip install --system ray[train]` "
                 "when setting up Ray on your cluster."
             )
         return None
@@ -468,7 +468,7 @@ class TrainHead(SubprocessModule):
             return self._train_v2_state_actor
         except ImportError:
             logger.exception(
-                "Train is not installed. Please run `pip install ray[train]` "
+                "Train is not installed. Please run `uv pip install --system ray[train]` "
                 "when setting up Ray on your cluster."
             )
         return None

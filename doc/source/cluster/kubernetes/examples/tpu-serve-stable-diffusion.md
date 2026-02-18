@@ -63,7 +63,7 @@ Install the required dependencies to run the Python script locally:
 python3 -m venv myenv
 source myenv/bin/activate
 
-pip install numpy pillow requests tqdm
+uv pip install --system numpy pillow requests tqdm
 ```
 
 

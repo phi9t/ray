@@ -51,9 +51,9 @@ Run the cell below only if your environment still needs these packages installed
 
 ```bash
 %%bash
-pip install torch torchvision
-pip install transformers datasets==3.6.0 trl==0.23.1
-pip install deepspeed ray[train]
+uv pip install --system torch torchvision
+uv pip install --system transformers datasets==3.6.0 trl==0.23.1
+uv pip install --system deepspeed ray[train]
 ```
 
 

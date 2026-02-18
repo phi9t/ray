@@ -172,7 +172,7 @@ If you don't specify a search algorithm, Tune will use random search by default,
 with a good starting point for your hyperparameter optimization.
 
 For instance, to use Tune with simple Bayesian optimization through the ``bayesian-optimization`` package
-(make sure to first run ``pip install bayesian-optimization``), we can define an ``algo`` using ``BayesOptSearch``.
+(make sure to first run ``uv pip install --system bayesian-optimization``), we can define an ``algo`` using ``BayesOptSearch``.
 Simply pass in a ``search_alg`` argument to ``tune.TuneConfig``, which is taken in by ``Tuner``:
 
 .. literalinclude:: doc_code/key_concepts.py

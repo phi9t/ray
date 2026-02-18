@@ -4,7 +4,7 @@ from typing import Optional
 
 import gymnasium as gym
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray.rllib.models.action_dist import ActionDistribution
 from ray.rllib.models.torch.torch_modelv2 import TorchModelV2

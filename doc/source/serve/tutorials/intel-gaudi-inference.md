@@ -89,10 +89,10 @@ docker run -it --runtime=habana -e HABANA_VISIBLE_DEVICES=all -e OMPI_MCA_btl_va
 
 To follow the examples in this tutorial, mount the directory containing the examples and models into the container. Inside the container, run:
 ```bash
-pip install ray[tune,serve]
-pip install git+https://github.com/huggingface/optimum-habana.git
+uv pip install --system ray[tune,serve]
+uv pip install --system git+https://github.com/huggingface/optimum-habana.git
 # Replace 1.20.0 with the driver version of the container.
-pip install git+https://github.com/HabanaAI/DeepSpeed.git@1.20.0
+uv pip install --system git+https://github.com/HabanaAI/DeepSpeed.git@1.20.0
 # Only needed by the DeepSpeed example.
 export RAY_EXPERIMENTAL_NOSET_HABANA_VISIBLE_MODULES=1
 ```

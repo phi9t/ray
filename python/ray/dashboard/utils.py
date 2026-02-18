@@ -82,7 +82,7 @@ class DashboardAgentModule(abc.ABC):
     def is_minimal_module():
         """
         Return True if the module is minimal, meaning it
-        should work with `pip install ray` that doesn't requires additional
+        should work with `uv pip install --system ray` that doesn't requires additional
         dependencies.
         """
 
@@ -201,7 +201,7 @@ class DashboardHeadModule(abc.ABC):
     def is_minimal_module():
         """
         Return True if the module is minimal, meaning it
-        should work with `pip install ray` that doesn't requires additional
+        should work with `uv pip install --system ray` that doesn't requires additional
         dependencies.
         """
 
@@ -318,12 +318,12 @@ def get_all_modules(module_type):
             logger.info(
                 f"Module {name} cannot be loaded because "
                 "we cannot import all dependencies. Install this module using "
-                "`pip install 'ray[default]'` for the full "
+                "`uv pip install --system 'ray[default]'` for the full "
                 f"dashboard functionality. Error: {e}"
             )
             if not should_only_load_minimal_modules:
                 logger.info(
-                    "Although `pip install 'ray[default]'` is downloaded, "
+                    "Although `uv pip install --system 'ray[default]'` is downloaded, "
                     "module couldn't be imported`"
                 )
                 raise e

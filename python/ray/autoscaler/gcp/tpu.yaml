@@ -32,8 +32,8 @@ provider:
 
 setup_commands:
   - sudo apt install python-is-python3 -y
-  - pip3 install --upgrade pip
-  - pip3 install -U "ray[default]"
+  - uv pip install --system --upgrade pip
+  - uv pip install --system -U "ray[default]"
 
 # Specify the node type of the head node (as configured above).
 head_node_type: ray_head_default

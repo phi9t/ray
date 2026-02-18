@@ -22,7 +22,7 @@ You can simply install Mars via pip:
 
 .. code-block:: bash
 
-    pip install pymars>=0.8.3
+    uv pip install --system pymars>=0.8.3
 
 
 Getting started

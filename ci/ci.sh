@@ -32,12 +32,12 @@ compile_pip_dependencies() {
     cd "${WORKSPACE_DIR}"
 
     echo "Target file: $TARGET"
-    pip install "pip-tools==7.4.1" "wheel==0.45.1"
+    uv pip install --system "pip-tools==7.4.1" "wheel==0.45.1"
 
     # Required packages to lookup e.g. dragonfly-opt
     HAS_TORCH=0
     python -c "import torch" 2>/dev/null && HAS_TORCH=1
-    pip install --no-cache-dir numpy torch
+    uv pip install --system --no-cache-dir numpy torch
 
     pip-compile --verbose --resolver=backtracking \
       --pip-args --no-deps --strip-extras --no-header \
@@ -68,7 +68,7 @@ compile_pip_dependencies() {
     # Remove +cpu and +pt20cpu suffixes e.g. for torch dependencies
     # This is needed because we specify the requirements as torch==version, but
     # the resolver adds the device-specific version tag. If this is not removed,
-    # pip install will complain about irresolvable constraints.
+    # uv pip install --system will complain about irresolvable constraints.
     sed -i -E 's/==([\.0-9]+)\+[^\b]*cpu/==\1/g' "python/$TARGET"
 
     cat "python/$TARGET"
@@ -163,7 +163,7 @@ build_sphinx_docs() {
       echo "WARNING: Documentation not built on Windows due to currently-unresolved issues"
     else
       make html
-      pip install datasets==2.0.0
+      uv pip install --system datasets==2.0.0
     fi
   )
 }
@@ -202,9 +202,9 @@ install_ray() {
 
     # This is required so that pip does not pick up a cython version that is
     # too high that can break CI, especially on MacOS.
-    pip install -q cython==3.0.12
+    uv pip install --system -q cython==3.0.12
 
-    pip install -v -e . -c requirements_compiled.txt
+    uv pip install --system -v -e . -c requirements_compiled.txt
   )
   (
     # For runtime_env tests, wheels are needed

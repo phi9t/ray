@@ -27,7 +27,7 @@ fi
 
 echo "Start downloading Ray version ${RAY_VERSION} of commit ${RAY_HASH}"
 
-python -m pip install --upgrade pip
+uv pip install --system --upgrade pip
 
 # This is required to use conda activate
 source "$(conda info --base)/etc/profile.d/conda.sh"
@@ -46,7 +46,7 @@ for PYTHON_VERSION in "${PYTHON_VERSIONS[@]}"; do
         echo "Python version incorrect, got ${GOT_PYTHON_VERSION}, want ${PYTHON_VERSION}"
         FAILED="true"
     else
-        pip install --index-url 'https://test.pypi.org/simple/' --extra-index-url 'https://pypi.org/simple' "ray[cpp]==${RAY_VERSION}"
+        uv pip install --system --index-url 'https://test.pypi.org/simple/' --extra-index-url 'https://pypi.org/simple' "ray[cpp]==${RAY_VERSION}"
 
         printf "\n\n\n"
         echo "========================================================="

@@ -160,7 +160,7 @@ class ArrowRow(Mapping):
 class ArrowBlockBuilder(TableBlockBuilder):
     def __init__(self):
         if pyarrow is None:
-            raise ImportError("Run `pip install pyarrow` for Arrow support")
+            raise ImportError("Run `uv pip install --system pyarrow` for Arrow support")
         super().__init__((pyarrow.Table, bytes))
 
     @staticmethod
@@ -215,7 +215,7 @@ class ArrowBlockAccessor(TableBlockAccessor):
 
     def __init__(self, table: "pyarrow.Table"):
         if pyarrow is None:
-            raise ImportError("Run `pip install pyarrow` for Arrow support")
+            raise ImportError("Run `uv pip install --system pyarrow` for Arrow support")
         super().__init__(table)
         self._max_chunk_size: Optional[int] = None
 

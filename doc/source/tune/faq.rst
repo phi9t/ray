@@ -475,7 +475,7 @@ How can I develop and test Tune locally?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 First, follow the instructions in :ref:`python-develop` to develop Tune without compiling Ray.
-After Ray is set up, run ``pip install -r ray/python/ray/tune/requirements-dev.txt`` to install all packages
+After Ray is set up, run ``uv pip install --system -r ray/python/ray/tune/requirements-dev.txt`` to install all packages
 required for Tune development. Now, to run all Tune tests simply run:
 
 .. code-block:: shell

@@ -31,7 +31,7 @@ Install Ray Data and Ray Train:
 
 .. code-block:: bash
 
-    pip install -U "ray[data,train]"
+    uv pip install --system -U "ray[data,train]"
 
 Data ingestion can be set up with four basic steps:
 

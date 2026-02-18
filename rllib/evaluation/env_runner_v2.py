@@ -4,7 +4,7 @@ from collections import defaultdict
 from typing import TYPE_CHECKING, Dict, Iterator, List, Optional, Set, Tuple, Union
 
 import numpy as np
-import tree  # pip install dm_tree
+import tree  # uv pip install --system dm_tree
 
 from ray.rllib.env.base_env import ASYNC_RESET_RETURN, BaseEnv
 from ray.rllib.env.external_env import ExternalEnvWrapper
@@ -282,7 +282,7 @@ class EnvRunnerV2:
             self._render = False  # disable rendering
             logger.warning(
                 "Could not import gymnasium.envs.classic_control."
-                "rendering! Try `pip install gymnasium[all]`."
+                "rendering! Try `uv pip install --system gymnasium[all]`."
             )
 
         return None

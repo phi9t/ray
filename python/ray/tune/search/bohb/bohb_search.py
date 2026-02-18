@@ -51,7 +51,7 @@ class TuneBOHB(Searcher):
 
 
     Requires HpBandSter and ConfigSpace to be installed. You can install
-    HpBandSter and ConfigSpace with: ``pip install hpbandster ConfigSpace``.
+    HpBandSter and ConfigSpace with: ``uv pip install --system hpbandster ConfigSpace``.
 
     This should be used in conjunction with HyperBandForBOHB.
 
@@ -137,7 +137,7 @@ class TuneBOHB(Searcher):
             BOHB is not None
         ), """HpBandSter must be installed!
             You can install HpBandSter with the command:
-            `pip install hpbandster ConfigSpace`."""
+            `uv pip install --system hpbandster ConfigSpace`."""
         if mode:
             assert mode in ["min", "max"], "`mode` must be 'min' or 'max'."
         self.trial_to_params = {}

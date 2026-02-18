@@ -240,7 +240,7 @@ class RuntimeEnv(dict):
             containing the path to a pip requirements.txt file, or a Python
             dictionary that has three fields: 1) ``packages`` (required, List[str]): a
             list of pip packages, 2) ``pip_check`` (optional, bool): whether enable
-            pip check at the end of pip install, defaults to False.
+            pip check at the end of uv pip install --system, defaults to False.
             3) ``pip_version`` (optional, str): the version of pip, Ray prepends
             the package name "pip" in front of the ``pip_version`` to form the final
             requirement string, the syntax of a requirement specifier is defined in

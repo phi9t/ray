@@ -96,7 +96,7 @@ config = vLLMEngineProcessorConfig(
 
 # __runai_config_example_start__
 # RunAI streamer configuration for optimized model loading
-# Note: Install vLLM with runai dependencies: pip install -U "vllm[runai]>=0.10.1"
+# Note: Install vLLM with runai dependencies: uv pip install --system -U "vllm[runai]>=0.10.1"
 config = vLLMEngineProcessorConfig(
     model_source="unsloth/Llama-3.1-8B-Instruct",
     engine_kwargs={

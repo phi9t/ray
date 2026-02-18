@@ -1966,7 +1966,7 @@ def read_tfrecords(
         datasets (for example, in production use cases). To use this
         implementation, you must first install ``tfx-bsl``:
 
-        1. `pip install tfx_bsl --no-dependencies`
+        1. `uv pip install --system tfx_bsl --no-dependencies`
         2. Pass tfx_read_options to read_tfrecords, for example:
            `ds = read_tfrecords(path, ..., tfx_read_options=TFXReadOptions())`
 
@@ -2065,7 +2065,7 @@ def read_tfrecords(
             tfx_read_options = None
             logger.warning(
                 "Please install tfx-bsl package with"
-                " `pip install tfx_bsl --no-dependencies`."
+                " `uv pip install --system tfx_bsl --no-dependencies`."
                 " This can help speed up the reading of large TFRecord files."
             )
 

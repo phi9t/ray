@@ -72,8 +72,8 @@ setup_commands:
     # below with a git checkout <your_sha> (and possibly a recompile).
     - echo 'export PATH="$HOME/anaconda3/envs/pytorch_p36/bin:$PATH"' >> ~/.bashrc;
         source ~/.bashrc;
-        pip install -U ray;
-        pip install -U fairseq==0.8.0;
+        uv pip install --system -U ray;
+        uv pip install --system -U fairseq==0.8.0;
     - sudo kill -9 `sudo lsof /var/lib/dpkg/lock-frontend | awk '{print $2}' | tail -n 1`;
         sudo pkill -9 apt-get;
         sudo pkill -9 dpkg;
@@ -91,7 +91,7 @@ setup_commands:
 
 # Custom commands that will be run on the head node after common setup.
 head_setup_commands:
-    - pip install boto3>=1.4.8  # 1.4.8 adds InstanceMarketOptions
+    - uv pip install --system boto3>=1.4.8  # 1.4.8 adds InstanceMarketOptions
 
 # Custom commands that will be run on worker nodes after common setup.
 worker_setup_commands: []

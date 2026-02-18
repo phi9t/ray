@@ -25,7 +25,7 @@ except ImportError:
 if not NIXL_AVAILABLE:
     raise ImportError(
         "NIXL is required for this example but is not installed. "
-        "Install it with: pip install nixl or uv pip install nixl"
+        "Install it with: uv pip install --system nixl or uv pip install nixl"
     )
 
 _original_serve_run = serve.run

@@ -9,4 +9,4 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 "$SCRIPT_DIR"/install-minimal.sh
 
 # Installs serve dependencies
-python -m pip install -U "ray[serve]"
+uv pip install --system -U "ray[serve]"

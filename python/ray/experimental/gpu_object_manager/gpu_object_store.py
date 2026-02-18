@@ -19,7 +19,7 @@ try:
 except ImportError:
     raise ImportError(
         "`tensor_transport` requires PyTorch. "
-        "Please install torch with 'pip install torch' to use this feature."
+        "Please install torch with 'uv pip install --system torch' to use this feature."
     )
 
 

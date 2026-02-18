@@ -3,7 +3,7 @@ try:
     import torch  # noqa: F401
 except ModuleNotFoundError:
     raise ModuleNotFoundError(
-        "PyTorch isn't installed. To install PyTorch, run 'pip install torch'"
+        "PyTorch isn't installed. To install PyTorch, run 'uv pip install --system torch'"
     )
 # isort: on
 

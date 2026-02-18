@@ -211,7 +211,7 @@ class XGBoostTrainer(SimpleXGBoostTrainer):
         if Version(xgboost.__version__) < Version("1.7.0"):
             raise ImportError(
                 "`XGBoostTrainer` requires the `xgboost` version to be >= 1.7.0. "
-                'Upgrade with: `pip install -U "xgboost>=1.7"`'
+                'Upgrade with: `uv pip install --system -U "xgboost>=1.7"`'
             )
 
         # TODO(justinvyu): [Deprecated] Legacy XGBoostTrainer API

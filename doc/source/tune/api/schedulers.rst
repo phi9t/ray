@@ -240,7 +240,7 @@ The Tune implementation of PB2 requires scikit-learn to be installed:
 
 .. code-block:: bash
 
-    pip install scikit-learn
+    uv pip install --system scikit-learn
 
 
 PB2 can be enabled by setting the ``scheduler`` parameter of ``tune.TuneConfig`` which is taken in by ``Tuner``, e.g.:

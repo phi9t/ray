@@ -47,7 +47,7 @@ Start by downloading the dependencies required for this tutorial. Notice in your
 ```bash
 %%bash
 # Install dependencies
-pip install -q \
+uv pip install --system -q \
     "xgrammar==0.1.11" \
     "pynvml==12.0.0" \
     "hf_transfer==0.1.9" \

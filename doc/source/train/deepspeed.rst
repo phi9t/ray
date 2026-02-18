@@ -77,7 +77,7 @@ Install the requirements:
 
 .. code-block:: bash
 
-    pip install deepspeed torch datasets transformers torchmetrics "ray[train]"
+    uv pip install --system deepspeed torch datasets transformers torchmetrics "ray[train]"
 
 .. tab-set::
 

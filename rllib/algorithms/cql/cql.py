@@ -238,7 +238,7 @@ class CQLConfig(SACConfig):
         if self.framework_str in ["tf", "tf2"] and tfp is None:
             logger.warning(
                 "You need `tensorflow_probability` in order to run CQL! "
-                "Install it via `pip install tensorflow_probability`. Your "
+                "Install it via `uv pip install --system tensorflow_probability`. Your "
                 f"tf.__version__={tf.__version__ if tf else None}."
                 "Trying to import tfp results in the following error:"
             )

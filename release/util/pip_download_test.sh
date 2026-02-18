@@ -26,7 +26,7 @@ fi
 
 echo "Start downloading Ray version ${RAY_VERSION} of commit ${RAY_HASH}"
 
-pip install --upgrade pip
+uv pip install --system --upgrade pip
 
 # This is required to use conda activate
 source "$(conda info --base)/etc/profile.d/conda.sh"
@@ -47,7 +47,7 @@ do
     printf "\n\n\n"
 
     # shellcheck disable=SC2102
-    pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple ray[cpp]=="${RAY_VERSION}"
+    uv pip install --system --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple ray[cpp]=="${RAY_VERSION}"
 
     failed=false
     cpp_failed=false

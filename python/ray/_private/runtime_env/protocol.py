@@ -54,7 +54,7 @@ class ProtocolsProvider:
             from smart_open import open as open_file
         except ImportError:
             raise ImportError(
-                "You must `pip install smart_open[s3]` "
+                "You must `uv pip install --system smart_open[s3]` "
                 "to fetch URIs in s3 bucket. " + cls._MISSING_DEPENDENCIES_WARNING
             )
 
@@ -89,7 +89,7 @@ class ProtocolsProvider:
             from smart_open import open as open_file
         except ImportError:
             raise ImportError(
-                "You must `pip install smart_open[gcs]` "
+                "You must `uv pip install --system smart_open[gcs]` "
                 "to fetch URIs in Google Cloud Storage bucket."
                 + cls._MISSING_DEPENDENCIES_WARNING
             )
@@ -113,7 +113,7 @@ class ProtocolsProvider:
             from smart_open import open as open_file
         except ImportError:
             raise ImportError(
-                "You must `pip install azure-storage-blob azure-identity smart_open[azure]` "
+                "You must `uv pip install --system azure-storage-blob azure-identity smart_open[azure]` "
                 "to fetch URIs in Azure Blob Storage. "
                 + cls._MISSING_DEPENDENCIES_WARNING
             )
@@ -152,7 +152,7 @@ class ProtocolsProvider:
             from azure.identity import DefaultAzureCredential
         except ImportError:
             raise ImportError(
-                "You must `pip install adlfs azure-identity` "
+                "You must `uv pip install --system adlfs azure-identity` "
                 "to fetch URIs in Azure Blob File System Secure. "
                 + cls._MISSING_DEPENDENCIES_WARNING
             )
@@ -233,7 +233,7 @@ class ProtocolsProvider:
                 from smart_open import open as open_file
             except ImportError:
                 raise ImportError(
-                    "You must `pip install smart_open` "
+                    "You must `uv pip install --system smart_open` "
                     f"to fetch {protocol.upper()} URIs. "
                     + cls._MISSING_DEPENDENCIES_WARNING
                 )

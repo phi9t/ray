@@ -53,7 +53,7 @@ Use Ray State APIs to access the current state (snapshot) of Ray through the CLI
 
 .. note::
 
-    This feature requires a full installation of Ray using ``pip install "ray[default]"``. This feature also requires that the dashboard component is available. The dashboard component needs to be included when starting the Ray Cluster, which is the default behavior for ``ray start`` and ``ray.init()``.
+    This feature requires a full installation of Ray using ``uv pip install --system "ray[default]"``. This feature also requires that the dashboard component is available. The dashboard component needs to be included when starting the Ray Cluster, which is the default behavior for ``ray start`` and ``ray.init()``.
 
 .. note::
 

@@ -3,4 +3,4 @@
 
 set -exo pipefail
 
-pip3 install azure-cli-core==2.21.0 azure-core azure-identity azure-mgmt-compute azure-mgmt-network azure-mgmt-resource azure-common msrest msrestazure
+uv pip install --system azure-cli-core==2.21.0 azure-core azure-identity azure-mgmt-compute azure-mgmt-network azure-mgmt-resource azure-common msrest msrestazure
